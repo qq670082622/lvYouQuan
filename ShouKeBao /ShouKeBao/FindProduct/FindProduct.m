@@ -351,18 +351,21 @@
     }
     
     if (tableView.tag == 4 ) {
-        return 35;
+        return 30;
     }
     return 0;
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    HeaderView *header = [HeaderView headerView];
-    header.frame = CGRectMake(0, 0, 200, 40);
-    header.delegate = self;
-       return header;
-
+    if (tableView.tag == 3) {
+        HeaderView *header = [HeaderView headerView];
+        header.frame = CGRectMake(0, 0, 200, 40);
+        header.delegate = self;
+        return header;
+    }
+  
+    return 0;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
