@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#define kWebServiceHost @"http://app200.lvyouquan.cn/"
+
 @interface IWHttpTool : NSObject
 
 /**

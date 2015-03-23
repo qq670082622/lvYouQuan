@@ -14,7 +14,7 @@
 		<string>https://github.com/qq670082622/lvYouQuan.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>ShouKeBao/ShouKeBao.xcodeproj</string>
+	<string>ShouKeBao /ShouKeBao.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>3CAAFCBD015942A7BF1D163751BBA9F40A846D1B</key>
@@ -34,7 +34,7 @@
 			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>3CAAFCBD015942A7BF1D163751BBA9F40A846D1B</string>
 			<key>IDESourceControlWCCName</key>
-			<string>lvYouQuan</string>
+			<string>SouKeBao</string>
 		</dict>
 	</array>
 </dict>

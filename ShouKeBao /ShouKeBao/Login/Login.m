@@ -10,19 +10,13 @@
 #import "AppDelegate.h"
 #import "ViewController.h"
 #import "Register.h"
-@interface Login ()
+#import "AppDelegate.h"
+#import "ChildAccountViewController.h"
+#import "WriteFileManager.h"
+
+@interface Login () <UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *loginBtn;
-- (IBAction)loginAction:(id)sender;
-
-@property (weak, nonatomic) IBOutlet UIButton *forgetBtn;
-- (IBAction)forgetBtnAction:(id)sender;
-
-@property (weak, nonatomic) IBOutlet UIButton *registerBtn;
-- (IBAction)registerBtnAction:(id)sender;
-
-
-
 
 @end
 
@@ -30,40 +24,93 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.loginBtn.layer.cornerRadius = 9;
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    self.tableView.contentInset = UIEdgeInsetsZero;
+    
+    // 基本设置
+    [self viewConfig];
+
+    // 设置头部图标
+    [self setupHeader];
+    
+    // 设置底部按钮
+    [self setupFooter];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    self.navigationController.navigationBar.hidden = YES;
+}
+
+#pragma mark - private
+- (void)viewConfig
+{
+    // 背景
+    self.tableView.tableFooterView = [[UIView alloc] init];
+    self.view.backgroundColor = [UIColor clearColor];
+    self.tableView.backgroundColor = [UIColor clearColor];
+    UIImageView *bg = [[UIImageView alloc] initWithFrame:self.view.bounds];
+    bg.image = [UIImage imageNamed:@"navBarBack"];
+    self.tableView.backgroundView = bg;
+    self.tableView.backgroundColor = [UIColor clearColor];
+    
+    // 登录按钮样式
+    self.loginBtn.layer.cornerRadius = 25;
     self.loginBtn.layer.masksToBounds = YES;
     
-    self.forgetBtn.layer.cornerRadius = 6;
-    self.forgetBtn.layer.borderWidth = 1;
-    self.forgetBtn.layer.borderColor = [UIColor grayColor].CGColor;
-    self.forgetBtn.layer.masksToBounds = YES;
+    // 退出编辑
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tanHandle:)];
+    [self.view addGestureRecognizer:tap];
+}
+
+- (void)tanHandle:(UITapGestureRecognizer *)ges
+{
+    [self.view endEditing:YES];
+}
+
+- (void)setupHeader
+{
+    UIView *cover = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 220)];
     
-    self.registerBtn.layer.cornerRadius = 6;
-    self.registerBtn.layer.borderWidth = 1;
-    self.registerBtn.layer.borderColor = [UIColor grayColor].CGColor;
-    self.registerBtn.layer.masksToBounds = YES;
-
+    CGFloat iconX = (self.view.frame.size.width - 150) * 0.5;
+    CGFloat iconY = (cover.frame.size.height - 150) * 0.5 + 20;
+    UIImageView *iconView = [[UIImageView alloc] initWithFrame:CGRectMake(iconX, iconY, 150, 150)];
+    iconView.image = [UIImage imageNamed:@"bigIcon"];
+    [cover addSubview:iconView];
+    
+    self.tableView.tableHeaderView = cover;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)setupFooter
+{
+    CGFloat forgetY = self.view.frame.size.height - 30 - 20;
+    UIButton *forget = [[UIButton alloc] initWithFrame:CGRectMake(20, forgetY, 60, 30)];
+    forget.backgroundColor = [UIColor yellowColor];
+    [self.view addSubview:forget];
+    
+    CGFloat newX = self.view.frame.size.width - 60 - 20;
+    UIButton *new = [[UIButton alloc] initWithFrame:CGRectMake(newX, forgetY, 60, 30)];
+    new.backgroundColor = [UIColor yellowColor];
+    [self.view addSubview:new];
 }
 
-
-
-
-
-- (IBAction)loginAction:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
-}
-- (IBAction)forgetBtnAction:(id)sender {
-}
-- (IBAction)registerBtnAction:(id)sender {
-    [self.navigationController pushViewController:[[Register alloc] init] animated:YES];
+/**
+ *  登录
+ */
+- (IBAction)loginAction:(UIButton *)sender
+{
+//    AppDelegate *app = [UIApplication sharedApplication].delegate;
+//        [app setTabbarRoot];
+    ChildAccountViewController *child = [[ChildAccountViewController alloc] init];
+    [self.navigationController pushViewController:child animated:YES];
 }
 
+#pragma mark - UIScrollViewDelegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+//    [self.view endEditing:YES];
+}
 
 @end

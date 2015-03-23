@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SKTableViewController.h"
 
-@interface Register : UIViewController
+@interface Register : SKTableViewController
 
 @end

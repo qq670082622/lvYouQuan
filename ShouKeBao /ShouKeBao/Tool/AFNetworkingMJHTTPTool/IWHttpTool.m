@@ -9,9 +9,10 @@
 #import "IWHttpTool.h"
 #import "AFNetworking.h"
 #import "StrToDic.h"
+
 @implementation IWHttpTool
 
-+ (void)postWithURL:(NSString *)url params:(NSMutableDictionary *)params success:(void (^)(id))success failure:(void (^)(NSError *))failure
++ (void)postWithURL:(NSString *)url params:(NSDictionary *)params success:(void (^)(id))success failure:(void (^)(NSError *))failure
 {
     // 1.创建请求管理对象
     AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
@@ -21,13 +22,15 @@
     NSString *mobileID = [[UIDevice currentDevice].identifierForVendor UUIDString];
     //ClientSource 0其他，无需
     
-    [params setObject:@1 forKey:@"MobileType"];
-    [params setObject:currentVersion forKey:@"MobileVersion"];
-    [params setObject:mobileID forKey:@"MobileID"];
+    NSMutableDictionary *tmp = [[NSMutableDictionary alloc] init];
+    [tmp setObject:@1 forKey:@"MobileType"];
+    [tmp setObject:currentVersion forKey:@"MobileVersion"];
+    [tmp setObject:mobileID forKey:@"MobileID"];
+    [tmp addEntriesFromDictionary:params];
     
-    NSString *normalURL = @"http://app200.lvyouquan.cn";
+    NSString *normalURL = kWebServiceHost;
     
-    NSString *new = [StrToDic jsonStringWithDicL:params];
+    NSString *new = [StrToDic jsonStringWithDicL:tmp];
     
         //NSLog(@"~~~~~~~string is :%@",new);
     // 2.发送请求

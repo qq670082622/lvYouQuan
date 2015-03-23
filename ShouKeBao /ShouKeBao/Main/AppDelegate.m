@@ -19,26 +19,32 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    ViewController *vc = [[ViewController alloc] init];
-    self.window.rootViewController = vc;
-    
-    [self.window makeKeyAndVisible];
-    WMNavigationController *nav = [[WMNavigationController alloc] initWithRootViewController:[[Login alloc] init]];
-    [vc presentViewController:nav animated:YES completion:^{
-        
-    }];
+//    ViewController *vc = [[ViewController alloc] init];
+//    self.window.rootViewController = vc;
+//    
+//    [self.window makeKeyAndVisible];
+//    WMNavigationController *nav = [[WMNavigationController alloc] initWithRootViewController:[[Login alloc] init]];
+//    [vc presentViewController:nav animated:YES completion:^{
+//        
+//    }];
+    [self setLoginRoot];
     return YES;
 }
+
+#pragma public
 -(void)setTabbarRoot
 {
     ViewController *vc = [[ViewController alloc] init];
     self.window.rootViewController = vc;
     [self.window makeKeyAndVisible];
 }
+
 -(void)setLoginRoot
 {
-    Login *lg = [[Login alloc] init];
-    self.window.rootViewController = lg;
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Auth" bundle:nil];
+    Login *lg = [sb instantiateViewControllerWithIdentifier:@"Login"];
+    WMNavigationController *nav = [[WMNavigationController alloc] initWithRootViewController:lg];
+    self.window.rootViewController = nav;
     [self.window makeKeyAndVisible];
 }
 

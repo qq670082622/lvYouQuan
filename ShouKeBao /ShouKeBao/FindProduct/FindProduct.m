@@ -88,7 +88,7 @@
    self.hotSubView.backgroundColor = [UIColor colorWithRed:217/255.f green:217/255.f blue:217/255.f alpha:1];
 }
 
-
+#pragma mark - LoadDataSource
 - (void)loadDataSourceLeft
 {
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
@@ -233,6 +233,7 @@
 
 }
 
+#pragma mark - private
 -(void)iniHeaderRight
 {
         //下啦刷新
@@ -261,6 +262,7 @@
     self.hotTable.footerPullToRefreshText = @"上拉刷新";
     self.hotTable.footerRefreshingText = @"正在刷新";
 }
+
 -(void)rightheadRefresh
 {//上拉刷新,一般在此方法内添加刷新内容
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{ // 2.0s后执行block里面的代码
@@ -268,7 +270,8 @@
         [self loadHotData];
        [self.rightTable headerEndRefreshing];
       });
-    }
+}
+
 -(void)rightfootRefresh
 {//下拉刷新
    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{ // 2.0s后执行block里面的代码
@@ -277,7 +280,22 @@
        [self.rightTable footerEndRefreshing];
       
     });
-    }
+}
+
+- (IBAction)stationSelect:(id)sender {
+    [self.navigationController pushViewController:[[StationSelect alloc] init] animated:YES];
+}
+- (IBAction)hotBtnClick:(id)sender {
+    self.rightTable.hidden = YES;
+    self.rightTable2.hidden = YES;
+    self.hotTable.hidden = NO;
+    self.hotIcon.selected = YES;
+    self.hotSubView.backgroundColor = [UIColor colorWithRed:217/255.f green:217/255.f blue:217/255.f alpha:1];//217
+    // [self.hotIcon setSelected:YES];
+    
+}
+
+#pragma mark - getter
 -(NSMutableArray *)leftTableArr
 {
     if (_leftTableArr == nil) {
@@ -317,12 +335,15 @@
     return _hotArr;
 }
 
+#pragma mark - rightTable2的代理方法
 -(void)headerViewDidClickedLoadBtn:(HeaderView *)headerView//rightTable2的代理方法
 {
     self.rightTable2.hidden =YES;
     self.rightTable.hidden = NO;
     
 }
+
+#pragma mark - tableviewdatasource&& tableviewdelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if (tableView.tag == 3 ) {
@@ -359,7 +380,7 @@
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
    if (tableView.tag == 4) {
-       NSLog(@"-------%d",self.hotSectionArr.count);
+       NSLog(@"-------%lu",(unsigned long)self.hotSectionArr.count);
         return self.hotSectionArr.count;
     }
     return 1;
@@ -445,21 +466,5 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-
-
-
-- (IBAction)stationSelect:(id)sender {
-    [self.navigationController pushViewController:[[StationSelect alloc] init] animated:YES];
-}
-- (IBAction)hotBtnClick:(id)sender {
-    self.rightTable.hidden = YES;
-    self.rightTable2.hidden = YES;
-    self.hotTable.hidden = NO;
-    self.hotIcon.selected = YES;
-    self.hotSubView.backgroundColor = [UIColor colorWithRed:217/255.f green:217/255.f blue:217/255.f alpha:1];//217
-       // [self.hotIcon setSelected:YES];
-   
 }
 @end

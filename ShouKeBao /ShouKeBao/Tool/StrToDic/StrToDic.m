@@ -49,7 +49,7 @@
 
 }
 
-+(NSString *)jsonStringWithDicL:(NSDictionary *)dic
++ (NSString *)jsonStringWithDicL:(NSDictionary *)dic
 {
     NSData *data = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:nil];
     NSString *jsonStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
