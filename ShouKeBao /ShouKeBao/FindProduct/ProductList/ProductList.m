@@ -9,11 +9,13 @@
 #import "ProductList.h"
 #import "ProductCell.h"
 #import "ProductModal.h"
+#import "IWHttpTool.h"
 @interface ProductList ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIView *setUpView;
 @property (weak, nonatomic) IBOutlet UIView *shadowView;
 @property (weak, nonatomic) IBOutlet UITableView *table;
-@property (strong,nonatomic) NSArray *dataArr;
+@property (strong,nonatomic) NSMutableArray *dataArr;
+
 - (IBAction)recommond:(id)sender;
 - (IBAction)profits:(id)sender;
 - (IBAction)cheapPrice:(id)sender;
@@ -60,7 +62,19 @@
 -(NSArray *)dataArr
 {
     if (_dataArr == nil) {
-        
+        NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+        [dic setObject:@"10" forKey:@"Substation"];
+        [dic setObject:@"10" forKey:@"PageSize"];
+        [dic setObject:@"1" forKey:@"PageIndex"];
+        //[self.dataArr removeAllObjects];
+      [IWHttpTool WMpostWithURL:@"/Product/GetProductList" params:dic success:^(id json) {
+          for (NSDictionary *dic in json[@"ProductList"]) {
+              ProductModal *modal = [ProductModal modalWithDict:dic];
+              [self.dataArr addObject:modal];
+          }
+      } failure:^(NSError *error) {
+          NSLog(@"-------产品搜索请求失败 error is%@----------",error);
+      }];
     }
 
     return _dataArr;

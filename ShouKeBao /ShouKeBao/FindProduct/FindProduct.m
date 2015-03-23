@@ -20,6 +20,7 @@
 #import "IWHttpTool.h"
 #import "StrToDic.h"
 #import "MJRefresh.h"
+#import "ProductList.h"
 @interface FindProduct ()<UITableViewDelegate,UITableViewDataSource,headerViewDelegate>
 
 - (IBAction)stationSelect:(id)sender;
@@ -110,7 +111,7 @@
             [self loadDataSourceRight];
         });
         
-        NSLog(@"~~~~~~~~~~~leftArr is %@~~~~~~~~~~",_leftTableArr);
+       // NSLog(@"~~~~~~~~~~~leftArr is %@~~~~~~~~~~",_leftTableArr);
     
     } failure:^(NSError *error) {
         NSLog(@"左侧栏请求错误！～～～error is ~~~~~~~~~%@",error);
@@ -215,13 +216,13 @@
         [self.hotArr addObject:tmp];
     }
     
-    NSLog(@"------------hotarr------------------%@",self.hotArr);
+  //  NSLog(@"------------hotarr------------------%@",self.hotArr);
 //    self.hotArr = arr;
     for (int i = 0 ; i<self.hotArr.count; i++) {
         [self.hotArrDic setObject:self.hotArr[i] forKey:self.hotSectionArr[i]];
     }
     
-    NSLog(@"--sectionNameArr is %@ 转化后为--hotSextionArr is %@------转化为hotArr is %@--------arr[1]hotsectionArr[1] is %@%@--",sectionNameArr, _hotSectionArr,_hotArr,self.hotArr[0],_hotSectionArr[0]);
+   // NSLog(@"--sectionNameArr is %@ 转化后为--hotSextionArr is %@------转化为hotArr is %@--------arr[1]hotsectionArr[1] is %@%@--",sectionNameArr, _hotSectionArr,_hotArr,self.hotArr[0],_hotSectionArr[0]);
     
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.hotTable reloadData];
@@ -330,18 +331,21 @@
     }
     
     if (tableView.tag == 4 ) {
-        return 35;
-    }
+        return 25;
+   }
     return 0;
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    HeaderView *header = [HeaderView headerView];
-    header.frame = CGRectMake(0, 0, 200, 40);
-    header.delegate = self;
-       return header;
-
+    if (tableView.tag == 3) {
+        HeaderView *header = [HeaderView headerView];
+        header.frame = CGRectMake(0, 0, 200, 40);
+        header.delegate = self;
+        return header;
+    }
+ 
+    return 0;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -359,7 +363,7 @@
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
    if (tableView.tag == 4) {
-       NSLog(@"-------%d",self.hotSectionArr.count);
+      // NSLog(@"----hotSection's count is---%lu",(unsigned long)self.hotSectionArr.count);
         return self.hotSectionArr.count;
     }
     return 1;
@@ -367,8 +371,9 @@
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     if (tableView.tag == 4) {
+       // NSLog(@"-------------titl is %@ ---------",self.hotSectionArr[section]);
         return self.hotSectionArr[section];
-        
+      
     }
     return 0;
 }
@@ -403,10 +408,18 @@
     
     if (tableView.tag == 2) {
     self.table2Row = [NSMutableString stringWithFormat:@"%ld",(long)indexPath.row];
-        NSLog(@"-----------tableSelectRow is %@--------",_table2Row);
+        //NSLog(@"-----------tableSelectRow is %@--------",_table2Row);
         self.rightTable2.hidden = NO;
         self.rightTable.hidden = YES;
         [self loadDataSourceRight2];
+    }
+    if (tableView.tag == 3) {
+        rightModal3 *modal = self.rightMoreArr[indexPath.row];
+        NSString *searchK = modal.searchKey;
+        NSLog(@"---------------searchK is %@-------------",searchK);
+        ProductList *list = [[ProductList alloc] init];
+        list.pushedSearchK = searchK;
+        [self.navigationController pushViewController:list animated:YES];
     }
     
 }

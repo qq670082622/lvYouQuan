@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C2055" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -15,46 +16,48 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="xixixi" translatesAutoresizingMaskIntoConstraints="NO" id="38c-01-iBG">
-                        <rect key="frame" x="8" y="13" width="48" height="48"/>
+                        <rect key="frame" x="8" y="13" width="60" height="80"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="60" id="zIN-rX-Qw7"/>
+                        </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[金牌推荐]阿萨德老客户啊上课的互联网好啦撒看到卢卡斯回来看了凤凰卢卡斯上课啦互粉啦" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JZA-az-ejf">
-                        <rect key="frame" x="61" y="8" width="149" height="53"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <rect key="frame" x="75" y="8" width="143" height="62"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="同行起价" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zAd-jX-Oc6">
-                        <rect key="frame" x="61" y="69" width="51" height="21"/>
+                        <rect key="frame" x="75" y="69" width="51" height="21"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="51" id="Whl-64-cCV"/>
+                            <constraint firstAttribute="width" constant="51" id="Xd1-bP-s0Z"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RMB2550" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JlF-Ol-VPx">
-                        <rect key="frame" x="126" y="69" width="95" height="21"/>
+                        <rect key="frame" x="130" y="69" width="85" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="JlF-Ol-VPx" firstAttribute="top" secondItem="zAd-jX-Oc6" secondAttribute="top" id="2RJ-q1-96X"/>
-                    <constraint firstItem="38c-01-iBG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="6xp-aO-3FV"/>
-                    <constraint firstItem="JZA-az-ejf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="8Ya-0I-7JX"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="JZA-az-ejf" secondAttribute="trailing" constant="3" id="L6c-cn-XwZ"/>
-                    <constraint firstItem="zAd-jX-Oc6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="53" id="LHf-ra-Zii"/>
-                    <constraint firstItem="38c-01-iBG" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="5" id="OZe-6e-zgr"/>
-                    <constraint firstItem="JlF-Ol-VPx" firstAttribute="leading" secondItem="zAd-jX-Oc6" secondAttribute="trailing" constant="14" id="PNK-wW-lH8"/>
-                    <constraint firstAttribute="trailing" secondItem="JlF-Ol-VPx" secondAttribute="trailing" id="Sbp-Ua-Wf7"/>
-                    <constraint firstItem="JZA-az-ejf" firstAttribute="leading" secondItem="38c-01-iBG" secondAttribute="trailing" constant="5" id="Tdu-2o-17n"/>
-                    <constraint firstItem="JZA-az-ejf" firstAttribute="leading" secondItem="zAd-jX-Oc6" secondAttribute="leading" id="WNq-3u-1bz"/>
-                    <constraint firstItem="38c-01-iBG" firstAttribute="bottom" secondItem="JZA-az-ejf" secondAttribute="bottom" id="Xxo-jR-bom"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="zAd-jX-Oc6" secondAttribute="bottom" constant="5.5" id="YBx-kW-9kF"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="38c-01-iBG" secondAttribute="bottom" constant="34.5" id="afj-9M-1g6"/>
-                    <constraint firstItem="zAd-jX-Oc6" firstAttribute="top" secondItem="JZA-az-ejf" secondAttribute="bottom" constant="8" symbolic="YES" id="mkg-ee-iIe"/>
-                    <constraint firstItem="JlF-Ol-VPx" firstAttribute="bottom" secondItem="zAd-jX-Oc6" secondAttribute="bottom" id="rnn-ip-rBE"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="zAd-jX-Oc6" secondAttribute="bottom" constant="5.5" id="8ST-fJ-737"/>
+                    <constraint firstItem="JZA-az-ejf" firstAttribute="leading" secondItem="38c-01-iBG" secondAttribute="trailing" constant="7" id="A3b-FT-eD0"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="JZA-az-ejf" secondAttribute="trailing" constant="-5" id="JO8-dr-3Yj"/>
+                    <constraint firstItem="JZA-az-ejf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="KT9-hl-scN"/>
+                    <constraint firstItem="JZA-az-ejf" firstAttribute="leading" secondItem="zAd-jX-Oc6" secondAttribute="leading" id="Kep-bJ-pYc"/>
+                    <constraint firstItem="38c-01-iBG" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="5" id="LBA-dY-wrg"/>
+                    <constraint firstItem="38c-01-iBG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="M19-Tt-zjB"/>
+                    <constraint firstItem="zAd-jX-Oc6" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="61" id="PHl-PM-SGJ"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="JZA-az-ejf" secondAttribute="bottom" constant="25.5" id="SnH-aA-JhO"/>
+                    <constraint firstItem="JlF-Ol-VPx" firstAttribute="leading" secondItem="zAd-jX-Oc6" secondAttribute="trailing" constant="4" id="Yfe-lG-6DK"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="JlF-Ol-VPx" secondAttribute="trailing" constant="-2" id="gQt-4h-m0Y"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="38c-01-iBG" secondAttribute="bottom" constant="2.5" id="jha-2O-jXG"/>
+                    <constraint firstItem="zAd-jX-Oc6" firstAttribute="bottom" secondItem="JlF-Ol-VPx" secondAttribute="bottom" id="pJ5-EY-YBd"/>
+                    <constraint firstItem="zAd-jX-Oc6" firstAttribute="top" secondItem="JlF-Ol-VPx" secondAttribute="top" id="rR3-qN-FA9"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

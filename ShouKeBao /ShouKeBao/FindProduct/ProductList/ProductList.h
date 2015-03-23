@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface ProductList : UIViewController
-
+@property (nonatomic,copy) NSString *pushedSearchK;
 @end
