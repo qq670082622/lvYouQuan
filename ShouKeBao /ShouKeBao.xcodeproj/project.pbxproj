@@ -101,6 +101,7 @@
 		845514F31AC01DA200D588A7 /* ChildAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 845514F21AC01DA200D588A7 /* ChildAccountViewController.m */; };
 		845514F61AC0219000D588A7 /* BindPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 845514F51AC0219000D588A7 /* BindPhoneViewController.m */; };
 		845514FB1AC032C000D588A7 /* WriteFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 845514FA1AC032C000D588A7 /* WriteFileManager.m */; };
+		845514FE1AC034F900D588A7 /* ResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 845514FD1AC034F900D588A7 /* ResultViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -287,6 +288,8 @@
 		845514F51AC0219000D588A7 /* BindPhoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BindPhoneViewController.m; sourceTree = "<group>"; };
 		845514F91AC032C000D588A7 /* WriteFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WriteFileManager.h; sourceTree = "<group>"; };
 		845514FA1AC032C000D588A7 /* WriteFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WriteFileManager.m; sourceTree = "<group>"; };
+		845514FC1AC034F900D588A7 /* ResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultViewController.h; sourceTree = "<group>"; };
+		845514FD1AC034F900D588A7 /* ResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -688,6 +691,8 @@
 				845514F21AC01DA200D588A7 /* ChildAccountViewController.m */,
 				845514F41AC0219000D588A7 /* BindPhoneViewController.h */,
 				845514F51AC0219000D588A7 /* BindPhoneViewController.m */,
+				845514FC1AC034F900D588A7 /* ResultViewController.h */,
+				845514FD1AC034F900D588A7 /* ResultViewController.m */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -940,6 +945,7 @@
 				632BFFD01AB91FD3003B15AD /* NSString+Base64Util.m in Sources */,
 				631B1EC41AB7CF1E00253FA5 /* rightCell2.m in Sources */,
 				632BFFF61AB92A3A003B15AD /* SDWebImageCompat.m in Sources */,
+				845514FE1AC034F900D588A7 /* ResultViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

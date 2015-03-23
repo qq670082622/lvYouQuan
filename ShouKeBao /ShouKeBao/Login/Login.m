@@ -101,10 +101,10 @@
  */
 - (IBAction)loginAction:(UIButton *)sender
 {
-//    AppDelegate *app = [UIApplication sharedApplication].delegate;
-//        [app setTabbarRoot];
-    ChildAccountViewController *child = [[ChildAccountViewController alloc] init];
-    [self.navigationController pushViewController:child animated:YES];
+    AppDelegate *app = [UIApplication sharedApplication].delegate;
+        [app setTabbarRoot];
+//    ChildAccountViewController *child = [[ChildAccountViewController alloc] init];
+//    [self.navigationController pushViewController:child animated:YES];
 }
 
 #pragma mark - UIScrollViewDelegate
