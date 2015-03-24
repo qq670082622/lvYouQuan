@@ -24,14 +24,15 @@
 
 @implementation ProductList
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self customRightBarItem];
     self.table.delegate = self;
     self.table.dataSource = self;
     [self dataArr];
     
-    }
+}
 
 
 #pragma mark - private
