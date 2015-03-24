@@ -7,7 +7,7 @@
 //
 
 #import "ProductCell.h"
-
+#import "UIImageView+WebCache.h"
 @implementation ProductCell
 
 - (void)awakeFromNib {
@@ -41,14 +41,15 @@
 //    @property (weak, nonatomic) IBOutlet UILabel *setUpPlace;
 //    
     _modal = modal;
-    self.icon.image = [UIImage imageNamed:modal.PicUrl];
+   // self.icon.image = [UIImage imageNamed:modal.PicUrl];
+    [self.icon sd_setImageWithURL:[[NSURL alloc] initWithString:modal.PicUrl]];
     self.descript.text = modal.Name;
     self.productNum.text = modal.Code;
-    self.normalPrice.text = [NSString stringWithFormat:@"￥%@",modal.PersonPrice];
-    self.cheapPrice.text = [NSString stringWithFormat:@"￥%@",modal.PersonPeerPrice];
-    self.profits.text = [NSString stringWithFormat:@"￥%@",modal.PersonProfit];
-    self.jiafanValue.text = [NSString stringWithFormat:@"￥%@",modal.PersonBackPrice];
-    self.quanValue.text = [NSString stringWithFormat:@"￥%@",modal.PersonCashCoupon];
+    self.normalPrice.text = [NSString stringWithFormat:@"%@",modal.PersonPrice];
+    self.cheapPrice.text = [NSString stringWithFormat:@"%@",modal.PersonPeerPrice];
+    self.profits.text = [NSString stringWithFormat:@"%@",modal.PersonProfit];
+    self.jiafanValue.text = [NSString stringWithFormat:@"%@",modal.PersonBackPrice];
+    self.quanValue.text = [NSString stringWithFormat:@"%@",modal.PersonCashCoupon];
     self.setUpPlace.text = modal.StartCityName;
     
     
