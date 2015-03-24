@@ -9,7 +9,7 @@
 #import "rightCell.h"
 #import "Person.h"
 #import "UIImageView+WebCache.h"
-@interface rightCell()
+@interface rightCell()//
 
 @end
 
