@@ -67,6 +67,10 @@
 		633263D91AB851590021553B /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 633263CD1AB851590021553B /* AFURLResponseSerialization.m */; };
 		633263DA1AB851590021553B /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 633263CF1AB851590021553B /* AFURLSessionManager.m */; };
 		633263DB1AB851590021553B /* IWHttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 633263D11AB851590021553B /* IWHttpTool.m */; };
+		634CB9A01AC1331700B0D35B /* FootView.m in Sources */ = {isa = PBXBuildFile; fileRef = 634CB99E1AC1331700B0D35B /* FootView.m */; };
+		634CB9A11AC1331700B0D35B /* FootView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 634CB99F1AC1331700B0D35B /* FootView.xib */; };
+		634CB9A61AC13F8D00B0D35B /* ProduceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 634CB9A41AC13F8D00B0D35B /* ProduceDetailViewController.m */; };
+		634CB9A71AC13F8D00B0D35B /* ProduceDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 634CB9A51AC13F8D00B0D35B /* ProduceDetailViewController.xib */; };
 		6389CE011AB7E0B000A8326E /* leftModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 6389CE001AB7E0B000A8326E /* leftModal.m */; };
 		6389CE051AB7F9F600A8326E /* ResizeImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6389CE041AB7F9F600A8326E /* ResizeImage.m */; };
 		6389CE101AB80B7900A8326E /* ProductList.m in Sources */ = {isa = PBXBuildFile; fileRef = 6389CE0E1AB80B7900A8326E /* ProductList.m */; };
@@ -229,6 +233,12 @@
 		633263CF1AB851590021553B /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
 		633263D01AB851590021553B /* IWHttpTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWHttpTool.h; sourceTree = "<group>"; };
 		633263D11AB851590021553B /* IWHttpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWHttpTool.m; sourceTree = "<group>"; };
+		634CB99D1AC1331700B0D35B /* FootView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FootView.h; sourceTree = "<group>"; };
+		634CB99E1AC1331700B0D35B /* FootView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FootView.m; sourceTree = "<group>"; };
+		634CB99F1AC1331700B0D35B /* FootView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FootView.xib; sourceTree = "<group>"; };
+		634CB9A31AC13F8D00B0D35B /* ProduceDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProduceDetailViewController.h; sourceTree = "<group>"; };
+		634CB9A41AC13F8D00B0D35B /* ProduceDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProduceDetailViewController.m; sourceTree = "<group>"; };
+		634CB9A51AC13F8D00B0D35B /* ProduceDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProduceDetailViewController.xib; sourceTree = "<group>"; };
 		6389CDFF1AB7E0B000A8326E /* leftModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = leftModal.h; sourceTree = "<group>"; };
 		6389CE001AB7E0B000A8326E /* leftModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = leftModal.m; sourceTree = "<group>"; };
 		6389CE031AB7F9F600A8326E /* ResizeImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResizeImage.h; sourceTree = "<group>"; };
@@ -526,6 +536,16 @@
 			path = AFNetworkingMJHTTPTool;
 			sourceTree = "<group>";
 		};
+		634CB9A21AC13F7100B0D35B /* ProductDetail */ = {
+			isa = PBXGroup;
+			children = (
+				634CB9A31AC13F8D00B0D35B /* ProduceDetailViewController.h */,
+				634CB9A41AC13F8D00B0D35B /* ProduceDetailViewController.m */,
+				634CB9A51AC13F8D00B0D35B /* ProduceDetailViewController.xib */,
+			);
+			path = ProductDetail;
+			sourceTree = "<group>";
+		};
 		6389CE021AB7F9DC00A8326E /* ImageTool */ = {
 			isa = PBXGroup;
 			children = (
@@ -538,6 +558,9 @@
 		6389CE0C1AB80B5B00A8326E /* ProductList */ = {
 			isa = PBXGroup;
 			children = (
+				634CB99D1AC1331700B0D35B /* FootView.h */,
+				634CB99E1AC1331700B0D35B /* FootView.m */,
+				634CB99F1AC1331700B0D35B /* FootView.xib */,
 				6389CE0D1AB80B7900A8326E /* ProductList.h */,
 				6389CE0E1AB80B7900A8326E /* ProductList.m */,
 				6389CE0F1AB80B7900A8326E /* ProductList.xib */,
@@ -628,6 +651,7 @@
 		63D31E681AB145550043B3CA /* FindProduct */ = {
 			isa = PBXGroup;
 			children = (
+				634CB9A21AC13F7100B0D35B /* ProductDetail */,
 				633263AE1AB823760021553B /* StationSlect */,
 				6389CE0C1AB80B5B00A8326E /* ProductList */,
 				631B1ECC1AB7D00400253FA5 /* rightTable3 */,
@@ -839,10 +863,12 @@
 				632613301AB2BF80003AC2DA /* leftCell.xib in Resources */,
 				63D31E521AB143D00043B3CA /* LaunchScreen.xib in Resources */,
 				6389CE111AB80B7900A8326E /* ProductList.xib in Resources */,
+				634CB9A11AC1331700B0D35B /* FootView.xib in Resources */,
 				631B1ED41AB7D02C00253FA5 /* rightCell3.xib in Resources */,
 				63D31E931AB171260043B3CA /* Orders.xib in Resources */,
 				632613291AB2AF04003AC2DA /* re_product_pan_b@2x.png in Resources */,
 				63D31E821AB162310043B3CA /* FindProduct.xib in Resources */,
+				634CB9A71AC13F8D00B0D35B /* ProduceDetailViewController.xib in Resources */,
 				632613041AB1B6E7003AC2DA /* orderCell.xib in Resources */,
 				633263B81AB8405C0021553B /* ProductCell.xib in Resources */,
 				63D31E861AB162750043B3CA /* ShouKeBao.xib in Resources */,
@@ -877,6 +903,7 @@
 				633263D51AB851590021553B /* AFNetworkReachabilityManager.m in Sources */,
 				633263D41AB851590021553B /* AFHTTPSessionManager.m in Sources */,
 				632BFFFB1AB92A3A003B15AD /* SDWebImagePrefetcher.m in Sources */,
+				634CB9A61AC13F8D00B0D35B /* ProduceDetailViewController.m in Sources */,
 				632613071AB1B6F9003AC2DA /* oderMoal.m in Sources */,
 				632BFFCF1AB91FD3003B15AD /* GTMBase65.m in Sources */,
 				6389CE051AB7F9F600A8326E /* ResizeImage.m in Sources */,
@@ -901,6 +928,7 @@
 				6326131B1AB1C175003AC2DA /* MJRefreshBaseView.m in Sources */,
 				633263BB1AB840AB0021553B /* ProductModal.m in Sources */,
 				63D31E8D1AB16EA00043B3CA /* AppDelegate.m in Sources */,
+				634CB9A01AC1331700B0D35B /* FootView.m in Sources */,
 				63D31E771AB145A20043B3CA /* Orders.m in Sources */,
 				632B00021AB92A3A003B15AD /* UIView+WebCacheOperation.m in Sources */,
 				632BFFC31AB91FB1003B15AD /* StrToDic.m in Sources */,
