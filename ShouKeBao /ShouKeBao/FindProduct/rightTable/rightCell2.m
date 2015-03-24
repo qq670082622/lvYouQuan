@@ -8,7 +8,7 @@
 
 #import "rightCell2.h"
 
-@implementation rightCell2
+@implementation rightCell2//
 
 - (void)awakeFromNib {
     // Initialization code

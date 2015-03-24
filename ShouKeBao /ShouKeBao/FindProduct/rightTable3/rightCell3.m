@@ -8,7 +8,7 @@
 
 #import "rightCell3.h"
 
-@implementation rightCell3
+@implementation rightCell3//
 
 - (void)awakeFromNib {
     // Initialization code
