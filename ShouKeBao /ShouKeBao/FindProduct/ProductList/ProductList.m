@@ -72,11 +72,14 @@
         [dic setObject:@"1" forKey:@"PageIndex"];
         //[self.dataArr removeAllObjects];
       [IWHttpTool WMpostWithURL:@"/Product/GetProductList" params:dic success:^(id json) {
+          NSMutableArray *dicArr = [NSMutableArray array];
           for (NSDictionary *dic in json[@"ProductList"]) {
               ProductModal *modal = [ProductModal modalWithDict:dic];
-              [self.dataArr addObject:modal];
-              NSLog(@"----------productList dataArr-is-%@-------",_dataArr);
-          }
+              [dicArr addObject:modal];          }
+          _dataArr = dicArr;
+          
+          NSLog(@"----------productList dataArr-is-%@-------",_dataArr);
+
       } failure:^(NSError *error) {
           NSLog(@"-------产品搜索请求失败 error is%@----------",error);
       }];

@@ -19,13 +19,14 @@
 @property (nonatomic, copy) NSString *PersonBackPrice;//加返
 @property (nonatomic, copy) NSString *PersonCashCoupon;//券
 @property (nonatomic, copy) NSString *StartCityName;//出发城市名称
-@property (assign , nonatomic) BOOL *IsComfirmStockNow;//是否闪电发班
-@property (assign , nonatomic) NSNumber *StartCity;//出发城市编号
+@property (copy , nonatomic) NSString *IsComfirmStockNow;//是否闪电发班
+@property (strong , nonatomic) NSNumber *StartCity;//出发城市编号
 @property (copy,nonatomic) NSString *LastScheduleDate;//最近班期
 @property (copy,nonatomic) NSString *SupplierName;//供应商
-@property (assign , nonatomic) BOOL *IsFavorites;//是否收藏
+@property (copy , nonatomic) NSString *IsFavorites;//是否收藏
 @property (copy,nonatomic) NSString *ContactName;//联系人名称
 @property (copy,nonatomic) NSString *ContactMobile;//联系人电话
+@property (copy,nonatomic) NSString *LinkUrl;//产品详情页
 
 
 
