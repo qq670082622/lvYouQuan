@@ -29,9 +29,12 @@
     [self customRightBarItem];
     self.table.delegate = self;
     self.table.dataSource = self;
-    
+    [self dataArr];
     
     }
+
+
+#pragma mark - private
 -(void)customRightBarItem
 {
     UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0,0,30,30)];
@@ -59,6 +62,7 @@
     
     }
 
+#pragma mark - getter
 -(NSArray *)dataArr
 {
     if (_dataArr == nil) {
@@ -71,6 +75,7 @@
           for (NSDictionary *dic in json[@"ProductList"]) {
               ProductModal *modal = [ProductModal modalWithDict:dic];
               [self.dataArr addObject:modal];
+              NSLog(@"----------productList dataArr-is-%@-------",_dataArr);
           }
       } failure:^(NSError *error) {
           NSLog(@"-------产品搜索请求失败 error is%@----------",error);
@@ -80,6 +85,8 @@
     return _dataArr;
    
 }
+
+#pragma mark - tableviewdatasource& tableviewdelegate
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 117;

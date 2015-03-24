@@ -432,6 +432,14 @@
         self.rightTable.hidden = YES;
         [self loadDataSourceRight2];
     }
+    if (tableView.tag ==3 ) {
+        rightModal3 *modal3 = _rightMoreArr[indexPath.row];
+        NSString *key = modal3.searchKey;
+        NSLog(@" key is ~~` ~%@``````````------",key);
+        ProductList *list = [[ProductList alloc] init];
+        list.pushedSearchK = key;
+        [self.navigationController pushViewController:list animated:YES];
+    }
     
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
