@@ -57,6 +57,8 @@
 - (void)setup
 {
     UILabel *title = [[UILabel alloc] init];
+    title.numberOfLines = 0;
+    title.font = [UIFont systemFontOfSize:15];
     [self.topContentView addSubview:title];
     self.title = title;
     
@@ -102,10 +104,11 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
+    
     CGFloat screenW = [UIScreen mainScreen].bounds.size.width;
     
     CGFloat titleW = screenW - gap * 2;
-    self.title.frame = CGRectMake(gap, gap, titleW, 50);
+    self.title.frame = CGRectMake(gap, gap, titleW, 40);
     
     CGFloat iconY = CGRectGetMaxY(self.title.frame) + gap;
     self.icon.frame = CGRectMake(gap, iconY, 70, 70);
@@ -163,9 +166,9 @@
     /**
      *  底部按钮
      */
-    [self.jiafanBtn setTitle:modal.PersonBackPrice forState:UIControlStateNormal];
-    [self.quanBtn setTitle:modal.PersonCashCoupon forState:UIControlStateNormal];
-    [self.ShanDianBtn setTitle:modal.StartCityName forState:UIControlStateNormal];
+    [self.jiafanBtn setTitle:[NSString stringWithFormat:@"%@",modal.PersonBackPrice] forState:UIControlStateNormal];
+    [self.quanBtn setTitle:[NSString stringWithFormat:@"%@",modal.PersonCashCoupon] forState:UIControlStateNormal];
+    [self.ShanDianBtn setTitle:[NSString stringWithFormat:@"%@",modal.StartCityName] forState:UIControlStateNormal];
     
 //    @property (nonatomic, copy) NSString *ID;//产品ID(用于收藏)
 //    @property (nonatomic, copy) NSString *PicUrl;//
