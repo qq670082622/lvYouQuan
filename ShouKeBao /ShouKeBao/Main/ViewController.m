@@ -40,10 +40,7 @@
     Me *me = [[Me alloc] init];
     [self addChildVc:me title:@"我" image:@"APPyonghuming" selectedImage:@"APPyonghuicon"];
     
-
-    
-    
-    }
+}
 
 - (void)addChildVc:(UIViewController *)childVc title:(NSString *)title image:(NSString *)image selectedImage:(NSString *)selectedImage
 {

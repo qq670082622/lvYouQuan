@@ -8,8 +8,8 @@
 
 #import "ShouKeBao.h"
 #import "MJRefresh.h"
-#import "orderCell.h"
-#import "oderMoal.h"
+#import "OrderCell.h"
+#import "OrderModel.h"
 @interface ShouKeBao ()
 
 @end

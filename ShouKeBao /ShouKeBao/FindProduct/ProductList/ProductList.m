@@ -30,10 +30,32 @@
     [self customRightBarItem];
     self.table.delegate = self;
     self.table.dataSource = self;
-    [self dataArr];
+    
+    [self loadDataSource];
     
 }
 
+#pragma mark - loadDataSource
+- (void)loadDataSource
+{
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setObject:@"10" forKey:@"Substation"];
+    [dic setObject:@"10" forKey:@"PageSize"];
+    [dic setObject:@"1" forKey:@"PageIndex"];
+    //[self.dataArr removeAllObjects];
+    [IWHttpTool WMpostWithURL:@"/Product/GetProductList" params:dic success:^(id json) {
+        NSMutableArray *dicArr = [NSMutableArray array];
+        for (NSDictionary *dic in json[@"ProductList"]) {
+            ProductModal *modal = [ProductModal modalWithDict:dic];
+            [dicArr addObject:modal];          }
+        _dataArr = dicArr;
+        
+        NSLog(@"----------productList dataArr-is-%@-------",_dataArr);
+        
+    } failure:^(NSError *error) {
+        NSLog(@"-------产品搜索请求失败 error is%@----------",error);
+    }];
+}
 
 #pragma mark - private
 -(void)customRightBarItem
@@ -67,23 +89,7 @@
 -(NSArray *)dataArr
 {
     if (_dataArr == nil) {
-        NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-        [dic setObject:@"10" forKey:@"Substation"];
-        [dic setObject:@"10" forKey:@"PageSize"];
-        [dic setObject:@"1" forKey:@"PageIndex"];
-        //[self.dataArr removeAllObjects];
-      [IWHttpTool WMpostWithURL:@"/Product/GetProductList" params:dic success:^(id json) {
-          NSMutableArray *dicArr = [NSMutableArray array];
-          for (NSDictionary *dic in json[@"ProductList"]) {
-              ProductModal *modal = [ProductModal modalWithDict:dic];
-              [dicArr addObject:modal];          }
-          _dataArr = dicArr;
-          
-          NSLog(@"----------productList dataArr-is-%@-------",_dataArr);
-
-      } failure:^(NSError *error) {
-          NSLog(@"-------产品搜索请求失败 error is%@----------",error);
-      }];
+        
     }
 
     return _dataArr;
