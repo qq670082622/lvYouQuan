@@ -106,6 +106,8 @@
 		8471EAB91AC16FD50019AB92 /* Orders.m in Sources */ = {isa = PBXBuildFile; fileRef = 8471EAB41AC16FD50019AB92 /* Orders.m */; };
 		8471EABA1AC16FD50019AB92 /* OrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8471EAB71AC16FD50019AB92 /* OrderCell.m */; };
 		8471EABE1AC170180019AB92 /* DOPDropDownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 8471EABD1AC170180019AB92 /* DOPDropDownMenu.m */; };
+		8471EAC51AC17A360019AB92 /* JAActionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8471EAC21AC17A360019AB92 /* JAActionButton.m */; };
+		8471EAC61AC17A360019AB92 /* JASwipeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8471EAC41AC17A360019AB92 /* JASwipeCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -302,6 +304,10 @@
 		8471EAB71AC16FD50019AB92 /* OrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderCell.m; sourceTree = "<group>"; };
 		8471EABC1AC170180019AB92 /* DOPDropDownMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOPDropDownMenu.h; sourceTree = "<group>"; };
 		8471EABD1AC170180019AB92 /* DOPDropDownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOPDropDownMenu.m; sourceTree = "<group>"; };
+		8471EAC11AC17A360019AB92 /* JAActionButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JAActionButton.h; sourceTree = "<group>"; };
+		8471EAC21AC17A360019AB92 /* JAActionButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JAActionButton.m; sourceTree = "<group>"; };
+		8471EAC31AC17A360019AB92 /* JASwipeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JASwipeCell.h; sourceTree = "<group>"; };
+		8471EAC41AC17A360019AB92 /* JASwipeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JASwipeCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -352,6 +358,7 @@
 		632613081AB1C16E003AC2DA /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				8471EAC01AC17A360019AB92 /* JASwipeCell */,
 				8471EABB1AC170180019AB92 /* DOPDropDownMenu */,
 				632BFFD11AB92A3A003B15AD /* SDWebImage */,
 				632BFFC81AB91FD3003B15AD /* base64Util */,
@@ -807,6 +814,17 @@
 			path = DOPDropDownMenu;
 			sourceTree = "<group>";
 		};
+		8471EAC01AC17A360019AB92 /* JASwipeCell */ = {
+			isa = PBXGroup;
+			children = (
+				8471EAC11AC17A360019AB92 /* JAActionButton.h */,
+				8471EAC21AC17A360019AB92 /* JAActionButton.m */,
+				8471EAC31AC17A360019AB92 /* JASwipeCell.h */,
+				8471EAC41AC17A360019AB92 /* JASwipeCell.m */,
+			);
+			path = JASwipeCell;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -932,6 +950,7 @@
 				632BFFFB1AB92A3A003B15AD /* SDWebImagePrefetcher.m in Sources */,
 				634CB9A61AC13F8D00B0D35B /* ProduceDetailViewController.m in Sources */,
 				632BFFCF1AB91FD3003B15AD /* GTMBase65.m in Sources */,
+				8471EAC61AC17A360019AB92 /* JASwipeCell.m in Sources */,
 				6389CE051AB7F9F600A8326E /* ResizeImage.m in Sources */,
 				632BFFC71AB91FBF003B15AD /* jsMethod.m in Sources */,
 				639EE0891AB6EE5900E866B6 /* rightCell.m in Sources */,
@@ -999,6 +1018,7 @@
 				845514F31AC01DA200D588A7 /* ChildAccountViewController.m in Sources */,
 				63D31E7A1AB145B10043B3CA /* ShouKeBao.m in Sources */,
 				632BFFD01AB91FD3003B15AD /* NSString+Base64Util.m in Sources */,
+				8471EAC51AC17A360019AB92 /* JAActionButton.m in Sources */,
 				631B1EC41AB7CF1E00253FA5 /* rightCell2.m in Sources */,
 				632BFFF61AB92A3A003B15AD /* SDWebImageCompat.m in Sources */,
 				845514FE1AC034F900D588A7 /* ResultViewController.m in Sources */,

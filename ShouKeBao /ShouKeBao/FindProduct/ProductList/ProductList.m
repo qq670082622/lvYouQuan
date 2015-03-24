@@ -13,6 +13,8 @@
 #import "MJRefresh.h"
 #import "ProductModal.h"
 #import "FootView.h"
+#import "JAActionButton.h"
+
 @interface ProductList ()<UITableViewDelegate,UITableViewDataSource,footViewDelegate>
 @property (weak, nonatomic) IBOutlet UIView *setUpView;
 
@@ -212,11 +214,31 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ProductCell *cell = [ProductCell cellWithTableView:tableView];
+    
+//    [cell addActionButtons:self.rightDetail withButtonPosition:JAButtonLocationRight];
+    
+//    cell.delegate = self;
+    
     cell.modal = _dataArr[indexPath.row];
     return  cell;
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
 
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleNone;
+}
+
+#pragma mark - other
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

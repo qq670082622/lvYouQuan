@@ -8,21 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "ProductModal.h"
-@class ProductModal;
-@interface ProductCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UILabel *descript;
-@property (weak, nonatomic) IBOutlet UIImageView *icon;
-@property (weak, nonatomic) IBOutlet UILabel *productNum;
-@property (weak, nonatomic) IBOutlet UILabel *normalPrice;
-@property (weak, nonatomic) IBOutlet UILabel *cheapPrice;
-@property (weak, nonatomic) IBOutlet UILabel *profits;
+#import "JASwipeCell.h"
 
-@property (weak, nonatomic) IBOutlet UIImageView *jiafanImage;
-@property (weak, nonatomic) IBOutlet UILabel *jiafanValue;
-@property (weak, nonatomic) IBOutlet UIImageView *quanImage;
-@property (weak, nonatomic) IBOutlet UILabel *quanValue;
-@property (weak, nonatomic) IBOutlet UIImageView *ShanDian;
-@property (weak, nonatomic) IBOutlet UILabel *setUpPlace;
+#define gap 10
+
+@class ProductModal;
+@interface ProductCell : JASwipeCell
+
 
 
 

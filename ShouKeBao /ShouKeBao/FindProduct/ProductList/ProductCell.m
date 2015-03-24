@@ -8,6 +8,22 @@
 
 #import "ProductCell.h"
 #import "UIImageView+WebCache.h"
+
+@interface ProductCell()
+
+@property (weak, nonatomic) UILabel *title;
+@property (weak, nonatomic) UIImageView *icon;
+@property (weak, nonatomic) UILabel *productNum;
+@property (weak, nonatomic) UILabel *normalPrice;
+@property (weak, nonatomic) UILabel *cheapPrice;
+@property (weak, nonatomic) UILabel *profits;
+
+@property (weak, nonatomic) UIButton *jiafanBtn;
+@property (weak, nonatomic) UIButton *quanBtn;
+@property (weak, nonatomic) UIButton *ShanDianBtn;
+
+@end
+
 @implementation ProductCell
 
 - (void)awakeFromNib {
@@ -23,12 +39,103 @@
 { static NSString *cellID = @"productCell";
     ProductCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if (cell == nil) {
-        cell = [[[NSBundle mainBundle] loadNibNamed:@"ProductCell" owner:nil options:nil] lastObject];
-        
-        
+        cell = [[ProductCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
         
     }
     return cell;
+}
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        [self setup];
+    }
+    return self;
+}
+
+- (void)setup
+{
+    UILabel *title = [[UILabel alloc] init];
+    [self.topContentView addSubview:title];
+    self.title = title;
+    
+    UIImageView *icon = [[UIImageView alloc] init];
+    [self.topContentView addSubview:icon];
+    self.icon = icon;
+    
+    /**
+       四个label
+     */
+    UILabel *productNum = [[UILabel alloc] init];
+    [self.topContentView addSubview:productNum];
+    self.productNum = productNum;
+    
+    UILabel *normalPrice = [[UILabel alloc] init];
+    [self.topContentView addSubview:normalPrice];
+    self.normalPrice = normalPrice;
+    
+    UILabel *cheapPrice = [[UILabel alloc] init];
+    [self.topContentView addSubview:cheapPrice];
+    self.cheapPrice = cheapPrice;
+    
+    UILabel *profits = [[UILabel alloc] init];
+    [self.topContentView addSubview:profits];
+    self.profits = profits;
+    
+    /**
+       底下的三个按钮
+     */
+    UIButton *jiafanBtn = [[UIButton alloc] init];
+    [self.topContentView addSubview:jiafanBtn];
+    self.jiafanBtn = jiafanBtn;
+    
+    UIButton *quanBtn = [[UIButton alloc] init];
+    [self.topContentView addSubview:quanBtn];
+    self.quanBtn = quanBtn;
+    
+    UIButton *ShanDianBtn = [[UIButton alloc] init];
+    [self.topContentView addSubview:ShanDianBtn];
+    self.ShanDianBtn = ShanDianBtn;
+}
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    CGFloat screenW = [UIScreen mainScreen].bounds.size.width;
+    
+    CGFloat titleW = screenW - gap * 2;
+    self.title.frame = CGRectMake(gap, gap, titleW, 50);
+    
+    CGFloat iconY = CGRectGetMaxY(self.title.frame) + gap;
+    self.icon.frame = CGRectMake(gap, iconY, 70, 70);
+    
+    /**
+     四个label
+     */
+    CGFloat pX = CGRectGetMaxX(self.icon.frame) + gap;
+    CGFloat pW = screenW / 3;
+    self.productNum.frame = CGRectMake(pX, iconY, pW, 20);
+    
+    CGFloat nX = CGRectGetMaxX(self.productNum.frame) + gap * 2;
+    self.normalPrice.frame = CGRectMake(nX, iconY, pW, 20);
+    
+    CGFloat cY = CGRectGetMaxY(self.normalPrice.frame) + gap * 0.5;
+    self.cheapPrice.frame = CGRectMake(pX, cY, pW, 20);
+    
+    self.profits.frame = CGRectMake(nX, cY, pW, 20);
+    
+    /**
+     底下的三个按钮
+     */
+    CGFloat jY = CGRectGetMaxY(self.cheapPrice.frame) + gap * 0.5;
+    self.jiafanBtn.frame = CGRectMake(pX, jY, 70, 20);
+    
+    CGFloat qX = CGRectGetMaxX(self.jiafanBtn.frame) + gap * 0.5;
+    self.quanBtn.frame = CGRectMake(qX, jY, 70, 20);
+    
+    CGFloat sX = CGRectGetMaxX(self.quanBtn.frame) + gap * 0.5;
+    self.ShanDianBtn.frame = CGRectMake(sX, jY, 70, 20);
 }
 
 -(void)setModal:(ProductModal *)modal
@@ -43,15 +150,22 @@
     _modal = modal;
    // self.icon.image = [UIImage imageNamed:modal.PicUrl];
     [self.icon sd_setImageWithURL:[[NSURL alloc] initWithString:modal.PicUrl]];
-    self.descript.text = modal.Name;
+    self.title.text = modal.Name;
+    
+    /**
+     *  四个label
+     */
     self.productNum.text = modal.Code;
     self.normalPrice.text = [NSString stringWithFormat:@"%@",modal.PersonPrice];
     self.cheapPrice.text = [NSString stringWithFormat:@"%@",modal.PersonPeerPrice];
     self.profits.text = [NSString stringWithFormat:@"%@",modal.PersonProfit];
-    self.jiafanValue.text = [NSString stringWithFormat:@"%@",modal.PersonBackPrice];
-    self.quanValue.text = [NSString stringWithFormat:@"%@",modal.PersonCashCoupon];
-    self.setUpPlace.text = modal.StartCityName;
     
+    /**
+     *  底部按钮
+     */
+    [self.jiafanBtn setTitle:modal.PersonBackPrice forState:UIControlStateNormal];
+    [self.quanBtn setTitle:modal.PersonCashCoupon forState:UIControlStateNormal];
+    [self.ShanDianBtn setTitle:modal.StartCityName forState:UIControlStateNormal];
     
 //    @property (nonatomic, copy) NSString *ID;//产品ID(用于收藏)
 //    @property (nonatomic, copy) NSString *PicUrl;//
