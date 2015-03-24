@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6314157F1AC14FCA0086DF60 /* ConditionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6314157E1AC14FCA0086DF60 /* ConditionModel.m */; };
 		631B1EC41AB7CF1E00253FA5 /* rightCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 631B1EC21AB7CF1E00253FA5 /* rightCell2.m */; };
 		631B1EC51AB7CF1E00253FA5 /* rightCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 631B1EC31AB7CF1E00253FA5 /* rightCell2.xib */; };
 		631B1EC81AB7CFDD00253FA5 /* rightModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 631B1EC71AB7CFDD00253FA5 /* rightModal.m */; };
@@ -119,6 +120,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6314157D1AC14FCA0086DF60 /* ConditionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConditionModel.h; sourceTree = "<group>"; };
+		6314157E1AC14FCA0086DF60 /* ConditionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConditionModel.m; sourceTree = "<group>"; };
 		631B1EC11AB7CF1E00253FA5 /* rightCell2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = rightCell2.h; path = ../rightTable/rightCell2.h; sourceTree = "<group>"; };
 		631B1EC21AB7CF1E00253FA5 /* rightCell2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = rightCell2.m; path = ../rightTable/rightCell2.m; sourceTree = "<group>"; };
 		631B1EC31AB7CF1E00253FA5 /* rightCell2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = rightCell2.xib; path = ../rightTable/rightCell2.xib; sourceTree = "<group>"; };
@@ -569,6 +572,8 @@
 				633263B61AB8405C0021553B /* ProductCell.xib */,
 				633263B91AB840AB0021553B /* ProductModal.h */,
 				633263BA1AB840AB0021553B /* ProductModal.m */,
+				6314157D1AC14FCA0086DF60 /* ConditionModel.h */,
+				6314157E1AC14FCA0086DF60 /* ConditionModel.m */,
 			);
 			path = ProductList;
 			sourceTree = "<group>";
@@ -902,6 +907,7 @@
 				633263D21AB851590021553B /* AFHTTPRequestOperation.m in Sources */,
 				633263D51AB851590021553B /* AFNetworkReachabilityManager.m in Sources */,
 				633263D41AB851590021553B /* AFHTTPSessionManager.m in Sources */,
+				6314157F1AC14FCA0086DF60 /* ConditionModel.m in Sources */,
 				632BFFFB1AB92A3A003B15AD /* SDWebImagePrefetcher.m in Sources */,
 				634CB9A61AC13F8D00B0D35B /* ProduceDetailViewController.m in Sources */,
 				632613071AB1B6F9003AC2DA /* oderMoal.m in Sources */,

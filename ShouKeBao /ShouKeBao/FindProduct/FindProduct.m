@@ -435,9 +435,11 @@
     if (tableView.tag ==3 ) {
         rightModal3 *modal3 = _rightMoreArr[indexPath.row];
         NSString *key = modal3.searchKey;
+        NSString *title = modal3.Name;
         NSLog(@" key is ~~` ~%@``````````------",key);
         ProductList *list = [[ProductList alloc] init];
         list.pushedSearchK = key;
+        list.title = title;
         [self.navigationController pushViewController:list animated:YES];
     }
     

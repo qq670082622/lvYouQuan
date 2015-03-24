@@ -10,4 +10,5 @@
 #import "ProduceDetailViewController.h"
 @interface ProductList : UIViewController
 @property (nonatomic,copy) NSString *pushedSearchK;
+@property (nonatomic,copy) NSString *title;
 @end
