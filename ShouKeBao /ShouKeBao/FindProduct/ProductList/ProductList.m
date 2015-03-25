@@ -33,9 +33,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *profitOutlet;
 @property (weak, nonatomic) IBOutlet UIButton *cheapOutlet;
 
-@property (nonatomic,strong) NSArray *lefts;
-@property (nonatomic,strong) NSArray *rights;
-
 @end
 
 @implementation ProductList
@@ -197,12 +194,13 @@
 }
 
 // 左边滑动的按钮
-- (NSArray *)createLeftButtons:(NSString *)text
+- (NSArray *)createLeftButtons:(ProductModal *)model
 {
+    NSString *tmp = [NSString stringWithFormat:@"%@ %@",model.ContactName,model.ContactMobile];
     NSMutableArray * result = [NSMutableArray array];
     UIColor * color = [UIColor lightGrayColor];
     
-    MGSwipeButton * button = [MGSwipeButton buttonWithTitle:text icon:nil backgroundColor:color callback:^BOOL(MGSwipeTableCell * sender){
+    MGSwipeButton * button = [MGSwipeButton buttonWithTitle:tmp icon:nil backgroundColor:color callback:^BOOL(MGSwipeTableCell * sender){
         NSLog(@"Convenience callback received (left).");
         return YES;
     }];
@@ -216,10 +214,11 @@
 }
 
 // 右边滑动的按钮
-- (NSArray *)createRightButtons:(NSString *)text
+- (NSArray *)createRightButtons:(ProductModal *)model
 {
     NSMutableArray * result = [NSMutableArray array];
-    NSString* titles[2] = {@"", text};
+    NSString *add = [NSString stringWithFormat:@"最近班期:%@\n\n供应商:%@",model.LastScheduleDate,model.SupplierName];
+    NSString* titles[2] = {@"", add};
     UIColor * colors[2] = {[UIColor clearColor], [UIColor lightGrayColor]};
     for (int i = 0; i < 2; i ++)
     {
@@ -229,12 +228,13 @@
         }];
         
         if (i == 0) {
-            [button setBackgroundImage:[UIImage imageNamed:@"collection_icon.png"] forState:UIControlStateNormal];
+            NSString *img = [model.IsFavorites isEqualToString:@"1"] ? @"uncollection_icon" : @"collection_icon";
+            [button setBackgroundImage:[UIImage imageNamed:img] forState:UIControlStateNormal];
         }else{
             button.titleLabel.numberOfLines = 0;
             button.enabled = NO;
         }
-        
+        button.titleLabel.font = [UIFont boldSystemFontOfSize:15];
         CGRect frame = button.frame;
         frame.size.width = i == 1 ? 200 : 50;
         button.frame = frame;
@@ -255,13 +255,14 @@
     return _dataArr.count;
     
 }
--(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ProductModal *model = _dataArr[indexPath.row];
     NSString *productUrl = model.LinkUrl;
     ProduceDetailViewController *detail = [[ProduceDetailViewController alloc] init];
     detail.produceUrl = productUrl;
     [self.navigationController pushViewController:detail animated:YES];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -277,9 +278,8 @@
     cell.leftSwipeSettings.transition = MGSwipeTransitionStatic;
     cell.rightSwipeSettings.transition = MGSwipeTransitionStatic;
     
-    NSString *tmp = [NSString stringWithFormat:@"%@ %@",model.ContactName,model.ContactMobile];
-    cell.leftButtons = [self createLeftButtons:tmp];
-    cell.rightButtons = [self createRightButtons:model.SupplierName];
+    cell.leftButtons = [self createLeftButtons:model];
+    cell.rightButtons = [self createRightButtons:model];
     
     return  cell;
 }
@@ -301,8 +301,9 @@
     NSIndexPath *indexPath = [self.table indexPathForCell:cell];
     NSLog(@"------%@",indexPath);
     
-//    ProductModal *model = _dataArr[indexPath.row];
-    
+    ProductModal *model = _dataArr[indexPath.row];
+    model.IsFavorites = [model.IsFavorites isEqualToString:@"1"] ? @"0" : @"1";
+    [self.table reloadData];
     return YES;
 }
 
@@ -311,8 +312,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
 
 - (IBAction)recommond:(id)sender {//推荐
     [self.profitOutlet setSelected:NO];

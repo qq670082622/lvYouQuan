@@ -22,6 +22,10 @@
 @property (weak, nonatomic) UIButton *quanBtn;
 @property (weak, nonatomic) UIButton *ShanDianBtn;
 
+@property (nonatomic,weak) UIImageView *flash;
+
+@property (nonatomic,assign) BOOL isFlash;
+
 @end
 
 @implementation ProductCell
@@ -58,7 +62,7 @@
 {
     UILabel *title = [[UILabel alloc] init];
     title.numberOfLines = 0;
-    title.font = [UIFont systemFontOfSize:15];
+    title.font = [UIFont systemFontOfSize:13];
     [self.contentView addSubview:title];
     self.title = title;
     
@@ -70,24 +74,24 @@
        四个label
      */
     UILabel *productNum = [[UILabel alloc] init];
-    productNum.font = [UIFont systemFontOfSize:13];
+    productNum.font = [UIFont boldSystemFontOfSize:10];
     [self.contentView addSubview:productNum];
     self.productNum = productNum;
     
     UILabel *normalPrice = [[UILabel alloc] init];
-    normalPrice.font = [UIFont systemFontOfSize:13];
-    normalPrice.textAlignment = NSTextAlignmentRight;
+    normalPrice.font = [UIFont systemFontOfSize:10];
+//    normalPrice.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:normalPrice];
     self.normalPrice = normalPrice;
     
     UILabel *cheapPrice = [[UILabel alloc] init];
-    cheapPrice.font = [UIFont systemFontOfSize:13];
+    cheapPrice.font = [UIFont systemFontOfSize:10];
     [self.contentView addSubview:cheapPrice];
     self.cheapPrice = cheapPrice;
     
     UILabel *profits = [[UILabel alloc] init];
-    profits.textAlignment = NSTextAlignmentRight;
-    profits.font = [UIFont systemFontOfSize:13];
+//    profits.textAlignment = NSTextAlignmentRight;
+    profits.font = [UIFont systemFontOfSize:10];
     [self.contentView addSubview:profits];
     self.profits = profits;
     
@@ -95,22 +99,32 @@
        底下的三个按钮
      */
     UIButton *jiafanBtn = [[UIButton alloc] init];
-    [jiafanBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    jiafanBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+    [jiafanBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [jiafanBtn setBackgroundImage:[UIImage imageNamed:@"jiafang"] forState:UIControlStateNormal];
+    jiafanBtn.titleLabel.font = [UIFont systemFontOfSize:10];
     [self.contentView addSubview:jiafanBtn];
     self.jiafanBtn = jiafanBtn;
     
     UIButton *quanBtn = [[UIButton alloc] init];
-    [quanBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    quanBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+    [quanBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [quanBtn setBackgroundImage:[UIImage imageNamed:@"quan"] forState:UIControlStateNormal];
+    quanBtn.titleLabel.font = [UIFont systemFontOfSize:10];
     [self.contentView addSubview:quanBtn];
     self.quanBtn = quanBtn;
     
     UIButton *ShanDianBtn = [[UIButton alloc] init];
-    [ShanDianBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    ShanDianBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+    [ShanDianBtn setTitleColor:[UIColor colorWithRed:128/255.0 green:188/255.0 blue:1 alpha:1] forState:UIControlStateNormal];
+    ShanDianBtn.titleLabel.font = [UIFont boldSystemFontOfSize:11];
+    [ShanDianBtn setBackgroundImage:[UIImage imageNamed:@"chufa"] forState:UIControlStateNormal];
+    ShanDianBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [self.contentView addSubview:ShanDianBtn];
     self.ShanDianBtn = ShanDianBtn;
+    
+    // 闪电
+    UIImageView *flash = [[UIImageView alloc] init];
+    flash.image = [UIImage imageNamed:@"sandian"];
+    [self.contentView addSubview:flash];
+    self.flash = flash;
 }
 
 - (void)layoutSubviews
@@ -120,19 +134,19 @@
     CGFloat screenW = [UIScreen mainScreen].bounds.size.width;
     
     CGFloat titleW = screenW - gap * 2;
-    self.title.frame = CGRectMake(gap, gap, titleW, 40);
+    self.title.frame = CGRectMake(gap, gap, titleW, 35);
     
     CGFloat iconY = CGRectGetMaxY(self.title.frame) + gap;
-    self.icon.frame = CGRectMake(gap, iconY, 70, 70);
+    self.icon.frame = CGRectMake(gap, iconY, 120, 70);
     
     /**
      四个label
      */
     CGFloat pX = CGRectGetMaxX(self.icon.frame) + gap;
-    CGFloat pW = screenW / 3;
+    CGFloat pW = (screenW - 120 - gap * 3.5) / 2;
     self.productNum.frame = CGRectMake(pX, iconY, pW, 20);
     
-    CGFloat nX = CGRectGetMaxX(self.productNum.frame) + gap * 2;
+    CGFloat nX = CGRectGetMaxX(self.productNum.frame) + gap * 0.5;
     self.normalPrice.frame = CGRectMake(nX, iconY, pW, 20);
     
     CGFloat cY = CGRectGetMaxY(self.normalPrice.frame) + gap * 0.5;
@@ -146,11 +160,18 @@
     CGFloat jY = CGRectGetMaxY(self.cheapPrice.frame) + gap * 0.5;
     self.jiafanBtn.frame = CGRectMake(pX, jY, 70, 20);
     
-    CGFloat qX = CGRectGetMaxX(self.jiafanBtn.frame) + gap * 0.5;
+    CGFloat qX = CGRectGetMaxX(self.jiafanBtn.frame);
     self.quanBtn.frame = CGRectMake(qX, jY, 70, 20);
     
-    CGFloat sX = CGRectGetMaxX(self.quanBtn.frame) + gap * 0.5;
-    self.ShanDianBtn.frame = CGRectMake(sX, jY, 70, 20);
+                    // 闪电
+                    CGFloat fX = CGRectGetMaxX(self.quanBtn.frame);
+                    CGFloat fW = self.isFlash ? 20 : 0;
+                    self.flash.frame = CGRectMake(fX, jY, fW, 20);
+    
+    CGFloat sX = CGRectGetMaxX(self.flash.frame) + gap * 0.5;
+    self.ShanDianBtn.frame = CGRectMake(sX, jY, 60, 20);
+    
+    
 }
 
 -(void)setModal:(ProductModal *)modal
@@ -184,9 +205,12 @@
     /**
      *  底部按钮
      */
-    [self.jiafanBtn setTitle:[NSString stringWithFormat:@"%@",modal.PersonBackPrice] forState:UIControlStateNormal];
-    [self.quanBtn setTitle:[NSString stringWithFormat:@"%@",modal.PersonCashCoupon] forState:UIControlStateNormal];
-    [self.ShanDianBtn setTitle:[NSString stringWithFormat:@"%@",modal.StartCityName] forState:UIControlStateNormal];
+    [self.jiafanBtn setTitle:[NSString stringWithFormat:@"          %@",modal.PersonBackPrice] forState:UIControlStateNormal];
+    [self.quanBtn setTitle:[NSString stringWithFormat:@"          %@",modal.PersonCashCoupon] forState:UIControlStateNormal];
+    [self.ShanDianBtn setTitle:[NSString stringWithFormat:@"  %@",modal.StartCityName] forState:UIControlStateNormal];
+    
+    self.isFlash = [modal.IsComfirmStockNow integerValue];
+    [self setNeedsLayout];
     
 //    @property (nonatomic, copy) NSString *ID;//产品ID(用于收藏)
 //    @property (nonatomic, copy) NSString *PicUrl;//
