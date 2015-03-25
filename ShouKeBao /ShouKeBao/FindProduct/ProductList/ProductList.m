@@ -17,12 +17,21 @@
 #import "MGSwipeButton.h"
 
 @interface ProductList ()<UITableViewDelegate,UITableViewDataSource,footViewDelegate,MGSwipeTableCellDelegate>
-@property (weak, nonatomic) IBOutlet UIView *setUpView;
+@property (weak, nonatomic) IBOutlet UIView *subView;
 
 @property (weak, nonatomic) IBOutlet UITableView *table;
 @property (strong,nonatomic) NSMutableArray *dataArr;
 @property (copy , nonatomic) NSMutableString *page;
+@property (weak, nonatomic) IBOutlet UITableView *subTable;
+- (IBAction)sunCancel:(id)sender;
+- (IBAction)subReset:(id)sender;
+- (IBAction)subDone:(id)sender;
+- (IBAction)subMinMax:(id)sender;
+@property (weak, nonatomic) IBOutlet UISwitch *jiafanSwitch;
 
+- (IBAction)jiafanSwitchAction:(id)sender;
+@property (weak, nonatomic) IBOutlet UISwitch *jishiSwitch;
+- (IBAction)jishiSwitchAction:(id)sender;
 
 @property (copy , nonatomic) NSMutableString *ProductSortingType;//推荐:”0",利润（从低往高）:”1"利润（从高往低:”2"
 //同行价（从低往高）:”3,同行价（从高往低）:"4"
@@ -101,12 +110,12 @@
 -(void)setUp
 {
    
-    if (self.setUpView.hidden == NO) {
-        self.setUpView.hidden = YES;
+    if (self.subView.hidden == NO) {
+        self.subView.hidden = YES;
         
       
-    }else if (self.setUpView.hidden == YES){
-        self.setUpView.hidden = NO;
+    }else if (self.subView.hidden == YES){
+        self.subView.hidden = NO;
        
     }
     
@@ -302,8 +311,15 @@
     NSLog(@"------%@",indexPath);
     
     ProductModal *model = _dataArr[indexPath.row];
-    model.IsFavorites = [model.IsFavorites isEqualToString:@"1"] ? @"0" : @"1";
-    [self.table reloadData];
+    NSString *result = [model.IsFavorites isEqualToString:@"0"]?@"1":@"0";
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setObject:model.ID forKey:@"ProductID"];
+    [dic setObject:result forKey:@"IsFavorites"];///Product/ SetProductFavorites
+   [IWHttpTool WMpostWithURL:@"/Product/SetProductFavorites" params:dic success:^(id json) {
+       NSLog(@"产品收藏成功");
+   } failure:^(NSError *error) {
+       NSLog(@"产品收藏网络请求失败");
+   }];
     return YES;
 }
 
@@ -512,5 +528,20 @@
         }];
 
     }
+}
+- (IBAction)sunCancel:(id)sender {
+}
+
+- (IBAction)subReset:(id)sender {
+}
+
+- (IBAction)subDone:(id)sender {
+}
+
+- (IBAction)subMinMax:(id)sender {
+}
+- (IBAction)jiafanSwitchAction:(id)sender {
+}
+- (IBAction)jishiSwitchAction:(id)sender {
 }
 @end
