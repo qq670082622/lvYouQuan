@@ -14,8 +14,9 @@
 
 + (void)postWithURL:(NSString *)url params:(NSDictionary *)params success:(void (^)(id))success failure:(void (^)(NSError *))failure
 {
-    // 1.创建请求管理对象
-    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
+    NSString *normalURL = kWebServiceHost;
+    NSString *overStr = [normalURL stringByAppendingString:url];
+   
    //组dic
     NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
     NSString *currentVersion = [infoDic objectForKey:@"CFBundleVersion"];
@@ -23,20 +24,18 @@
     //ClientSource 0其他，无需
     
     NSMutableDictionary *tmp = [[NSMutableDictionary alloc] init];
-    [tmp setObject:@1 forKey:@"MobileType"];
+    [tmp setObject:@"1" forKey:@"MobileType"];
     [tmp setObject:currentVersion forKey:@"MobileVersion"];
     [tmp setObject:mobileID forKey:@"MobileID"];
     [tmp addEntriesFromDictionary:params];
-    
-    NSString *normalURL = kWebServiceHost;
-    
-    NSString *new = [StrToDic jsonStringWithDicL:tmp];
-    
-        //NSLog(@"~~~~~~~string is :%@",new);
-    // 2.发送请求
-    NSString *overStr = [normalURL stringByAppendingString:url];
    
-    [mgr POST:overStr parameters:new
+    NSLog(@"~~~~~~~param:%@",tmp);
+    NSLog(@"-------url:%@",overStr);
+    
+    // 1.创建请求管理对象
+    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
+    mgr.requestSerializer = [AFJSONRequestSerializer serializer];
+    [mgr POST:overStr parameters:tmp
       success:^(AFHTTPRequestOperation *operation, id responseObject) {
          
           if (success) {
@@ -50,43 +49,39 @@
 }
 
 + (void)WMpostWithURL:(NSString *)url params:(NSMutableDictionary *)params success:(void (^)(id json))success failure:(void (^)(NSError *error))failure{
-    //设置URL
-     NSString *normalURL = @"http://app200.lvyouquan.cn";
-     NSString *overStr = [normalURL stringByAppendingString:url];
-    NSURL *httpUrl = [[NSURL alloc] initWithString:overStr];
-    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:httpUrl cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:12.0f];
-   //设置httpbody
+    
+    NSString *normalURL = kWebServiceHost;
+    NSString *overStr = [normalURL stringByAppendingString:url];
+    
+    //组dic
     NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
     NSString *currentVersion = [infoDic objectForKey:@"CFBundleVersion"];
     NSString *mobileID = [[UIDevice currentDevice].identifierForVendor UUIDString];
-    [params setObject:@1 forKey:@"MobileType"];
-    [params setObject:currentVersion forKey:@"MobileVersion"];
-    [params setObject:mobileID forKey:@"MobileID"];
-    NSString *json = [StrToDic jsonStringWithDicL:params];
-    urlRequest.HTTPBody = [json dataUsingEncoding:NSUTF8StringEncoding];
-    [urlRequest setHTTPMethod:@"POST"];
-    //请求
-    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-    [NSURLConnection sendAsynchronousRequest:urlRequest queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-//        if ([data length] > 0 && connectionError == nil) {
-//            NSDictionary *result = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
-//            NSLog(@"~~~~~~~dic is %@",result);
-    if (!connectionError) {
-            NSDictionary *result = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
-            //NSLog(@"~~~~~~~dic is %@",result);
-            
-            if(success){
-                success(result);
-            }
-            
-        }else{
-            if (failure) {
-                failure(connectionError);
-            }
-        }
-        
-        
-        }];
+    //ClientSource 0其他，无需
+    
+    NSMutableDictionary *tmp = [[NSMutableDictionary alloc] init];
+    [tmp setObject:@"1" forKey:@"MobileType"];
+    [tmp setObject:currentVersion forKey:@"MobileVersion"];
+    [tmp setObject:mobileID forKey:@"MobileID"];
+    [tmp addEntriesFromDictionary:params];
+    
+    NSLog(@"~~~~~~~param:%@",tmp);
+    NSLog(@"-------url:%@",overStr);
+    
+    // 1.创建请求管理对象
+    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
+    mgr.requestSerializer = [AFJSONRequestSerializer serializer];
+    [mgr POST:overStr parameters:tmp
+      success:^(AFHTTPRequestOperation *operation, id responseObject) {
+          
+          if (success) {
+              success(responseObject);
+          }
+      } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+          if (failure) {
+              failure(error);
+          }
+      }];
     
 }
 

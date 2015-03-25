@@ -13,10 +13,15 @@
 #import "AppDelegate.h"
 #import "ChildAccountViewController.h"
 #import "WriteFileManager.h"
+#import "LoginTool.h"
 
 @interface Login () <UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *loginBtn;
+
+@property (weak, nonatomic) IBOutlet UITextField *accountField;
+
+@property (weak, nonatomic) IBOutlet UITextField *passwordField;
 
 @end
 
@@ -35,6 +40,9 @@
     
     // 设置底部按钮
     [self setupFooter];
+    
+    self.accountField.text = @"lxstest";
+    self.passwordField.text = @"123456";
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -101,10 +109,24 @@
  */
 - (IBAction)loginAction:(UIButton *)sender
 {
-    AppDelegate *app = [UIApplication sharedApplication].delegate;
-        [app setTabbarRoot];
-//    ChildAccountViewController *child = [[ChildAccountViewController alloc] init];
-//    [self.navigationController pushViewController:child animated:YES];
+    NSDictionary *param = @{@"LoginName":self.accountField.text,
+                            @"LoginPassword":self.passwordField.text};
+    [LoginTool loginWithParam:param success:^(id json) {
+        
+        NSLog(@"----%@",json);
+        
+        if ([json[@"IsSuccess"] integerValue] == 1) {
+            if ([json[@"LoginType"] integerValue] == 0) {
+                ChildAccountViewController *child = [[ChildAccountViewController alloc] init];
+                [self.navigationController pushViewController:child animated:YES];
+            }else{
+                AppDelegate *app = [UIApplication sharedApplication].delegate;
+                [app setTabbarRoot];
+            }
+        }
+    } failure:^(NSError *error) {
+        
+    }];
 }
 
 #pragma mark - UIScrollViewDelegate
