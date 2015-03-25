@@ -38,7 +38,7 @@
  */
 - (IBAction)getCode:(id)sender
 {
-    
+    NSLog(@"----");
 }
 
 /**
@@ -46,7 +46,7 @@
  */
 - (IBAction)bindAccount:(id)sender
 {
-    
+    NSLog(@"00000");
 }
 
 

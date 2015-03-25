@@ -144,10 +144,10 @@
         
       //  NSLog(@"%@rightTable2 Thread~~~~~~~~~~",[NSThread currentThread]);
         
-        dispatch_sync(dispatch_get_main_queue(), ^{
+        //dispatch_sync(dispatch_get_main_queue(), ^{
         
             [self.rightTable reloadData];
-        });
+        //});
     } failure:^(NSError *error) {
         NSLog(@"左侧栏请求错误！～～～error is ~~~~~~~~~%@",error);
     }];
@@ -178,10 +178,10 @@
 //        _rightMoreArr = arr;
 //        NSLog(@"~~~~－－－－－－－－－~~~~%@rightTable3 Thread~~~－－－－-------临时参数arr is %@-------－－－~~~装载的rightMoreArr is %@~~－－－－－－~~",[NSThread currentThread],arr,_rightMoreArr);
         
-        dispatch_sync(dispatch_get_main_queue(), ^{
+        //dispatch_sync(dispatch_get_main_queue(), ^{
             
             [self.rightTable2 reloadData];
-        });
+       // });
     } failure:^(NSError *error) {
         NSLog(@"右侧栏子栏rightTable3 请求错误！～～～error is ~~~~~~~~~%@",error);
     }];
@@ -223,9 +223,9 @@
     
     NSLog(@"--sectionNameArr is %@ 转化后为--hotSextionArr is %@------转化为hotArr is %@--------arr[1]hotsectionArr[1] is %@%@--",sectionNameArr, _hotSectionArr,_hotArr,self.hotArr[0],_hotSectionArr[0]);
     
-    dispatch_async(dispatch_get_main_queue(), ^{
+    //dispatch_async(dispatch_get_main_queue(), ^{
         [self.hotTable reloadData];
-    });
+    //});
     
 } failure:^(NSError *error) {
     NSLog(@"-----------hot json 请求失败，原因：%@",error);
@@ -470,14 +470,6 @@
         return cell;
     }
     return 0;
-    
 }
 
-
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 @end

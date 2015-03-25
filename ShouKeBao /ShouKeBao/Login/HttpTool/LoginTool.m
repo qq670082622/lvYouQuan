@@ -17,7 +17,7 @@
 + (void)loginWithParam:(NSDictionary *)param success:(void (^)(id json))success failure:(void (^)(NSError *error))failure
 {
     
-    [IWHttpTool postWithURL:@"Index/cLogin" params:param success:^(id json) {
+    [IWHttpTool postWithURL:@"Business/Login" params:param success:^(id json) {
         
         if (success) {
             success(json);
