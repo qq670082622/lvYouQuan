@@ -13,9 +13,10 @@
 #import "MJRefresh.h"
 #import "ProductModal.h"
 #import "FootView.h"
-#import "JAActionButton.h"
+#import "MGSwipeTableCell.h"
+#import "MGSwipeButton.h"
 
-@interface ProductList ()<UITableViewDelegate,UITableViewDataSource,footViewDelegate>
+@interface ProductList ()<UITableViewDelegate,UITableViewDataSource,footViewDelegate,MGSwipeTableCellDelegate>
 @property (weak, nonatomic) IBOutlet UIView *setUpView;
 
 @property (weak, nonatomic) IBOutlet UITableView *table;
@@ -31,6 +32,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *commondOutlet;
 @property (weak, nonatomic) IBOutlet UIButton *profitOutlet;
 @property (weak, nonatomic) IBOutlet UIButton *cheapOutlet;
+
+@property (nonatomic,strong) NSArray *lefts;
+@property (nonatomic,strong) NSArray *rights;
 
 @end
 
@@ -192,6 +196,54 @@
    
 }
 
+// 左边滑动的按钮
+- (NSArray *)createLeftButtons:(NSString *)text
+{
+    NSMutableArray * result = [NSMutableArray array];
+    UIColor * color = [UIColor lightGrayColor];
+    
+    MGSwipeButton * button = [MGSwipeButton buttonWithTitle:text icon:nil backgroundColor:color callback:^BOOL(MGSwipeTableCell * sender){
+        NSLog(@"Convenience callback received (left).");
+        return YES;
+    }];
+    CGRect frame = button.frame;
+    frame.size.width = 50;
+    button.frame = frame;
+    [result addObject:button];
+    button.enabled = NO;
+    
+    return result;
+}
+
+// 右边滑动的按钮
+- (NSArray *)createRightButtons:(NSString *)text
+{
+    NSMutableArray * result = [NSMutableArray array];
+    NSString* titles[2] = {@"", text};
+    UIColor * colors[2] = {[UIColor clearColor], [UIColor lightGrayColor]};
+    for (int i = 0; i < 2; i ++)
+    {
+        MGSwipeButton *button = [MGSwipeButton buttonWithTitle:titles[i] backgroundColor:colors[i] callback:^BOOL(MGSwipeTableCell * sender){
+            NSLog(@"Convenience callback received (right). %d",i);
+            return YES;
+        }];
+        
+        if (i == 0) {
+            [button setBackgroundImage:[UIImage imageNamed:@"collection_icon.png"] forState:UIControlStateNormal];
+        }else{
+            button.titleLabel.numberOfLines = 0;
+            button.enabled = NO;
+        }
+        
+        CGRect frame = button.frame;
+        frame.size.width = i == 1 ? 200 : 50;
+        button.frame = frame;
+        
+        [result addObject:button];
+    }
+    return result;
+}
+
 #pragma mark - tableviewdatasource& tableviewdelegate
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -211,31 +263,47 @@
     detail.produceUrl = productUrl;
     [self.navigationController pushViewController:detail animated:YES];
 }
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ProductCell *cell = [ProductCell cellWithTableView:tableView];
     
-//    [cell addActionButtons:self.rightDetail withButtonPosition:JAButtonLocationRight];
+    ProductModal *model = _dataArr[indexPath.row];
+    cell.modal = model;
     
-//    cell.delegate = self;
+    cell.delegate = self;
     
-    cell.modal = _dataArr[indexPath.row];
+    // cell的滑动设置
+    cell.leftSwipeSettings.transition = MGSwipeTransitionStatic;
+    cell.rightSwipeSettings.transition = MGSwipeTransitionStatic;
+    
+    NSString *tmp = [NSString stringWithFormat:@"%@ %@",model.ContactName,model.ContactMobile];
+    cell.leftButtons = [self createLeftButtons:tmp];
+    cell.rightButtons = [self createRightButtons:model.SupplierName];
+    
     return  cell;
 }
 
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+#pragma mark - MGSwipeTableCellDelegate
+- (BOOL)swipeTableCell:(MGSwipeTableCell *)cell canSwipe:(MGSwipeDirection)direction
 {
     return YES;
 }
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+- (NSArray *)swipeTableCell:(MGSwipeTableCell *)cell swipeButtonsForDirection:(MGSwipeDirection)direction swipeSettings:(MGSwipeSettings *)swipeSettings expansionSettings:(MGSwipeExpansionSettings *)expansionSettings
 {
-    
+    return [NSArray array];
 }
 
-- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+// 收藏按钮点击
+- (BOOL)swipeTableCell:(MGSwipeTableCell *)cell tappedButtonAtIndex:(NSInteger)index direction:(MGSwipeDirection)direction fromExpansion:(BOOL)fromExpansion
 {
-    return UITableViewCellEditingStyleNone;
+    NSIndexPath *indexPath = [self.table indexPathForCell:cell];
+    NSLog(@"------%@",indexPath);
+    
+//    ProductModal *model = _dataArr[indexPath.row];
+    
+    return YES;
 }
 
 #pragma mark - other

@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "ProductModal.h"
-#import "JASwipeCell.h"
+#import "MGSwipeTableCell.h"
 
 #define gap 10
 
 @class ProductModal;
-@interface ProductCell : JASwipeCell
+@interface ProductCell : MGSwipeTableCell
 
 
 

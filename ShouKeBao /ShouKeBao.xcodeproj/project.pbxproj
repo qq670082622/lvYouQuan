@@ -93,6 +93,8 @@
 		63D31E8D1AB16EA00043B3CA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D31E8A1AB16EA00043B3CA /* AppDelegate.m */; };
 		63D31E8E1AB16EA00043B3CA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D31E8C1AB16EA00043B3CA /* ViewController.m */; };
 		63D31E911AB16EC30043B3CA /* WMNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D31E901AB16EC30043B3CA /* WMNavigationController.m */; };
+		8448BC611AC2567E00F28E1A /* MGSwipeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8448BC5E1AC2567E00F28E1A /* MGSwipeButton.m */; };
+		8448BC621AC2567E00F28E1A /* MGSwipeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8448BC601AC2567E00F28E1A /* MGSwipeTableCell.m */; };
 		845514E31ABFF7E500D588A7 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 845514E21ABFF7E500D588A7 /* UserInfo.m */; };
 		845514E51ABFF98200D588A7 /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 845514E41ABFF98200D588A7 /* Auth.storyboard */; };
 		845514E91ABFFAD900D588A7 /* SKTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 845514E81ABFFAD900D588A7 /* SKTableViewController.m */; };
@@ -106,8 +108,6 @@
 		8471EAB91AC16FD50019AB92 /* Orders.m in Sources */ = {isa = PBXBuildFile; fileRef = 8471EAB41AC16FD50019AB92 /* Orders.m */; };
 		8471EABA1AC16FD50019AB92 /* OrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8471EAB71AC16FD50019AB92 /* OrderCell.m */; };
 		8471EABE1AC170180019AB92 /* DOPDropDownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 8471EABD1AC170180019AB92 /* DOPDropDownMenu.m */; };
-		8471EAC51AC17A360019AB92 /* JAActionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8471EAC21AC17A360019AB92 /* JAActionButton.m */; };
-		8471EAC61AC17A360019AB92 /* JASwipeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8471EAC41AC17A360019AB92 /* JASwipeCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -279,6 +279,10 @@
 		63D31E8C1AB16EA00043B3CA /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		63D31E8F1AB16EC30043B3CA /* WMNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMNavigationController.h; sourceTree = "<group>"; };
 		63D31E901AB16EC30043B3CA /* WMNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMNavigationController.m; sourceTree = "<group>"; };
+		8448BC5D1AC2567E00F28E1A /* MGSwipeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSwipeButton.h; sourceTree = "<group>"; };
+		8448BC5E1AC2567E00F28E1A /* MGSwipeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSwipeButton.m; sourceTree = "<group>"; };
+		8448BC5F1AC2567E00F28E1A /* MGSwipeTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSwipeTableCell.h; sourceTree = "<group>"; };
+		8448BC601AC2567E00F28E1A /* MGSwipeTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSwipeTableCell.m; sourceTree = "<group>"; };
 		845514E11ABFF7E500D588A7 /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
 		845514E21ABFF7E500D588A7 /* UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfo.m; sourceTree = "<group>"; };
 		845514E41ABFF98200D588A7 /* Auth.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Auth.storyboard; sourceTree = "<group>"; };
@@ -304,10 +308,6 @@
 		8471EAB71AC16FD50019AB92 /* OrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderCell.m; sourceTree = "<group>"; };
 		8471EABC1AC170180019AB92 /* DOPDropDownMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOPDropDownMenu.h; sourceTree = "<group>"; };
 		8471EABD1AC170180019AB92 /* DOPDropDownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOPDropDownMenu.m; sourceTree = "<group>"; };
-		8471EAC11AC17A360019AB92 /* JAActionButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JAActionButton.h; sourceTree = "<group>"; };
-		8471EAC21AC17A360019AB92 /* JAActionButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JAActionButton.m; sourceTree = "<group>"; };
-		8471EAC31AC17A360019AB92 /* JASwipeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JASwipeCell.h; sourceTree = "<group>"; };
-		8471EAC41AC17A360019AB92 /* JASwipeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JASwipeCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -358,7 +358,7 @@
 		632613081AB1C16E003AC2DA /* Tool */ = {
 			isa = PBXGroup;
 			children = (
-				8471EAC01AC17A360019AB92 /* JASwipeCell */,
+				8448BC5C1AC2567E00F28E1A /* MGSwipeCell */,
 				8471EABB1AC170180019AB92 /* DOPDropDownMenu */,
 				632BFFD11AB92A3A003B15AD /* SDWebImage */,
 				632BFFC81AB91FD3003B15AD /* base64Util */,
@@ -731,6 +731,17 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
+		8448BC5C1AC2567E00F28E1A /* MGSwipeCell */ = {
+			isa = PBXGroup;
+			children = (
+				8448BC5D1AC2567E00F28E1A /* MGSwipeButton.h */,
+				8448BC5E1AC2567E00F28E1A /* MGSwipeButton.m */,
+				8448BC5F1AC2567E00F28E1A /* MGSwipeTableCell.h */,
+				8448BC601AC2567E00F28E1A /* MGSwipeTableCell.m */,
+			);
+			path = MGSwipeCell;
+			sourceTree = "<group>";
+		};
 		845514E01ABFF7CE00D588A7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -812,17 +823,6 @@
 				8471EABD1AC170180019AB92 /* DOPDropDownMenu.m */,
 			);
 			path = DOPDropDownMenu;
-			sourceTree = "<group>";
-		};
-		8471EAC01AC17A360019AB92 /* JASwipeCell */ = {
-			isa = PBXGroup;
-			children = (
-				8471EAC11AC17A360019AB92 /* JAActionButton.h */,
-				8471EAC21AC17A360019AB92 /* JAActionButton.m */,
-				8471EAC31AC17A360019AB92 /* JASwipeCell.h */,
-				8471EAC41AC17A360019AB92 /* JASwipeCell.m */,
-			);
-			path = JASwipeCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -950,7 +950,6 @@
 				632BFFFB1AB92A3A003B15AD /* SDWebImagePrefetcher.m in Sources */,
 				634CB9A61AC13F8D00B0D35B /* ProduceDetailViewController.m in Sources */,
 				632BFFCF1AB91FD3003B15AD /* GTMBase65.m in Sources */,
-				8471EAC61AC17A360019AB92 /* JASwipeCell.m in Sources */,
 				6389CE051AB7F9F600A8326E /* ResizeImage.m in Sources */,
 				632BFFC71AB91FBF003B15AD /* jsMethod.m in Sources */,
 				639EE0891AB6EE5900E866B6 /* rightCell.m in Sources */,
@@ -986,6 +985,7 @@
 				633263D71AB851590021553B /* AFURLConnectionOperation.m in Sources */,
 				633263B71AB8405C0021553B /* ProductCell.m in Sources */,
 				845514F61AC0219000D588A7 /* BindPhoneViewController.m in Sources */,
+				8448BC611AC2567E00F28E1A /* MGSwipeButton.m in Sources */,
 				63D31E911AB16EC30043B3CA /* WMNavigationController.m in Sources */,
 				6326131E1AB1C175003AC2DA /* MJRefreshHeaderView.m in Sources */,
 				6326131C1AB1C175003AC2DA /* MJRefreshConst.m in Sources */,
@@ -996,6 +996,7 @@
 				631B1ECB1AB7CFF200253FA5 /* rightModal2.m in Sources */,
 				632B00011AB92A3A003B15AD /* UIImageView+WebCache.m in Sources */,
 				632613271AB2AF04003AC2DA /* PGCategoryView.m in Sources */,
+				8448BC621AC2567E00F28E1A /* MGSwipeTableCell.m in Sources */,
 				633263B21AB823990021553B /* StationSelect.m in Sources */,
 				6389CE011AB7E0B000A8326E /* leftModal.m in Sources */,
 				8471EAB81AC16FD50019AB92 /* OrderModel.m in Sources */,
@@ -1018,7 +1019,6 @@
 				845514F31AC01DA200D588A7 /* ChildAccountViewController.m in Sources */,
 				63D31E7A1AB145B10043B3CA /* ShouKeBao.m in Sources */,
 				632BFFD01AB91FD3003B15AD /* NSString+Base64Util.m in Sources */,
-				8471EAC51AC17A360019AB92 /* JAActionButton.m in Sources */,
 				631B1EC41AB7CF1E00253FA5 /* rightCell2.m in Sources */,
 				632BFFF61AB92A3A003B15AD /* SDWebImageCompat.m in Sources */,
 				845514FE1AC034F900D588A7 /* ResultViewController.m in Sources */,

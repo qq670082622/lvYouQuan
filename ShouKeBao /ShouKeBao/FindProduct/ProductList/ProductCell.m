@@ -59,45 +59,57 @@
     UILabel *title = [[UILabel alloc] init];
     title.numberOfLines = 0;
     title.font = [UIFont systemFontOfSize:15];
-    [self.topContentView addSubview:title];
+    [self.contentView addSubview:title];
     self.title = title;
     
     UIImageView *icon = [[UIImageView alloc] init];
-    [self.topContentView addSubview:icon];
+    [self.contentView addSubview:icon];
     self.icon = icon;
     
     /**
        四个label
      */
     UILabel *productNum = [[UILabel alloc] init];
-    [self.topContentView addSubview:productNum];
+    productNum.font = [UIFont systemFontOfSize:13];
+    [self.contentView addSubview:productNum];
     self.productNum = productNum;
     
     UILabel *normalPrice = [[UILabel alloc] init];
-    [self.topContentView addSubview:normalPrice];
+    normalPrice.font = [UIFont systemFontOfSize:13];
+    normalPrice.textAlignment = NSTextAlignmentRight;
+    [self.contentView addSubview:normalPrice];
     self.normalPrice = normalPrice;
     
     UILabel *cheapPrice = [[UILabel alloc] init];
-    [self.topContentView addSubview:cheapPrice];
+    cheapPrice.font = [UIFont systemFontOfSize:13];
+    [self.contentView addSubview:cheapPrice];
     self.cheapPrice = cheapPrice;
     
     UILabel *profits = [[UILabel alloc] init];
-    [self.topContentView addSubview:profits];
+    profits.textAlignment = NSTextAlignmentRight;
+    profits.font = [UIFont systemFontOfSize:13];
+    [self.contentView addSubview:profits];
     self.profits = profits;
     
     /**
        底下的三个按钮
      */
     UIButton *jiafanBtn = [[UIButton alloc] init];
-    [self.topContentView addSubview:jiafanBtn];
+    [jiafanBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    jiafanBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+    [self.contentView addSubview:jiafanBtn];
     self.jiafanBtn = jiafanBtn;
     
     UIButton *quanBtn = [[UIButton alloc] init];
-    [self.topContentView addSubview:quanBtn];
+    [quanBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    quanBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+    [self.contentView addSubview:quanBtn];
     self.quanBtn = quanBtn;
     
     UIButton *ShanDianBtn = [[UIButton alloc] init];
-    [self.topContentView addSubview:ShanDianBtn];
+    [ShanDianBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    ShanDianBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+    [self.contentView addSubview:ShanDianBtn];
     self.ShanDianBtn = ShanDianBtn;
 }
 
@@ -158,10 +170,16 @@
     /**
      *  四个label
      */
-    self.productNum.text = modal.Code;
-    self.normalPrice.text = [NSString stringWithFormat:@"%@",modal.PersonPrice];
-    self.cheapPrice.text = [NSString stringWithFormat:@"%@",modal.PersonPeerPrice];
-    self.profits.text = [NSString stringWithFormat:@"%@",modal.PersonProfit];
+    self.productNum.text = [NSString stringWithFormat:@"产品编号: %@",modal.Code];
+    self.normalPrice.text = [NSString stringWithFormat:@"门市价: ￥%@",modal.PersonPrice];
+    
+    NSMutableAttributedString *str1 = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"同行价: ￥%@",modal.PersonPeerPrice]];
+    [str1 addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(5, modal.PersonPeerPrice.length + 1)];
+    self.cheapPrice.attributedText = str1;
+    
+    NSMutableAttributedString *str2 = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"利润: ￥%@",modal.PersonProfit]];
+    [str2 addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(4, modal.PersonProfit.length + 1)];
+    self.profits.attributedText = str2;
     
     /**
      *  底部按钮
