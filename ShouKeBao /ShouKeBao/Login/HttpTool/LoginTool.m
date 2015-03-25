@@ -32,4 +32,25 @@
     }];
 }
 
+/**
+ *  获取验证码
+ */
++ (void)getCodeWithParam:(NSDictionary *)param success:(void (^)(id json))success failure:(void (^)(NSError *error))failure
+{
+    
+    [IWHttpTool postWithURL:@"Business/Login" params:param success:^(id json) {
+        
+        if (success) {
+            success(json);
+        }
+        
+    } failure:^(NSError *error) {
+        
+        if (failure) {
+            failure(error);
+        }
+        
+    }];
+}
+
 @end

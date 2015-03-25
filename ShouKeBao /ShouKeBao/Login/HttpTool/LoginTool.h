@@ -16,4 +16,9 @@
  */
 + (void)loginWithParam:(NSDictionary *)param success:(void (^)(id json))success failure:(void (^)(NSError *error))failure;
 
+/**
+ *  获取验证码
+ */
++ (void)getCodeWithParam:(NSDictionary *)param success:(void (^)(id json))success failure:(void (^)(NSError *error))failure;
+
 @end
