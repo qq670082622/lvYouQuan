@@ -28,7 +28,49 @@
 //        
 //    }];
     [self setLoginRoot];
+    [ShareSDK registerApp:@"65bcf051bafc"];//appKey
+    //QQ空间
+    [ShareSDK connectQZoneWithAppKey:@"1104440028"
+                           appSecret:@"2ANfew5nXyU5HOcz"
+                   qqApiInterfaceCls:[QQApiInterface class]
+                     tencentOAuthCls:[TencentOAuth class]];
+    //QQ
+    [ShareSDK connectQQWithQZoneAppKey:@"1104440028"
+                     qqApiInterfaceCls:[QQApiInterface class]
+                       tencentOAuthCls:[TencentOAuth class]];
+   
+    //微信
+    [ShareSDK connectWeChatWithAppId:@"wx64b55294f9f074c9"
+                           wechatCls:[WXApi class]];
+    //微信
+    [ShareSDK connectWeChatWithAppId:@"wx64b55294f9f074c9"   //微信APPID
+                           appSecret:@"86715ba658374d84b7bc08514e0d0540"  //微信APPSecret
+                           wechatCls:[WXApi class]];
+    
+    //连接短信分享
+    [ShareSDK connectSMS];
+    //连接拷贝
+    [ShareSDK connectCopy];
+    
     return YES;
+}
+#pragma weChat
+- (BOOL)application:(UIApplication *)application
+      handleOpenURL:(NSURL *)url
+{
+    return [ShareSDK handleOpenURL:url
+                        wxDelegate:self];
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation
+{
+    return [ShareSDK handleOpenURL:url
+                 sourceApplication:sourceApplication
+                        annotation:annotation
+                        wxDelegate:self];
 }
 
 #pragma public

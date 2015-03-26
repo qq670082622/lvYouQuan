@@ -7,6 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <TencentOpenAPI/QQApi.h>
+#import <TencentOpenAPI/QQApiInterface.h>
+#import <QZoneConnection/ISSQZoneApp.h>
+#import <TencentOpenAPI/TencentOAuth.h>
+#import "WXApi.h"
+#import <ShareSDK/ShareSDK.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
