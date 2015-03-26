@@ -12,6 +12,10 @@
 
 + (UserInfo *)shareUser;
 
+@property (nonatomic,copy) NSString *BusinessID;// 商家id
+
+@property (nonatomic,copy) NSString *DistributionID;// 分销人id
+
 + (instancetype)userInfoWithDict:(NSDictionary *)dict;
 
 - (instancetype)initWithDict:(NSDictionary *)dict;

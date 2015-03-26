@@ -10,24 +10,47 @@
 #import "Login.h"
 #import "ViewController.h"
 #import "WMNavigationController.h"
+#import "LoginTool.h"
+#import "UserInfo.h"
+
 @interface AppDelegate ()
+
+@property (nonatomic,assign) BOOL isAutoLogin;
+
+@property (nonatomic,strong) NSCondition *itlock;
 
 @end
 
 @implementation AppDelegate
 
+- (BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    self.isAutoLogin = NO;
+    
+    // 判断是否已绑定账号
+    NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
+    NSString *phone = [def objectForKey:@"phonenumber"];
+    NSString *password = [def objectForKey:@"password"];
+    if (phone.length && password.length) {
+        
+        [self autoLoginWithPhone:phone password:password];
+    }else{
+        self.isAutoLogin = NO;
+    }
+    
+    return YES;
+}
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-//    ViewController *vc = [[ViewController alloc] init];
-//    self.window.rootViewController = vc;
-//    
-//    [self.window makeKeyAndVisible];
-//    WMNavigationController *nav = [[WMNavigationController alloc] initWithRootViewController:[[Login alloc] init]];
-//    [vc presentViewController:nav animated:YES completion:^{
-//        
-//    }];
-    [self setLoginRoot];
+    
+    if (self.isAutoLogin) {
+        [self setTabbarRoot];
+    }else{
+        [self setLoginRoot];
+    }
+    
     return YES;
 }
 
@@ -46,6 +69,27 @@
     WMNavigationController *nav = [[WMNavigationController alloc] initWithRootViewController:lg];
     self.window.rootViewController = nav;
     [self.window makeKeyAndVisible];
+}
+
+#pragma mark - private
+- (void)autoLoginWithPhone:(NSString *)phone password:(NSString *)password
+{
+    NSDictionary *param = @{@"LoginName":phone,
+                            @"LoginPassword":password};
+    [LoginTool syncLoginWithParam:param success:^(id json) {
+        NSLog(@"----%@",json);
+        
+        if ([json[@"IsSuccess"] integerValue] == 1) {
+            
+            [UserInfo userInfoWithDict:json];
+            
+            self.isAutoLogin = YES;
+        }
+
+    } failure:^(NSError *error) {
+        
+    }];
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

@@ -41,7 +41,8 @@ static UserInfo *user;
 {
     self = [super init];
     if (self) {
-        
+        self.BusinessID = dict[@"BusinessID"];
+        self.DistributionID = dict[@"DistributionID"];
     }
     return self;
 }

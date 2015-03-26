@@ -8,6 +8,9 @@
 
 #import "BindPhoneViewController.h"
 #import "WriteFileManager.h"
+#import "LoginTool.h"
+#import "UserInfo.h"
+#import "AppDelegate.h"
 
 @interface BindPhoneViewController ()
 
@@ -38,7 +41,13 @@
  */
 - (IBAction)getCode:(id)sender
 {
-    NSLog(@"----");
+    NSDictionary *param = @{@"Mobile" :self.phoneNum.text};
+    
+    [LoginTool getCodeWithParam:param success:^(id json) {
+        NSLog(@"---%@",json);
+    } failure:^(NSError *error) {
+        
+    }];
 }
 
 /**
@@ -46,7 +55,28 @@
  */
 - (IBAction)bindAccount:(id)sender
 {
-    NSLog(@"00000");
+    if ([self.passWord.text isEqualToString:self.confirm.text]) {
+        
+        NSDictionary *param = @{@"Mobile":self.phoneNum.text,
+                                @"VerficationCode":self.code.text,
+                                @"Password":self.passWord.text};
+        [LoginTool bindPhoneWithParam:param success:^(id json) {
+            
+            if ([json[@"IsSuccess"] integerValue] == 1) {
+                [UserInfo shareUser].DistributionID = json[@"DistributionID"];
+                // 保存账号密码
+                NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
+                [def setObject:self.phoneNum.text forKey:@"phonenumber"];
+                [def setObject:self.passWord.text forKey:@"password"];
+                [def synchronize];
+                
+                AppDelegate *app = [UIApplication sharedApplication].delegate;
+                [app setTabbarRoot];
+            }
+        } failure:^(NSError *error) {
+            
+        }];
+    }
 }
 
 

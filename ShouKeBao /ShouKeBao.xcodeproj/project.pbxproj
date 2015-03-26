@@ -108,6 +108,7 @@
 		8471EAB91AC16FD50019AB92 /* Orders.m in Sources */ = {isa = PBXBuildFile; fileRef = 8471EAB41AC16FD50019AB92 /* Orders.m */; };
 		8471EABA1AC16FD50019AB92 /* OrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8471EAB71AC16FD50019AB92 /* OrderCell.m */; };
 		8471EABE1AC170180019AB92 /* DOPDropDownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 8471EABD1AC170180019AB92 /* DOPDropDownMenu.m */; };
+		847D636A1AC2BDB7005D4E5D /* Distribution.m in Sources */ = {isa = PBXBuildFile; fileRef = 847D63691AC2BDB7005D4E5D /* Distribution.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -308,6 +309,8 @@
 		8471EAB71AC16FD50019AB92 /* OrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderCell.m; sourceTree = "<group>"; };
 		8471EABC1AC170180019AB92 /* DOPDropDownMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOPDropDownMenu.h; sourceTree = "<group>"; };
 		8471EABD1AC170180019AB92 /* DOPDropDownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOPDropDownMenu.m; sourceTree = "<group>"; };
+		847D63681AC2BDB7005D4E5D /* Distribution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Distribution.h; sourceTree = "<group>"; };
+		847D63691AC2BDB7005D4E5D /* Distribution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Distribution.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -747,6 +750,8 @@
 			children = (
 				845514E11ABFF7E500D588A7 /* UserInfo.h */,
 				845514E21ABFF7E500D588A7 /* UserInfo.m */,
+				847D63681AC2BDB7005D4E5D /* Distribution.h */,
+				847D63691AC2BDB7005D4E5D /* Distribution.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1000,6 +1005,7 @@
 				633263B21AB823990021553B /* StationSelect.m in Sources */,
 				6389CE011AB7E0B000A8326E /* leftModal.m in Sources */,
 				8471EAB81AC16FD50019AB92 /* OrderModel.m in Sources */,
+				847D636A1AC2BDB7005D4E5D /* Distribution.m in Sources */,
 				632BFFFF1AB92A3A003B15AD /* UIImage+WebP.m in Sources */,
 				632613211AB1C175003AC2DA /* UIView+MJExtension.m in Sources */,
 				633263D81AB851590021553B /* AFURLRequestSerialization.m in Sources */,
