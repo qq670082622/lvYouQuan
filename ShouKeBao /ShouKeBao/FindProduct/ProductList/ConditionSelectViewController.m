@@ -16,7 +16,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+   
+    //self.dataArr1 = [self.conditionDic ]
+}
+
+-(NSArray *)dataArr1
+{
+    if (_dataArr1 == nil) {
+        NSMutableArray *arr = [NSMutableArray array];
+        for(NSDictionary *dic in self.conditionDic){
+            [arr addObject:dic];
+            }
+        _dataArr1 = arr;
+    }
+        return _dataArr1;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -26,7 +39,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.dataArr.count;
+    return self.dataArr1.count;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -34,10 +47,15 @@ static NSString *cellID = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        
         UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(15, 1, 60, 35)];
-        label1.text = _dataArr[indexPath.row][@"Text"];
+        label1.text = _dataArr1[indexPath.row][@"Text"];
         
-        
+        UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(90, 1, 60, 35)];
+        label2.text = _dataArr1[indexPath.row][@"Value"];
+       
+        [cell.contentView addSubview:label1];
+        [cell.contentView addSubview:label2];
         
     }
     

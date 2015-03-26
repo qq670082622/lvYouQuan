@@ -11,5 +11,7 @@
 @interface ConditionSelectViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *table;
 @property(copy , nonatomic) NSString *title;
-@property (strong , nonatomic) NSArray *dataArr;
+@property (strong , nonatomic) NSArray *dataArr1;
+//@property (strong , nonatomic) NSArray *dataArr2;
+@property (strong , nonatomic) NSDictionary *conditionDic;
 @end

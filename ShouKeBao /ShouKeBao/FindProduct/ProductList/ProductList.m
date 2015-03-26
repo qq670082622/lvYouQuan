@@ -50,6 +50,7 @@
 @property (strong,nonatomic) NSArray *subDataArr2;
 @property (strong,nonatomic) NSMutableString *turn;
 @property (weak , nonatomic) UIButton *subTableSectionBtn;
+
 @end
 
 @implementation ProductList
@@ -155,8 +156,11 @@ for (NSDictionary *dic in json[@"ProductList"]) {
           
             for(NSDictionary *dic in json[@"ProductConditionList"] ){
                 
-                ConditionModel *model = [ConditionModel modalWithDict:dic];//-----crash
-                [conArr addObject:model];
+          
+                
+//                ConditionModel *model = [ConditionModel modalWithDict:dic];//-----crash
+//                [conArr addObject:model];
+                [conArr addObject:dic];
             }
             
             _conditionArr = conArr;//装载筛选条件数据
@@ -321,10 +325,13 @@ for (NSDictionary *dic in json[@"ProductList"]) {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
     if (tableView.tag == 2) {
-     NSInteger a = (5*(indexPath.section)) + (indexPath.row);//获得当前点击的row行数
-        NSArray *arr = _conditionArr[a];
+    
+        NSInteger a = (5*(indexPath.section)) + (indexPath.row);//获得当前点击的row行数
+    //    NSLog(@"-------------a is %ld  ----_conditionArr[a] is %@------------",(long)a,_conditionArr[a]);
+       NSDictionary *conditionDic = _conditionArr[a];
         ConditionSelectViewController *conditionVC = [[ConditionSelectViewController alloc] init];
-        conditionVC.dataArr = arr;
+        conditionVC.conditionDic = conditionDic;
+        
         [self.navigationController pushViewController:conditionVC animated:YES];
     }
     
