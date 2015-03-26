@@ -9,6 +9,7 @@
 #import "IWHttpTool.h"
 #import "AFNetworking.h"
 #import "StrToDic.h"
+#import "UserInfo.h"
 
 @implementation IWHttpTool
 
@@ -27,14 +28,19 @@
     [tmp setObject:@"1" forKey:@"MobileType"];
     [tmp setObject:currentVersion forKey:@"MobileVersion"];
     [tmp setObject:mobileID forKey:@"MobileID"];
+    if ([UserInfo shareUser].BusinessID) {
+        [tmp setObject:[UserInfo shareUser].BusinessID forKey:@"BusinessID"];
+        [tmp setObject:[UserInfo shareUser].DistributionID forKey:@"DistributionID"];
+    }
     [tmp addEntriesFromDictionary:params];
    
-    NSLog(@"~~~~~~~param:%@",tmp);
     NSLog(@"-------url:%@",overStr);
+    NSLog(@"~~~~~~~param:%@",tmp);
     
     // 1.创建请求管理对象
     AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
     mgr.requestSerializer = [AFJSONRequestSerializer serializer];
+//    mgr.operationQueue = [NSOperationQueue mainQueue];
     [mgr POST:overStr parameters:tmp
       success:^(AFHTTPRequestOperation *operation, id responseObject) {
          

@@ -14,6 +14,7 @@
 #import "ChildAccountViewController.h"
 #import "WriteFileManager.h"
 #import "LoginTool.h"
+#import "UserInfo.h"
 
 @interface Login () <UIScrollViewDelegate>
 
@@ -116,7 +117,8 @@
         NSLog(@"----%@",json);
         
         if ([json[@"IsSuccess"] integerValue] == 1) {
-            if ([json[@"LoginType"] integerValue] == 0) {
+            [UserInfo userInfoWithDict:json];
+            if ([json[@"LoginType"] integerValue] == 1) {
                 ChildAccountViewController *child = [[ChildAccountViewController alloc] init];
                 [self.navigationController pushViewController:child animated:YES];
             }else{
