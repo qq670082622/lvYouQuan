@@ -15,7 +15,10 @@
 #import "FootView.h"
 #import "MGSwipeTableCell.h"
 #import "MGSwipeButton.h"
-
+#import "StrToDic.h"
+#import "ConditionSelectViewController.h"
+#import "ConditionModel.h"
+#import "MBProgressHUD+MJ.h"
 @interface ProductList ()<UITableViewDelegate,UITableViewDataSource,footViewDelegate,MGSwipeTableCellDelegate>
 @property (weak, nonatomic) IBOutlet UIView *subView;
 
@@ -41,7 +44,12 @@
 @property (weak, nonatomic) IBOutlet UIButton *commondOutlet;
 @property (weak, nonatomic) IBOutlet UIButton *profitOutlet;
 @property (weak, nonatomic) IBOutlet UIButton *cheapOutlet;
-
+@property (strong,nonatomic) NSMutableDictionary *conditionDic;//当前条件开关
+@property (strong,nonatomic) NSMutableArray *conditionArr;//post装载的条件数据
+@property (strong,nonatomic) NSArray *subDataArr1;
+@property (strong,nonatomic) NSArray *subDataArr2;
+@property (strong,nonatomic) NSMutableString *turn;
+@property (weak , nonatomic) UIButton *subTableSectionBtn;
 @end
 
 @implementation ProductList
@@ -52,6 +60,8 @@
     [self customRightBarItem];
     self.table.delegate = self;
     self.table.dataSource = self;
+    self.subTable.delegate = self;
+    self.subTable.dataSource = self;
     //[self initRefresh];
     [self dataArr];
     self.page = [NSMutableString stringWithFormat:@"1"];
@@ -64,24 +74,34 @@
     [self.profitOutlet setTitle:@"利润 ↑" forState:UIControlStateNormal ];
     [self.cheapOutlet setTitle:@"同行价 ↑" forState:UIControlStateNormal ];
     
+    
+    self.subDataArr1 = [NSArray arrayWithObjects:@"游览线路       >",@"出发日期       >",@"行程天数       >",@"出发城市       >",@"主题推荐       >", nil];//5
+    self.subDataArr2 = [NSArray arrayWithObjects:@"供应商       >",@"酒店类型       >",@"出行方式       >",@"油轮公司       >",@"线路等级       >", nil];//5
+    self.turn = [NSMutableString stringWithFormat:@"Off"];
+
     }
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [MBProgressHUD hideAllHUDsForView:self.view.window animated:YES];
+}
+
 #pragma footView - delegate
 -(void)footViewDidClickedLoadBtn:(FootView *)footView
 {
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic addEntriesFromDictionary:[self conditionDic]];//增加筛选条件
     [dic setObject:@"10" forKey:@"Substation"];
     [dic setObject:@"10" forKey:@"PageSize"];
     [dic setObject:_page forKey:@"PageIndex"];
     [dic setObject:_ProductSortingType forKey:@"ProductSortingType"];
     NSLog(@"-------page2 请求的 dic  is %@-----",dic);
     [IWHttpTool WMpostWithURL:@"/Product/GetProductList" params:dic success:^(id json) {
-//        NSMutableArray *dicArr = [NSMutableArray array];
-        for (NSDictionary *dic in json[@"ProductList"]) {
+for (NSDictionary *dic in json[@"ProductList"]) {
             ProductModal *modal = [ProductModal modalWithDict:dic];
             [self.dataArr addObject:modal];          }
         
-        //[self.dataArr removeAllObjects];//移除
-      //  _dataArr = dicArr;
         [self.table reloadData];
         NSString *page = [NSString stringWithFormat:@"%@",_page];
         self.page = [NSMutableString stringWithFormat:@"%d",[page intValue]+1];
@@ -90,8 +110,7 @@
         NSLog(@"-------产品搜索请求失败 error is%@----------",error);
     }];
 
-// [self.dataArr addObject:mod];
-   // [self.table reloadData];
+
 }
 #pragma mark - private
 -(void)customRightBarItem
@@ -106,69 +125,15 @@
     
     self.navigationItem.rightBarButtonItem= barItem;
 }
-
+#pragma 筛选navitem
 -(void)setUp
 {
-   
-    if (self.subView.hidden == NO) {
+   if (self.subView.hidden == NO) {
         self.subView.hidden = YES;
-        
-      
-    }else if (self.subView.hidden == YES){
-        self.subView.hidden = NO;
-       
-    }
-    
-    }
+        }
+}
 
-//#pragma mark - private
-//-(void)initRefresh
-//{
-//    //下啦刷新
-//    [self.table addHeaderWithTarget:self action:@selector(rightheadRefresh) dateKey:nil];
-//    [self.table headerBeginRefreshing];
-//    //上啦刷新
-//    [self.table addFooterWithTarget:self action:@selector(rightfootRefresh)];
-//    [self.table footerBeginRefreshing];
-//    //设置文字
-//    self.table.headerPullToRefreshText = @"下拉刷新";
-//    self.table.headerRefreshingText = @"正在刷新中";
-//    
-//    self.table.footerPullToRefreshText = @"上拉刷新";
-//    self.table.footerRefreshingText = @"正在刷新";
-//    
-//    //下啦刷新
-//    [self.table addHeaderWithTarget:self action:@selector(rightheadRefresh) dateKey:nil];
-//    [self.table headerBeginRefreshing];
-//    //上啦刷新
-//    [self.table addFooterWithTarget:self action:@selector(rightfootRefresh)];
-//    [self.table footerBeginRefreshing];
-//    //设置文字
-//    self.table.headerPullToRefreshText = @"下拉刷新";
-//    self.table.headerRefreshingText = @"正在刷新中";
-//    
-//    self.table.footerPullToRefreshText = @"上拉刷新";
-//    self.table.footerRefreshingText = @"正在刷新";
-//}
-//
-//-(void)rightheadRefresh
-//{//上拉刷新,一般在此方法内添加刷新内容
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{ // 2.0s后执行block里面的代码
-//        [self dataArr];
-//        
-//        [self.table headerEndRefreshing];
-//        [self.table reloadData];
-//    });
-//}
-//
-//-(void)rightfootRefresh
-//{//下拉刷新
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{ // 2.0s后执行block里面的代码
-//        [self dataArr];
-//        [self.table footerEndRefreshing];
-//        [self.table reloadData];
-//    });
-//}
+
 #pragma mark - getter
 -(NSArray *)dataArr
 {
@@ -180,20 +145,30 @@
         [dic setObject:@"10" forKey:@"PageSize"];
         [dic setObject:@1 forKey:@"PageIndex"];
         [IWHttpTool WMpostWithURL:@"/Product/GetProductList" params:dic success:^(id json) {
-          NSMutableArray *dicArr = [NSMutableArray array];
+         
+            NSMutableArray *dicArr = [NSMutableArray array];
           for (NSDictionary *dic in json[@"ProductList"]) {
               ProductModal *modal = [ProductModal modalWithDict:dic];
               [dicArr addObject:modal];
           }
-         
-            //[self.dataArr removeAllObjects];//移除
-            _dataArr = dicArr;
+            
+            NSMutableArray *conArr = [NSMutableArray array];
+          
+            for(NSDictionary *dic in json[@"ProductCondition"] ){
+                
+                ConditionModel *model = [ConditionModel modalWithDict:dic];//-----crash
+                [conArr addObject:model];
+            }
+            
+            _conditionArr = conArr;//装载筛选条件数据
+            _dataArr = dicArr;//装载产品列表数据
             [self.table reloadData];
             
           NSLog(@"----------productList dataArr-is-%@-------",_dataArr);
             NSString *page = [NSString stringWithFormat:@"%@",_page];
             self.page = [NSMutableString stringWithFormat:@"%d",[page intValue]+1];
-      } failure:^(NSError *error) {
+      
+        } failure:^(NSError *error) {
           NSLog(@"-------产品搜索请求失败 error is%@----------",error);
       }];
     }
@@ -256,41 +231,136 @@
 #pragma mark - tableviewdatasource& tableviewdelegate
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 140;
+    if (tableView.tag == 1) {
+        return 140;
+    }
+    return 30;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _dataArr.count;
+    if(tableView.tag == 1){
+        return _dataArr.count;}
+    if (tableView.tag == 2) {
+        if (section == 0) {
+            return _subDataArr1.count;
+        }
+        if (section == 1 && [_turn isEqualToString:@"On" ]) {
+            return _subDataArr2.count;
+        }
+
+    }
+    return 0;
+}
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    if (tableView.tag == 2) {
+        return 2;
+    }
+    return 1;
+}
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{  if(tableView.tag == 2){
+    if(section == 1 && [_turn isEqualToString:@"Off"]){
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 1, self.view.frame.size.width, self.view.frame.size.height)];
+        view.userInteractionEnabled = YES;
+        
+        view.backgroundColor = [UIColor grayColor];
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeSystem];
+        btn.frame = CGRectMake(0, 0, self.view.frame.size.width, 35);
+        [btn setTitle:@"收起           >" forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(beMore) forControlEvents:UIControlEventTouchUpInside];
+        self.subTableSectionBtn = btn;
+        [view addSubview:btn];
+        return view;
+    }else if (section == 1 && [_turn isEqualToString:@"On"]){
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 1, self.view.frame.size.width, self.view.frame.size.height)];
+        view.userInteractionEnabled = YES;
+        
+        view.backgroundColor = [UIColor grayColor];
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeSystem];
+        btn.frame = CGRectMake(0, 0, self.view.frame.size.width, 35);
+        [btn setTitle:@"更多        >" forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(beMore) forControlEvents:UIControlEventTouchUpInside];
+        self.subTableSectionBtn = btn;
+        [view addSubview:btn];
+        return view;
+    }
+}
+    return 0;
     
+}
+-(void)beMore
+{
+    NSLog(@"点击了butn");
+    if ([_turn isEqualToString:@"Off"]) {
+        self.turn = [NSMutableString stringWithString:@"On"];
+    }
+    else
+        self.turn = [NSMutableString stringWithString:@"Off"];
+    [self.subTable reloadData];
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (tableView.tag == 2) {
+        return 35;
+    }
+    return 0;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ProductModal *model = _dataArr[indexPath.row];
-    NSString *productUrl = model.LinkUrl;
-    ProduceDetailViewController *detail = [[ProduceDetailViewController alloc] init];
-    detail.produceUrl = productUrl;
-    [self.navigationController pushViewController:detail animated:YES];
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (tableView.tag == 1) {
+        ProductModal *model = _dataArr[indexPath.row];
+        NSString *productUrl = model.LinkUrl;
+        ProduceDetailViewController *detail = [[ProduceDetailViewController alloc] init];
+        detail.produceUrl = productUrl;
+        [self.navigationController pushViewController:detail animated:YES];
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }
+    if (tableView.tag == 2) {
+     NSInteger a = (5*(indexPath.section)) + (indexPath.row);//获得当前点击的row行数
+        NSArray *arr = _conditionArr[a];
+        ConditionSelectViewController *conditionVC = [[ConditionSelectViewController alloc] init];
+        conditionVC.dataArr = arr;
+        [self.navigationController pushViewController:conditionVC animated:YES];
+    }
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ProductCell *cell = [ProductCell cellWithTableView:tableView];
-    
-    ProductModal *model = _dataArr[indexPath.row];
-    cell.modal = model;
-    
-    cell.delegate = self;
-    
-    // cell的滑动设置
-    cell.leftSwipeSettings.transition = MGSwipeTransitionStatic;
-    cell.rightSwipeSettings.transition = MGSwipeTransitionStatic;
-    
-    cell.leftButtons = [self createLeftButtons:model];
-    cell.rightButtons = [self createRightButtons:model];
-    
-    return  cell;
+    if (tableView.tag == 1) {
+        ProductCell *cell = [ProductCell cellWithTableView:tableView];
+        
+        ProductModal *model = _dataArr[indexPath.row];
+        cell.modal = model;
+        
+        cell.delegate = self;
+        
+        // cell的滑动设置
+        cell.leftSwipeSettings.transition = MGSwipeTransitionStatic;
+        cell.rightSwipeSettings.transition = MGSwipeTransitionStatic;
+        
+        cell.leftButtons = [self createLeftButtons:model];
+        cell.rightButtons = [self createRightButtons:model];
+        return cell;
+    }
+  
+   if (tableView.tag == 2) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellID"];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellID"];
+            if ([_turn isEqualToString:@"Off"] ) {
+                cell.textLabel.text = self.subDataArr1[indexPath.row];
+            }else if ([_turn isEqualToString:@"On"]){
+                cell.textLabel.text = self.subDataArr2[indexPath.row];
+            }
+            
+        }
+       return cell;
+    }
+    return  0;
 }
 
 #pragma mark - MGSwipeTableCellDelegate
@@ -335,6 +405,7 @@
     [self.commondOutlet setSelected:YES];
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+     [dic addEntriesFromDictionary:[self conditionDic]];//增加筛选条件
     [dic setObject:@"10" forKey:@"Substation"];
     [dic setObject:@"10" forKey:@"PageSize"];
     [dic setObject:@1 forKey:@"PageIndex"];
@@ -366,6 +437,7 @@
         [self.cheapOutlet setSelected:NO];
         [self.commondOutlet setSelected:NO];
         NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+         [dic addEntriesFromDictionary:[self conditionDic]];//增加筛选条件
         [dic setObject:@"10" forKey:@"Substation"];
         [dic setObject:@"10" forKey:@"PageSize"];
         [dic setObject:@1 forKey:@"PageIndex"];
@@ -394,6 +466,7 @@
                                                     isEqualToString:@"利润 ↑"]){
         [self.profitOutlet setTitle:@"利润 ↓" forState:UIControlStateNormal];
                NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+         [dic addEntriesFromDictionary:[self conditionDic]];//增加筛选条件
         [dic setObject:@"10" forKey:@"Substation"];
         [dic setObject:@"10" forKey:@"PageSize"];
         [dic setObject:@1 forKey:@"PageIndex"];
@@ -419,6 +492,7 @@
     }else if (self.profitOutlet.selected == YES && [self.profitOutlet.titleLabel.text isEqualToString:@"利润 ↓"]){
     [self.profitOutlet setTitle:@"利润 ↑" forState:UIControlStateNormal];
         NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+         [dic addEntriesFromDictionary:[self conditionDic]];//增加筛选条件
         [dic setObject:@"10" forKey:@"Substation"];
         [dic setObject:@"10" forKey:@"PageSize"];
         [dic setObject:@1 forKey:@"PageIndex"];
@@ -451,6 +525,7 @@
         [self.commondOutlet setSelected:NO];
         [self.profitOutlet setSelected:NO];
         NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+         [dic addEntriesFromDictionary:[self conditionDic]];//增加筛选条件
         [dic setObject:@"10" forKey:@"Substation"];
         [dic setObject:@"10" forKey:@"PageSize"];
         [dic setObject:@1 forKey:@"PageIndex"];
@@ -478,6 +553,7 @@
                                                    isEqualToString:@"同行价 ↑"]){
         [self.cheapOutlet setTitle:@"同行价 ↓" forState:UIControlStateNormal];
         NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+         [dic addEntriesFromDictionary:[self conditionDic]];//增加筛选条件
         [dic setObject:@"10" forKey:@"Substation"];
         [dic setObject:@"10" forKey:@"PageSize"];
         [dic setObject:@1 forKey:@"PageIndex"];
@@ -504,6 +580,7 @@
     }else if (self.cheapOutlet.selected == YES &&[self.cheapOutlet.titleLabel.text isEqualToString:@"同行价 ↓"]){
     [self.cheapOutlet setTitle:@"同行价 ↑" forState:UIControlStateNormal];
         NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+         [dic addEntriesFromDictionary:[self conditionDic]];//增加筛选条件
         [dic setObject:@"10" forKey:@"Substation"];
         [dic setObject:@"10" forKey:@"PageSize"];
         [dic setObject:@1 forKey:@"PageIndex"];
@@ -529,19 +606,34 @@
 
     }
 }
+
 - (IBAction)sunCancel:(id)sender {
+    self.subView.hidden = YES;
 }
 
 - (IBAction)subReset:(id)sender {
+    
 }
 
 - (IBAction)subDone:(id)sender {
+    
 }
 
 - (IBAction)subMinMax:(id)sender {
+    
 }
+
 - (IBAction)jiafanSwitchAction:(id)sender {
+    
 }
+
 - (IBAction)jishiSwitchAction:(id)sender {
+    
+}
+
+-(NSMutableDictionary *)conditionDic
+{
+    
+    return _conditionDic;
 }
 @end

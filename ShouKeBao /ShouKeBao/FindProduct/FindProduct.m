@@ -20,6 +20,7 @@
 #import "IWHttpTool.h"
 #import "StrToDic.h"
 #import "MJRefresh.h"//
+#import "MBProgressHUD+MJ.h"
 @interface FindProduct ()<UITableViewDelegate,UITableViewDataSource,headerViewDelegate>
 
 - (IBAction)stationSelect:(id)sender;
@@ -88,11 +89,17 @@
    self.hotSubView.backgroundColor = [UIColor colorWithRed:217/255.f green:217/255.f blue:217/255.f alpha:1];
 }
 
+
+
 #pragma mark - LoadDataSource
 - (void)loadDataSourceLeft
 {
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     [dic setObject:@"10" forKey:@"Substation"];
+   
+    MBProgressHUD *hudView = [MBProgressHUD showHUDAddedTo:[[UIApplication sharedApplication].delegate window] animated:YES];
+    hudView.labelText = @"加载中...";
+    
     [IWHttpTool WMpostWithURL:@"/Product/GetNavigationType" params:dic success:^(id json) {
       
        //  NSLog(@"~~~~~~json is !%@",json);
@@ -104,6 +111,10 @@
             [self.leftTableArr addObject:modal];
         }
         NSLog(@"%@~~~~~~~~~~",[NSThread currentThread]);
+        
+         [hudView show:YES];
+        [hudView hide:YES afterDelay:0.5];
+        
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.leftTable reloadData];
             //[self iniHeaderRight];
@@ -440,6 +451,10 @@
         ProductList *list = [[ProductList alloc] init];
         list.pushedSearchK = key;
         list.title = title;
+        
+      MBProgressHUD *hudView = [MBProgressHUD showHUDAddedTo:[[UIApplication sharedApplication].delegate window] animated:YES];
+        hudView.labelText = @"加载中...";
+        
         [self.navigationController pushViewController:list animated:YES];
     }
     
