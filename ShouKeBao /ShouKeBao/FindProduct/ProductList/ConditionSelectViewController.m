@@ -34,7 +34,11 @@ static NSString *cellID = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-        cell.textLabel.text = _dataArr[indexPath.row];
+        UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(15, 1, 60, 35)];
+        label1.text = _dataArr[indexPath.row][@"Text"];
+        
+        
+        
     }
     
     return cell;

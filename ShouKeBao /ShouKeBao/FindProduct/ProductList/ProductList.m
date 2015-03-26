@@ -79,13 +79,12 @@
     self.subDataArr2 = [NSArray arrayWithObjects:@"供应商       >",@"酒店类型       >",@"出行方式       >",@"油轮公司       >",@"线路等级       >", nil];//5
     self.turn = [NSMutableString stringWithFormat:@"Off"];
 
+    
+    
+
     }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [MBProgressHUD hideAllHUDsForView:self.view.window animated:YES];
-}
+
 
 #pragma footView - delegate
 -(void)footViewDidClickedLoadBtn:(FootView *)footView
@@ -96,7 +95,7 @@
     [dic setObject:@"10" forKey:@"PageSize"];
     [dic setObject:_page forKey:@"PageIndex"];
     [dic setObject:_ProductSortingType forKey:@"ProductSortingType"];
-    NSLog(@"-------page2 请求的 dic  is %@-----",dic);
+   // NSLog(@"-------page2 请求的 dic  is %@-----",dic);
     [IWHttpTool WMpostWithURL:@"/Product/GetProductList" params:dic success:^(id json) {
 for (NSDictionary *dic in json[@"ProductList"]) {
             ProductModal *modal = [ProductModal modalWithDict:dic];
@@ -105,7 +104,7 @@ for (NSDictionary *dic in json[@"ProductList"]) {
         [self.table reloadData];
         NSString *page = [NSString stringWithFormat:@"%@",_page];
         self.page = [NSMutableString stringWithFormat:@"%d",[page intValue]+1];
-        NSLog(@"---------转化后的page is %@ +1后的 page is -------%@----",page,_page);
+      //  NSLog(@"---------转化后的page is %@ +1后的 page is -------%@----",page,_page);
     } failure:^(NSError *error) {
         NSLog(@"-------产品搜索请求失败 error is%@----------",error);
     }];
@@ -128,8 +127,8 @@ for (NSDictionary *dic in json[@"ProductList"]) {
 #pragma 筛选navitem
 -(void)setUp
 {
-   if (self.subView.hidden == NO) {
-        self.subView.hidden = YES;
+   if (self.subView.hidden == YES) {
+        self.subView.hidden = NO;
         }
 }
 
@@ -154,17 +153,20 @@ for (NSDictionary *dic in json[@"ProductList"]) {
             
             NSMutableArray *conArr = [NSMutableArray array];
           
-            for(NSDictionary *dic in json[@"ProductCondition"] ){
+            for(NSDictionary *dic in json[@"ProductConditionList"] ){
                 
                 ConditionModel *model = [ConditionModel modalWithDict:dic];//-----crash
                 [conArr addObject:model];
             }
             
             _conditionArr = conArr;//装载筛选条件数据
+            NSLog(@"----------------conditionArr is %@----------",_conditionArr);
             _dataArr = dicArr;//装载产品列表数据
             [self.table reloadData];
             
-          NSLog(@"----------productList dataArr-is-%@-------",_dataArr);
+            [MBProgressHUD hideAllHUDsForView:[[UIApplication sharedApplication].delegate window] animated:YES];
+            
+         // NSLog(@"----------productList dataArr-is-%@-------",_dataArr);
             NSString *page = [NSString stringWithFormat:@"%@",_page];
             self.page = [NSMutableString stringWithFormat:@"%d",[page intValue]+1];
       
