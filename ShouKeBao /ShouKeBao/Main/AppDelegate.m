@@ -10,24 +10,42 @@
 #import "Login.h"
 #import "ViewController.h"
 #import "WMNavigationController.h"
+#import "LoginTool.h"
+#import "UserInfo.h"
+
 @interface AppDelegate ()
+
+@property (nonatomic,assign) BOOL isAutoLogin;
 
 @end
 
 @implementation AppDelegate
 
+- (BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    self.isAutoLogin = NO;
+    
+    NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
+    NSString *phone = [def objectForKey:@"phonenumber"];
+    NSString *password = [def objectForKey:@"password"];
+    if (phone.length && password.length) {
+        [self autoLoginWithPhone:phone passWord:password];
+    }else{
+        self.isAutoLogin = NO;
+    }
+    return YES;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-//    ViewController *vc = [[ViewController alloc] init];
-//    self.window.rootViewController = vc;
-//    
-//    [self.window makeKeyAndVisible];
-//    WMNavigationController *nav = [[WMNavigationController alloc] initWithRootViewController:[[Login alloc] init]];
-//    [vc presentViewController:nav animated:YES completion:^{
-//        
-//    }];
-    [self setLoginRoot];
+
+    // 如果自动登录了 就切到主界面
+    if (self.isAutoLogin) {
+        [self setTabbarRoot];
+    }else{
+        [self setLoginRoot];
+    }
+    
     [ShareSDK registerApp:@"65bcf051bafc"];//appKey
     //QQ空间
     [ShareSDK connectQZoneWithAppKey:@"1104440028"
@@ -88,6 +106,26 @@
     WMNavigationController *nav = [[WMNavigationController alloc] initWithRootViewController:lg];
     self.window.rootViewController = nav;
     [self.window makeKeyAndVisible];
+}
+
+#pragma mark - private
+// 请求同步登录
+- (void)autoLoginWithPhone:(NSString *)phone passWord:(NSString *)passWord
+{
+    NSDictionary *param = @{@"LoginName":phone,
+                            @"LoginPassword":passWord};
+    [LoginTool syncLoginWithParam:param success:^(id json) {
+        NSLog(@"----%@",json);
+        
+        if ([json[@"IsSuccess"] integerValue] == 1) {
+            [UserInfo userInfoWithDict:json];
+            
+            self.isAutoLogin = YES;
+        }
+
+    } failure:^(NSError *error) {
+        
+    }];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
