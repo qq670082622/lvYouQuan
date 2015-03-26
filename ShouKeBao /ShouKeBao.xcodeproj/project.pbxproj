@@ -69,6 +69,8 @@
 		634CB9A11AC1331700B0D35B /* FootView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 634CB99F1AC1331700B0D35B /* FootView.xib */; };
 		634CB9A61AC13F8D00B0D35B /* ProduceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 634CB9A41AC13F8D00B0D35B /* ProduceDetailViewController.m */; };
 		634CB9A71AC13F8D00B0D35B /* ProduceDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 634CB9A51AC13F8D00B0D35B /* ProduceDetailViewController.xib */; };
+		6365831B1AC417440090C6A4 /* SearchProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 636583191AC417440090C6A4 /* SearchProductViewController.m */; };
+		6365831C1AC417440090C6A4 /* SearchProductViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6365831A1AC417440090C6A4 /* SearchProductViewController.xib */; };
 		636C8B4F1AC2B9C30097CAE9 /* ConditionSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 636C8B4D1AC2B9C30097CAE9 /* ConditionSelectViewController.m */; };
 		636C8B501AC2B9C30097CAE9 /* ConditionSelectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 636C8B4E1AC2B9C30097CAE9 /* ConditionSelectViewController.xib */; };
 		636C8B6C1AC2E1420097CAE9 /* CopyConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 636C8B531AC2E1420097CAE9 /* CopyConnection.framework */; };
@@ -269,6 +271,9 @@
 		634CB9A31AC13F8D00B0D35B /* ProduceDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProduceDetailViewController.h; sourceTree = "<group>"; };
 		634CB9A41AC13F8D00B0D35B /* ProduceDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProduceDetailViewController.m; sourceTree = "<group>"; };
 		634CB9A51AC13F8D00B0D35B /* ProduceDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProduceDetailViewController.xib; sourceTree = "<group>"; };
+		636583181AC417440090C6A4 /* SearchProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchProductViewController.h; sourceTree = "<group>"; };
+		636583191AC417440090C6A4 /* SearchProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchProductViewController.m; sourceTree = "<group>"; };
+		6365831A1AC417440090C6A4 /* SearchProductViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchProductViewController.xib; sourceTree = "<group>"; };
 		636C8B4C1AC2B9C30097CAE9 /* ConditionSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConditionSelectViewController.h; sourceTree = "<group>"; };
 		636C8B4D1AC2B9C30097CAE9 /* ConditionSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConditionSelectViewController.m; sourceTree = "<group>"; };
 		636C8B4E1AC2B9C30097CAE9 /* ConditionSelectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConditionSelectViewController.xib; sourceTree = "<group>"; };
@@ -647,6 +652,16 @@
 			path = ProductDetail;
 			sourceTree = "<group>";
 		};
+		636583171AC4172F0090C6A4 /* SearchProduct */ = {
+			isa = PBXGroup;
+			children = (
+				636583181AC417440090C6A4 /* SearchProductViewController.h */,
+				636583191AC417440090C6A4 /* SearchProductViewController.m */,
+				6365831A1AC417440090C6A4 /* SearchProductViewController.xib */,
+			);
+			path = SearchProduct;
+			sourceTree = "<group>";
+		};
 		636C8B511AC2E1420097CAE9 /* ShareSDK */ = {
 			isa = PBXGroup;
 			children = (
@@ -852,6 +867,7 @@
 		63D31E681AB145550043B3CA /* FindProduct */ = {
 			isa = PBXGroup;
 			children = (
+				636583171AC4172F0090C6A4 /* SearchProduct */,
 				634CB9A21AC13F7100B0D35B /* ProductDetail */,
 				633263AE1AB823760021553B /* StationSlect */,
 				6389CE0C1AB80B5B00A8326E /* ProductList */,
@@ -1065,6 +1081,7 @@
 				TargetAttributes = {
 					63D31E3D1AB143D00043B3CA = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = WS6NM65Y2F;
 					};
 					63D31E561AB143D00043B3CA = {
 						CreatedOnToolsVersion = 6.1;
@@ -1123,6 +1140,7 @@
 				636C8B951AC2E6860097CAE9 /* MBProgressHUD.bundle in Resources */,
 				845514E51ABFF98200D588A7 /* Auth.storyboard in Resources */,
 				636C8B721AC2E1420097CAE9 /* ShareSDKLocalizable.strings in Resources */,
+				6365831C1AC417440090C6A4 /* SearchProductViewController.xib in Resources */,
 				631B1EC51AB7CF1E00253FA5 /* rightCell2.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1143,6 +1161,7 @@
 			files = (
 				633263D21AB851590021553B /* AFHTTPRequestOperation.m in Sources */,
 				633263D51AB851590021553B /* AFNetworkReachabilityManager.m in Sources */,
+				6365831B1AC417440090C6A4 /* SearchProductViewController.m in Sources */,
 				633263D41AB851590021553B /* AFHTTPSessionManager.m in Sources */,
 				6314157F1AC14FCA0086DF60 /* ConditionModel.m in Sources */,
 				632BFFFB1AB92A3A003B15AD /* SDWebImagePrefetcher.m in Sources */,
@@ -1300,7 +1319,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1335,7 +1354,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -1347,6 +1366,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ShouKeBao/ShareSDK/Connection",
@@ -1363,6 +1384,7 @@
 					"$(PROJECT_DIR)/ShouKeBao/ShareSDK/Extend/WeChatSDK",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -1371,6 +1393,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ShouKeBao/ShareSDK/Connection",
@@ -1387,6 +1411,7 @@
 					"$(PROJECT_DIR)/ShouKeBao/ShareSDK/Extend/WeChatSDK",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
