@@ -9,6 +9,7 @@
 #import "LoginTool.h"
 #import "IWHttpTool.h"
 #import "UserInfo.h"
+#import "StrToDic.h"
 #import <UIKit/UIKit.h>
 
 @implementation LoginTool
@@ -64,6 +65,9 @@
     NSLog(@"~~~~~~~param:%@",tmp);
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:overStr]];
+    NSString *json = [StrToDic jsonStringWithDicL:tmp];
+    request.HTTPBody = [json dataUsingEncoding:NSUTF8StringEncoding];
+    request.HTTPMethod = @"POST";
     
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
     if (data) {
