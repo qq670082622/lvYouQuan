@@ -28,6 +28,7 @@
 //        self.TrafficType = dict[@"TrafficType"];
 //        self.CruiseShipCompany = dict[@"CruiseShipCompany"];
 //        self.ProductLevel = dict[@"ProductLevel"];
+        
             }
     return self;
 }

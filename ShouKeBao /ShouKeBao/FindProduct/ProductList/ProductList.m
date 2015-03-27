@@ -19,7 +19,8 @@
 #import "ConditionSelectViewController.h"
 #import "ConditionModel.h"
 #import "MBProgressHUD+MJ.h"
-@interface ProductList ()<UITableViewDelegate,UITableViewDataSource,footViewDelegate,MGSwipeTableCellDelegate>
+#import "SearchProductViewController.h"
+@interface ProductList ()<UITableViewDelegate,UITableViewDataSource,footViewDelegate,MGSwipeTableCellDelegate,passValue>
 @property (weak, nonatomic) IBOutlet UIView *subView;
 
 @property (weak, nonatomic) IBOutlet UITableView *table;
@@ -48,8 +49,23 @@
 @property (strong,nonatomic) NSMutableArray *conditionArr;//post装载的条件数据
 @property (strong,nonatomic) NSArray *subDataArr1;
 @property (strong,nonatomic) NSArray *subDataArr2;
+@property (strong,nonatomic) NSMutableArray *subIndicateDataArr1;
+@property (strong,nonatomic) NSMutableArray *subIndicateDataArr2;
 @property (strong,nonatomic) NSMutableString *turn;
 @property (weak , nonatomic) UIButton *subTableSectionBtn;
+@property (copy,nonatomic) NSMutableString *jiafan;
+@property (copy,nonatomic) NSMutableString *jishi;
+//
+//@property (nonatomic,strong) NSMutableString *ProductBrowseTag;//游览线路ID
+//@property (nonatomic,strong) NSMutableString *GoDate;//出发日期
+//@property (nonatomic,strong) NSMutableString *ScheduleDays;//行程时间
+//@property (nonatomic,strong) NSMutableString *StartCity;//出发城市
+//@property (nonatomic,strong) NSMutableString *ProductThemeTag;//主题推荐iD
+//@property (nonatomic,strong) NSMutableString *Supplier;//供应商ID
+//@property (nonatomic,strong) NSMutableString *HotelStandard;//酒店类型
+//@property (nonatomic,strong) NSMutableString *TrafficType;//出行方式
+//@property (nonatomic,strong) NSMutableString *CruiseShipCompany;//油轮公司
+//@property (nonatomic,strong) NSMutableString *ProductLevel;//线路等级
 @end
 
 @implementation ProductList
@@ -74,17 +90,70 @@
     [self.profitOutlet setTitle:@"利润 ↑" forState:UIControlStateNormal ];
     [self.cheapOutlet setTitle:@"同行价 ↑" forState:UIControlStateNormal ];
     
+    self.jiafan = [NSMutableString stringWithFormat:@"1"];
+    self.jishi = [NSMutableString stringWithFormat:@"1"];
     
-    self.subDataArr1 = [NSArray arrayWithObjects:@"游览线路       >",@"出发日期       >",@"行程天数       >",@"出发城市       >",@"主题推荐       >", nil];//5
-    self.subDataArr2 = [NSArray arrayWithObjects:@"供应商       >",@"酒店类型       >",@"出行方式       >",@"油轮公司       >",@"线路等级       >", nil];//5
+    self.subDataArr1 = [NSArray arrayWithObjects:@"游览线路      ",@"出发日期      ",@"出发城市      ",@"主题推荐      ",@"供应商      ", nil];//5
+    self.subDataArr2 = [NSArray arrayWithObjects:@"酒店类型      ",@"出行方式      ",@"油轮公司      ",@"线路等级      ", nil];//4
+    self.subIndicateDataArr1 = [NSMutableArray arrayWithObjects:@" ",@" ",@" ",@" ",@" ", nil];
+    self.subIndicateDataArr2 = [NSMutableArray arrayWithObjects:@" ",@" ",@" ",@" ", nil];
     self.turn = [NSMutableString stringWithFormat:@"Off"];
 
-    }
+    
+//    ConditionSelectViewController *conditionVC = [[ConditionSelectViewController alloc] init];
+//    conditionVC.delegate = self;
 
-- (void)viewWillDisappear:(BOOL)animated
+    UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 220, 28)];
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.frame = CGRectMake(0, 0, 220, 28);
+    [btn setBackgroundImage:[UIImage imageNamed:@"searchBar"] forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(clickPush) forControlEvents:UIControlEventTouchUpInside];
+    [titleView addSubview:btn];
+    self.navigationItem.titleView = titleView;
+    
+    }
+-(void)clickPush
 {
-    [super viewWillDisappear:animated];
-    [MBProgressHUD hideAllHUDsForView:self.view.window animated:YES];
+    [self.navigationController pushViewController:[[SearchProductViewController alloc] init] animated:YES];
+}
+
+#pragma  mark - conditionDetail delegate//key 指大字典的key value指字典中某一子value的值
+-(void)passKey:(NSString *)key andValue:(NSString *)value andSelectIndexPath:(NSArray *)selectIndexPath andSelectValue:(NSString *)selectValue
+{
+    //确认列表选择值
+    [self.conditionDic setObject:value forKey:key];
+     NSLog(@"-----------conditionDic is %@--------",self.conditionDic);//-------------crash conditionDic is nil
+    //确认加返
+    if (self.jiafanSwitch.selected  == YES) {
+        self.jiafan = [NSMutableString stringWithFormat:@"1"];
+    }else if (self.jiafanSwitch.selected == NO){
+        self.jiafan = [NSMutableString stringWithFormat:@"0"];
+    }
+    //确认及时
+    if (self.jishiSwitch.selected == YES) {
+        self.jishi = [NSMutableString stringWithFormat:@"1"];
+    }else if (self.jishiSwitch.selected == NO){
+        self.jishi = [NSMutableString stringWithFormat:@"0"];
+    }
+    
+    [self.conditionDic setObject:_jiafan forKey:@"IsPersonBackPrice"];
+   
+    [self.conditionDic setObject:_jishi forKey:@"IsComfirmStockNow"];
+      NSLog(@"-----------conditionDic is %@-- jiafan is %@--   jishi is %@----",_jiafan,_jishi, self.conditionDic);
+    if ([selectIndexPath[0]isEqualToString:@"0"]) {
+        NSInteger a = [selectIndexPath[1] integerValue];//分析selected IndexPath.row的值
+       
+        self.subIndicateDataArr1[a] = selectValue;
+    }else if ([selectIndexPath[0] isEqualToString:@"1"]){
+       
+        NSInteger a = [selectIndexPath[1] integerValue];
+        self.subIndicateDataArr2[a] = selectValue;
+    }
+    
+    [self.subTable reloadData];
+    NSLog(@"-----------conditionDic is %@--------",self.conditionDic);
+    //  NSLog(@"----------passKey is %@ Value iS  %@selectIndexPath is %@    selectValue is%@-------------",key,value,selectIndexPath,selectValue);
+    
 }
 
 #pragma footView - delegate
@@ -96,7 +165,7 @@
     [dic setObject:@"10" forKey:@"PageSize"];
     [dic setObject:_page forKey:@"PageIndex"];
     [dic setObject:_ProductSortingType forKey:@"ProductSortingType"];
-    NSLog(@"-------page2 请求的 dic  is %@-----",dic);
+   // NSLog(@"-------page2 请求的 dic  is %@-----",dic);
     [IWHttpTool WMpostWithURL:@"/Product/GetProductList" params:dic success:^(id json) {
 for (NSDictionary *dic in json[@"ProductList"]) {
             ProductModal *modal = [ProductModal modalWithDict:dic];
@@ -105,7 +174,7 @@ for (NSDictionary *dic in json[@"ProductList"]) {
         [self.table reloadData];
         NSString *page = [NSString stringWithFormat:@"%@",_page];
         self.page = [NSMutableString stringWithFormat:@"%d",[page intValue]+1];
-        NSLog(@"---------转化后的page is %@ +1后的 page is -------%@----",page,_page);
+      //  NSLog(@"---------转化后的page is %@ +1后的 page is -------%@----",page,_page);
     } failure:^(NSError *error) {
         NSLog(@"-------产品搜索请求失败 error is%@----------",error);
     }];
@@ -128,8 +197,8 @@ for (NSDictionary *dic in json[@"ProductList"]) {
 #pragma 筛选navitem
 -(void)setUp
 {
-   if (self.subView.hidden == NO) {
-        self.subView.hidden = YES;
+   if (self.subView.hidden == YES) {
+        self.subView.hidden = NO;
         }
 }
 
@@ -146,6 +215,8 @@ for (NSDictionary *dic in json[@"ProductList"]) {
         [dic setObject:@1 forKey:@"PageIndex"];
         [IWHttpTool WMpostWithURL:@"/Product/GetProductList" params:dic success:^(id json) {
          
+            NSLog(@"--------------json[condition is  %@------------]",json[@"ProductConditionList"]);
+            
             NSMutableArray *dicArr = [NSMutableArray array];
           for (NSDictionary *dic in json[@"ProductList"]) {
               ProductModal *modal = [ProductModal modalWithDict:dic];
@@ -154,17 +225,18 @@ for (NSDictionary *dic in json[@"ProductList"]) {
             
             NSMutableArray *conArr = [NSMutableArray array];
           
-            for(NSDictionary *dic in json[@"ProductCondition"] ){
-                
-                ConditionModel *model = [ConditionModel modalWithDict:dic];//-----crash
-                [conArr addObject:model];
+            for(NSDictionary *dic in json[@"ProductConditionList"] ){
+                    [conArr addObject:dic];
             }
             
             _conditionArr = conArr;//装载筛选条件数据
+           // NSLog(@"----------------conditionArr is %@----------",_conditionArr);
             _dataArr = dicArr;//装载产品列表数据
             [self.table reloadData];
             
-          NSLog(@"----------productList dataArr-is-%@-------",_dataArr);
+            [MBProgressHUD hideAllHUDsForView:[[UIApplication sharedApplication].delegate window] animated:YES];
+            
+         // NSLog(@"----------productList dataArr-is-%@-------",_dataArr);
             NSString *page = [NSString stringWithFormat:@"%@",_page];
             self.page = [NSMutableString stringWithFormat:@"%d",[page intValue]+1];
       
@@ -243,9 +315,11 @@ for (NSDictionary *dic in json[@"ProductList"]) {
         return _dataArr.count;}
     if (tableView.tag == 2) {
         if (section == 0) {
+            NSLog(@"-------%lu",(unsigned long)_subDataArr1.count);
             return _subDataArr1.count;
         }
         if (section == 1 && [_turn isEqualToString:@"On" ]) {
+            NSLog(@"-------%lu",(unsigned long)_subDataArr2.count);
             return _subDataArr2.count;
         }
 
@@ -319,10 +393,29 @@ for (NSDictionary *dic in json[@"ProductList"]) {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
     if (tableView.tag == 2) {
-     NSInteger a = (5*(indexPath.section)) + (indexPath.row);//获得当前点击的row行数
-        NSArray *arr = _conditionArr[a];
+    
+        NSInteger a = (5*(indexPath.section)) + (indexPath.row);//获得当前点击的row行数
+    
+        //    NSLog(@"-------------a is %ld  ----_conditionArr[a] is %@------------",(long)a,_conditionArr[a]);
+       NSDictionary *conditionDic = _conditionArr[a];
         ConditionSelectViewController *conditionVC = [[ConditionSelectViewController alloc] init];
-        conditionVC.dataArr = arr;
+        conditionVC.delegate = self;
+        conditionVC.conditionDic = conditionDic;
+        
+        NSArray *arr = [NSArray arrayWithObjects:[NSString  stringWithFormat:@"%ld",(long)indexPath.section],[NSString  stringWithFormat:@"%ld",(long)indexPath.row], nil];
+        conditionVC.superViewSelectIndexPath = arr;//取出第几行被选择
+  
+        //取出conditionVC的navTile
+        NSString *conditionVCTile;
+        if (indexPath.section == 0) {
+            conditionVCTile = _subDataArr1[indexPath.row];
+        }else if (indexPath.section == 1){
+            conditionVCTile = _subDataArr2[indexPath.row];
+        }
+        conditionVC.title = conditionVCTile;
+        
+       
+        //    NSLog(@"-----------conditionVC.conditionDic is %@---------",conditionVC.conditionDic);
         [self.navigationController pushViewController:conditionVC animated:YES];
     }
     
@@ -350,14 +443,24 @@ for (NSDictionary *dic in json[@"ProductList"]) {
    if (tableView.tag == 2) {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellID"];
         if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellID"];
-            if ([_turn isEqualToString:@"Off"] ) {
-                cell.textLabel.text = self.subDataArr1[indexPath.row];
-            }else if ([_turn isEqualToString:@"On"]){
-                cell.textLabel.text = self.subDataArr2[indexPath.row];
-            }
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cellID"];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             
         }
+       
+       if (indexPath.section == 0) {
+           cell.textLabel.font = [UIFont systemFontOfSize:13];
+           cell.textLabel.text =  [NSString stringWithFormat:@"%@",self.subDataArr1[indexPath.row]];
+           cell.detailTextLabel.font = [UIFont systemFontOfSize:11.0];
+           cell.detailTextLabel.text = self.subIndicateDataArr1[indexPath.row];
+       }else {
+           cell.textLabel.text = [NSString stringWithFormat:@"%@",self.subDataArr2[indexPath.row]];
+           cell.textLabel.font = [UIFont systemFontOfSize:13];
+           cell.textLabel.text =  [NSString stringWithFormat:@"%@",self.subDataArr2[indexPath.row]];
+           cell.detailTextLabel.font = [UIFont systemFontOfSize:11.0];
+           cell.detailTextLabel.text = self.subIndicateDataArr2[indexPath.row];
+           
+       }
        return cell;
     }
     return  0;
@@ -405,12 +508,13 @@ for (NSDictionary *dic in json[@"ProductList"]) {
     [self.commondOutlet setSelected:YES];
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-     [dic addEntriesFromDictionary:[self conditionDic]];//增加筛选条件
+     [dic addEntriesFromDictionary:_conditionDic];//增加筛选条件
+    NSLog(@"----------增加的conditionDic is %@------------",_conditionDic);
     [dic setObject:@"10" forKey:@"Substation"];
     [dic setObject:@"10" forKey:@"PageSize"];
     [dic setObject:@1 forKey:@"PageIndex"];
     [dic setObject:@"0" forKey:@"ProductSortingType"];
-    NSLog(@"-------page2 请求的 dic  is %@-----",dic);
+   // NSLog(@"-------page2 请求的 dic  is %@-----",dic);
     [IWHttpTool WMpostWithURL:@"/Product/GetProductList" params:dic success:^(id json) {
         [self.dataArr removeAllObjects];//移除
         NSMutableArray *dicArr = [NSMutableArray array];
@@ -424,7 +528,7 @@ for (NSDictionary *dic in json[@"ProductList"]) {
         [self.table reloadData];
         NSString *page = [NSString stringWithFormat:@"%@",_page];
         self.page = [NSMutableString stringWithFormat:@"%d",[page intValue]+1];
-        NSLog(@"---------转化后的page is %@ +1后的 page is -------%@----",page,_page);
+      //  NSLog(@"---------转化后的page is %@ +1后的 page is -------%@----",page,_page);
     } failure:^(NSError *error) {
         NSLog(@"-------产品搜索请求失败 error is%@----------",error);
     }];
@@ -437,7 +541,7 @@ for (NSDictionary *dic in json[@"ProductList"]) {
         [self.cheapOutlet setSelected:NO];
         [self.commondOutlet setSelected:NO];
         NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-         [dic addEntriesFromDictionary:[self conditionDic]];//增加筛选条件
+         [dic addEntriesFromDictionary:_conditionDic];//增加筛选条件
         [dic setObject:@"10" forKey:@"Substation"];
         [dic setObject:@"10" forKey:@"PageSize"];
         [dic setObject:@1 forKey:@"PageIndex"];
@@ -456,7 +560,7 @@ for (NSDictionary *dic in json[@"ProductList"]) {
             [self.table reloadData];
             NSString *page = [NSString stringWithFormat:@"%@",_page];
             self.page = [NSMutableString stringWithFormat:@"%d",[page intValue]+1];
-            NSLog(@"---------转化后的page is %@ +1后的 page is -------%@----",page,_page);
+          //  NSLog(@"---------转化后的page is %@ +1后的 page is -------%@----",page,_page);
         } failure:^(NSError *error) {
             NSLog(@"-------产品搜索请求失败 error is%@----------",error);
         }];
@@ -466,12 +570,12 @@ for (NSDictionary *dic in json[@"ProductList"]) {
                                                     isEqualToString:@"利润 ↑"]){
         [self.profitOutlet setTitle:@"利润 ↓" forState:UIControlStateNormal];
                NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-         [dic addEntriesFromDictionary:[self conditionDic]];//增加筛选条件
+         [dic addEntriesFromDictionary:_conditionDic];//增加筛选条件
         [dic setObject:@"10" forKey:@"Substation"];
         [dic setObject:@"10" forKey:@"PageSize"];
         [dic setObject:@1 forKey:@"PageIndex"];
         [dic setObject:@"1" forKey:@"ProductSortingType"];
-        NSLog(@"-------page2 请求的 dic  is %@-----",dic);
+       // NSLog(@"-------page2 请求的 dic  is %@-----",dic);
         [IWHttpTool WMpostWithURL:@"/Product/GetProductList" params:dic success:^(id json) {
             [self.dataArr removeAllObjects];//移除
             NSMutableArray *dicArr = [NSMutableArray array];
@@ -485,19 +589,19 @@ for (NSDictionary *dic in json[@"ProductList"]) {
             [self.table reloadData];
             NSString *page = [NSString stringWithFormat:@"%@",_page];
             self.page = [NSMutableString stringWithFormat:@"%d",[page intValue]+1];
-            NSLog(@"---------转化后的page is %@ +1后的 page is -------%@----",page,_page);
+            //NSLog(@"---------转化后的page is %@ +1后的 page is -------%@----",page,_page);
         } failure:^(NSError *error) {
             NSLog(@"-------产品搜索请求失败 error is%@----------",error);
         }];
     }else if (self.profitOutlet.selected == YES && [self.profitOutlet.titleLabel.text isEqualToString:@"利润 ↓"]){
     [self.profitOutlet setTitle:@"利润 ↑" forState:UIControlStateNormal];
         NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-         [dic addEntriesFromDictionary:[self conditionDic]];//增加筛选条件
+         [dic addEntriesFromDictionary:_conditionDic];//增加筛选条件
         [dic setObject:@"10" forKey:@"Substation"];
         [dic setObject:@"10" forKey:@"PageSize"];
         [dic setObject:@1 forKey:@"PageIndex"];
         [dic setObject:@"2" forKey:@"ProductSortingType"];
-        NSLog(@"-------page2 请求的 dic  is %@-----",dic);
+      //  NSLog(@"-------page2 请求的 dic  is %@-----",dic);
         [IWHttpTool WMpostWithURL:@"/Product/GetProductList" params:dic success:^(id json) {
             [self.dataArr removeAllObjects];//移除
             NSMutableArray *dicArr = [NSMutableArray array];
@@ -511,7 +615,7 @@ for (NSDictionary *dic in json[@"ProductList"]) {
             [self.table reloadData];
             NSString *page = [NSString stringWithFormat:@"%@",_page];
             self.page = [NSMutableString stringWithFormat:@"%d",[page intValue]+1];
-            NSLog(@"---------转化后的page is %@ +1后的 page is -------%@----",page,_page);
+          //  NSLog(@"---------转化后的page is %@ +1后的 page is -------%@----",page,_page);
         } failure:^(NSError *error) {
             NSLog(@"-------产品搜索请求失败 error is%@----------",error);
         }];
@@ -525,12 +629,12 @@ for (NSDictionary *dic in json[@"ProductList"]) {
         [self.commondOutlet setSelected:NO];
         [self.profitOutlet setSelected:NO];
         NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-         [dic addEntriesFromDictionary:[self conditionDic]];//增加筛选条件
+         [dic addEntriesFromDictionary:_conditionDic];//增加筛选条件
         [dic setObject:@"10" forKey:@"Substation"];
         [dic setObject:@"10" forKey:@"PageSize"];
         [dic setObject:@1 forKey:@"PageIndex"];
         [dic setObject:@"4" forKey:@"ProductSortingType"];
-        NSLog(@"-------page2 请求的 dic  is %@-----",dic);
+       // NSLog(@"-------page2 请求的 dic  is %@-----",dic);
         [IWHttpTool WMpostWithURL:@"/Product/GetProductList" params:dic success:^(id json) {
             [self.dataArr removeAllObjects];//移除
             NSMutableArray *dicArr = [NSMutableArray array];
@@ -544,7 +648,7 @@ for (NSDictionary *dic in json[@"ProductList"]) {
             [self.table reloadData];
             NSString *page = [NSString stringWithFormat:@"%@",_page];
             self.page = [NSMutableString stringWithFormat:@"%d",[page intValue]+1];
-            NSLog(@"---------转化后的page is %@ +1后的 page is -------%@----",page,_page);
+          //  NSLog(@"---------转化后的page is %@ +1后的 page is -------%@----",page,_page);
         } failure:^(NSError *error) {
             NSLog(@"-------产品搜索请求失败 error is%@----------",error);
         }];
@@ -553,12 +657,12 @@ for (NSDictionary *dic in json[@"ProductList"]) {
                                                    isEqualToString:@"同行价 ↑"]){
         [self.cheapOutlet setTitle:@"同行价 ↓" forState:UIControlStateNormal];
         NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-         [dic addEntriesFromDictionary:[self conditionDic]];//增加筛选条件
+         [dic addEntriesFromDictionary:_conditionDic];//增加筛选条件
         [dic setObject:@"10" forKey:@"Substation"];
         [dic setObject:@"10" forKey:@"PageSize"];
         [dic setObject:@1 forKey:@"PageIndex"];
         [dic setObject:@"3" forKey:@"ProductSortingType"];
-        NSLog(@"-------page2 请求的 dic  is %@-----",dic);
+       // NSLog(@"-------page2 请求的 dic  is %@-----",dic);
         [IWHttpTool WMpostWithURL:@"/Product/GetProductList" params:dic success:^(id json) {
             [self.dataArr removeAllObjects];//移除
             NSMutableArray *dicArr = [NSMutableArray array];
@@ -572,7 +676,7 @@ for (NSDictionary *dic in json[@"ProductList"]) {
             [self.table reloadData];
             NSString *page = [NSString stringWithFormat:@"%@",_page];
             self.page = [NSMutableString stringWithFormat:@"%d",[page intValue]+1];
-            NSLog(@"---------转化后的page is %@ +1后的 page is -------%@----",page,_page);
+         //   NSLog(@"---------转化后的page is %@ +1后的 page is -------%@----",page,_page);
         } failure:^(NSError *error) {
             NSLog(@"-------产品搜索请求失败 error is%@----------",error);
         }];
@@ -580,12 +684,12 @@ for (NSDictionary *dic in json[@"ProductList"]) {
     }else if (self.cheapOutlet.selected == YES &&[self.cheapOutlet.titleLabel.text isEqualToString:@"同行价 ↓"]){
     [self.cheapOutlet setTitle:@"同行价 ↑" forState:UIControlStateNormal];
         NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-         [dic addEntriesFromDictionary:[self conditionDic]];//增加筛选条件
+         [dic addEntriesFromDictionary:_conditionDic];//增加筛选条件
         [dic setObject:@"10" forKey:@"Substation"];
         [dic setObject:@"10" forKey:@"PageSize"];
         [dic setObject:@1 forKey:@"PageIndex"];
         [dic setObject:@"4" forKey:@"ProductSortingType"];
-        NSLog(@"-------page2 请求的 dic  is %@-----",dic);
+      //  NSLog(@"-------page2 请求的 dic  is %@-----",dic);
         [IWHttpTool WMpostWithURL:@"/Product/GetProductList" params:dic success:^(id json) {
             [self.dataArr removeAllObjects];//移除
             NSMutableArray *dicArr = [NSMutableArray array];
@@ -599,7 +703,7 @@ for (NSDictionary *dic in json[@"ProductList"]) {
             [self.table reloadData];
             NSString *page = [NSString stringWithFormat:@"%@",_page];
             self.page = [NSMutableString stringWithFormat:@"%d",[page intValue]+1];
-            NSLog(@"---------转化后的page is %@ +1后的 page is -------%@----",page,_page);
+         //   NSLog(@"---------转化后的page is %@ +1后的 page is -------%@----",page,_page);
         } failure:^(NSError *error) {
             NSLog(@"-------产品搜索请求失败 error is%@----------",error);
         }];
@@ -616,14 +720,20 @@ for (NSDictionary *dic in json[@"ProductList"]) {
 }
 
 - (IBAction)subDone:(id)sender {
-    
+    self.subView.hidden = YES;
+    [self recommond:sender];
+    [self.commondOutlet setSelected:YES];
+    self.profitOutlet.selected = NO;
+    self.cheapOutlet.selected = NO;
 }
 
 - (IBAction)subMinMax:(id)sender {
     
 }
 
+
 - (IBAction)jiafanSwitchAction:(id)sender {
+   
     
 }
 
@@ -631,9 +741,9 @@ for (NSDictionary *dic in json[@"ProductList"]) {
     
 }
 
--(NSMutableDictionary *)conditionDic
-{
-    
-    return _conditionDic;
-}
+//-(NSMutableDictionary *)conditionDic
+//{
+//    
+//    return _conditionDic;
+//}
 @end
