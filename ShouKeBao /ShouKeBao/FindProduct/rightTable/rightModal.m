@@ -22,6 +22,7 @@
         self.rightIcon = dict[@"PicUrl"];
         self.rightDescrip = dict[@"Name"];
            self.rightPrice = dict[@"PersonPeerPrice"];
+    self.productUrl = dict[@"LinkUrl"];
 //    }
     return self;
 }

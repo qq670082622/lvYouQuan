@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StationSelect">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StoreViewController">
             <connections>
-                <outlet property="table" destination="u0d-CI-l3j" id="VSd-fA-PBh"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="webView" destination="TP1-Kp-isn" id="vx2-uv-rkJ"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -16,21 +16,17 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="u0d-CI-l3j">
+                <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TP1-Kp-isn">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <connections>
-                        <outlet property="dataSource" destination="-1" id="TY0-fi-UXL"/>
-                        <outlet property="delegate" destination="-1" id="fNW-zk-egM"/>
-                    </connections>
-                </tableView>
+                </webView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="u0d-CI-l3j" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="41d-RW-p18"/>
-                <constraint firstAttribute="bottom" secondItem="u0d-CI-l3j" secondAttribute="bottom" id="46Z-Mr-ck2"/>
-                <constraint firstItem="u0d-CI-l3j" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="MLV-Vr-miC"/>
-                <constraint firstAttribute="trailing" secondItem="u0d-CI-l3j" secondAttribute="trailing" id="PaM-YK-Fut"/>
+                <constraint firstAttribute="trailing" secondItem="TP1-Kp-isn" secondAttribute="trailing" id="2N5-tA-oOe"/>
+                <constraint firstAttribute="bottom" secondItem="TP1-Kp-isn" secondAttribute="bottom" id="8qB-F5-qA4"/>
+                <constraint firstItem="TP1-Kp-isn" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="EcJ-uq-6A8"/>
+                <constraint firstItem="TP1-Kp-isn" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="udn-8O-9PO"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
         </view>

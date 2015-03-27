@@ -21,12 +21,15 @@
 #import "StrToDic.h"
 #import "MJRefresh.h"//
 #import "MBProgressHUD+MJ.h"
+#import "SearchProductViewController.h"
 @interface FindProduct ()<UITableViewDelegate,UITableViewDataSource,headerViewDelegate>
 
 - (IBAction)stationSelect:(id)sender;
 
 
+@property (weak, nonatomic) IBOutlet UIButton *searchBtn;
 
+- (IBAction)search:(id)sender;
 @property (weak, nonatomic) IBOutlet UITableView *leftTable;
 @property (weak, nonatomic) IBOutlet UITableView *rightTable;
 
@@ -63,6 +66,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.searchBtn.layer.cornerRadius = 4;
+    self.searchBtn.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.searchBtn.layer.borderWidth = 0.5f;
+    self.searchBtn.layer.masksToBounds = YES;
+
+    
     self.rightTable.rowHeight = 103;
     self.hotTable.rowHeight = 104;
     
@@ -296,6 +306,11 @@
 - (IBAction)stationSelect:(id)sender {
     [self.navigationController pushViewController:[[StationSelect alloc] init] animated:YES];
 }
+
+- (IBAction)search:(id)sender {
+    
+    [self.navigationController pushViewController:[[SearchProductViewController alloc] init] animated:YES];
+}
 - (IBAction)hotBtnClick:(id)sender {
     self.rightTable.hidden = YES;
     self.rightTable2.hidden = YES;
@@ -387,7 +402,7 @@
     }else if (tableView.tag == 3){
         return 35;
     }else if (tableView.tag == 4){
-        return 104;
+        return 83;
     }
     return 0;
 }
@@ -457,7 +472,13 @@
         
         [self.navigationController pushViewController:list animated:YES];
     }
-    
+    if (tableView.tag == 4) {
+        ProduceDetailViewController *detail = [[ProduceDetailViewController alloc] init];
+        rightModal *model =  _hotArr[indexPath.section][indexPath.row];
+        NSString *productUrl = model.productUrl;
+        detail.produceUrl = productUrl;
+               [self.navigationController pushViewController:detail animated:YES];
+    }
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -472,6 +493,7 @@
         cell.modal = [self.rightTableArr objectAtIndex:indexPath.row];
         return cell;
     }else if (tableView.tag == 3){
+        
         rightCell3 *cell = [rightCell3 cellWithTableView:tableView];
         cell.modal = [self.rightMoreArr objectAtIndex:indexPath.row];
         return cell;

@@ -23,10 +23,10 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="Bri-0F-yj1" secondAttribute="bottom" id="89v-A7-YWg"/>
-                <constraint firstItem="Bri-0F-yj1" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="EVF-Oi-Bhd"/>
-                <constraint firstItem="Bri-0F-yj1" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Hhh-QJ-ebm"/>
-                <constraint firstAttribute="trailing" secondItem="Bri-0F-yj1" secondAttribute="trailing" id="Vig-Bu-KSW"/>
+                <constraint firstItem="Bri-0F-yj1" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="6vp-4N-jW2"/>
+                <constraint firstAttribute="trailing" secondItem="Bri-0F-yj1" secondAttribute="trailing" id="KuL-wP-KoN"/>
+                <constraint firstAttribute="bottom" secondItem="Bri-0F-yj1" secondAttribute="bottom" id="Ydi-Us-XBS"/>
+                <constraint firstItem="Bri-0F-yj1" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="qTT-cH-eus"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
         </view>

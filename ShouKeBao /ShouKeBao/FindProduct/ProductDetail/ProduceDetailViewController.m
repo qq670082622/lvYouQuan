@@ -9,7 +9,10 @@
 #import "ProduceDetailViewController.h"
 #import <ShareSDK/ShareSDK.h>
 #import "MBProgressHUD+MJ.h"
+#import "IWHttpTool.h"
 @interface ProduceDetailViewController ()
+@property(copy,nonatomic)NSMutableString *shareStr;
+
 
 @end
 
@@ -19,6 +22,7 @@
     [super viewDidLoad];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[[NSURL alloc]initWithString:_produceUrl]];
     [self.webView loadRequest:request];
+    [self customRightBarItem];
 }
 -(void)customRightBarItem
 {
@@ -35,15 +39,24 @@
 #pragma 筛选navitem
 -(void)shareIt:(id)sender
 {
+   
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setObject:self.produceUrl forKey:@"PageUrl"];
+    [IWHttpTool WMpostWithURL:@"/Common/GetPageType" params:dic success:^(id json) {
+       // NSLog(@"-----分享返回数据json is %@------",json);
+       self.shareStr =  [NSMutableString stringWithFormat:@"%@",json[@"ShareUrl"]];
+    } failure:^(NSError *error) {
+        NSLog(@"分享请求数据失败，原因：%@",error);
+    }];
     
-    NSString *imagePath = [[NSBundle mainBundle] pathForResource:@"ShareSDK" ofType:@"png"];
+    NSString *imagePath = [[NSBundle mainBundle] pathForResource:@"lvyouquanIcon" ofType:@"png"];
     
     //构造分享内容
-    id<ISSContent> publishContent = [ShareSDK content:@"分享内容"
-                                       defaultContent:@"测试一下"
+    id<ISSContent> publishContent = [ShareSDK content:self.productName
+                                       defaultContent:nil//@"测试一下"
                                                 image:[ShareSDK imageWithPath:imagePath]
                                                 title:@"吴铭测试一下分享"
-                                                  url:@"http://www.lvyouquan.com"
+                                                  url:self.shareStr
                                           description:@"旅游圈，匹匹扣"
                                             mediaType:SSPublishContentMediaTypeNews];
     //创建弹出菜单容器

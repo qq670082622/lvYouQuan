@@ -54,6 +54,7 @@
       }];
 }
 
+
 + (void)WMpostWithURL:(NSString *)url params:(NSMutableDictionary *)params success:(void (^)(id json))success failure:(void (^)(NSError *error))failure{
     
     NSString *normalURL = kWebServiceHost;
@@ -67,6 +68,7 @@
     
     NSMutableDictionary *tmp = [[NSMutableDictionary alloc] init];
     [tmp setObject:@"1" forKey:@"MobileType"];
+    
     [tmp setObject:currentVersion forKey:@"MobileVersion"];
     [tmp setObject:mobileID forKey:@"MobileID"];
     [tmp addEntriesFromDictionary:params];

@@ -185,7 +185,10 @@
 //    
     _modal = modal;
    // self.icon.image = [UIImage imageNamed:modal.PicUrl];
-    [self.icon sd_setImageWithURL:[[NSURL alloc] initWithString:modal.PicUrl]];
+    NSLog(@"=========%@",modal.PicUrl);
+         [self.icon sd_setImageWithURL:[[NSURL alloc] initWithString:modal.PicUrl] placeholderImage:[UIImage imageNamed:@"lvyouquanIcon"]];
+    
+   
     self.title.text = modal.Name;
     
     /**

@@ -18,6 +18,7 @@
     rightCell3 *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if (cell == nil) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"rightCell3" owner:nil options:nil] lastObject];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         
         //        [cell.contentView addSubview:self.btn1];
         
@@ -26,7 +27,7 @@
 }
 -(void)setModal:(rightModal3 *)modal
 {
-    self.name.text = [NSString stringWithFormat:@"%@           >",modal.Name];
+    self.name.text = [NSString stringWithFormat:@"%@",modal.Name];
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
