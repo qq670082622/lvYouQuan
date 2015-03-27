@@ -7,13 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MGSwipeTableCell.h"
 
 @class OrderModel;
+@class OrderCell;
+@class OrderTmpView;
 
-@interface OrderCell : UITableViewCell
+
+@interface OrderCell : MGSwipeTableCell
 
 @property (nonatomic,strong) OrderModel *model;
 
 + (instancetype)cellWithTableView:(UITableView *)tableView;
+
+@property (nonatomic,strong) OrderTmpView *orderTmpView;
 
 @end

@@ -7,9 +7,10 @@
 //
 
 #import "SKViewController.h"
+#import "DressView.h"
 
 @interface CalendarViewController : SKViewController
 
-
+@property (nonatomic,assign) timeType type;
 
 @end
