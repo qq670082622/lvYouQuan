@@ -18,6 +18,7 @@
                 <outlet property="btn6" destination="yVJ-ud-aMf" id="Orc-He-aty"/>
                 <outlet property="historyTable" destination="RWq-KV-V0R" id="oX5-Pv-dGr"/>
                 <outlet property="inputView" destination="FZI-bY-7VM" id="m2P-cz-AIe"/>
+                <outlet property="table" destination="RWq-KV-V0R" id="DdJ-Fl-Mna"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

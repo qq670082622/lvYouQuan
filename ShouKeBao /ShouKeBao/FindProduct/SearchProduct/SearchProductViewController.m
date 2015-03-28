@@ -8,7 +8,7 @@
 
 #import "SearchProductViewController.h"
 #import "IWHttpTool.h"
-@interface SearchProductViewController ()
+@interface SearchProductViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (strong,nonatomic)NSMutableArray *hotSearchWord;
 @property(strong,nonatomic)NSMutableArray *tableDataArr;
 @property (weak, nonatomic) IBOutlet UIButton *btn1;
@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btn4;
 @property (weak, nonatomic) IBOutlet UIButton *btn5;
 @property (weak, nonatomic) IBOutlet UIButton *btn6;
+@property (weak, nonatomic) IBOutlet UITableView *table;
 
 @end
 
@@ -27,7 +28,9 @@
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyBoard)];
     [self.view addGestureRecognizer:tap];
     [self loadDataSource];
-    
+    self.table.delegate = self;
+    self.table.dataSource = self;
+    self.table.separatorStyle = UITableViewCellSeparatorStyleNone;
    // [self setBtnText];
     
 

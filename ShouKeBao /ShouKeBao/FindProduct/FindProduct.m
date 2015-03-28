@@ -66,7 +66,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.leftTable.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.leftTable.scrollEnabled = NO;
     self.searchBtn.layer.cornerRadius = 4;
     self.searchBtn.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.searchBtn.layer.borderWidth = 0.5f;
@@ -491,12 +492,13 @@
         
     rightCell2 *cell = [rightCell2 cellWithTableView:tableView];
         cell.modal = [self.rightTableArr objectAtIndex:indexPath.row];
+       
         return cell;
     }else if (tableView.tag == 3){
         
         rightCell3 *cell = [rightCell3 cellWithTableView:tableView];
         cell.modal = [self.rightMoreArr objectAtIndex:indexPath.row];
-        return cell;
+               return cell;
     }else if (tableView.tag == 4){
         NSInteger section = indexPath.section;
         NSInteger row = indexPath.row;

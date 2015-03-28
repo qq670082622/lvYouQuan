@@ -26,7 +26,8 @@
     
     if (cell == nil) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"rightCell2" owner:nil options:nil] lastObject];
-        }
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;    
+    }
     return cell;
 }
 
