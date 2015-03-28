@@ -74,8 +74,6 @@
 		636583251AC55D3B0090C6A4 /* StationSelect.xib in Resources */ = {isa = PBXBuildFile; fileRef = 636583231AC55D3B0090C6A4 /* StationSelect.xib */; };
 		6365832C1AC56DD60090C6A4 /* tableviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6365832A1AC56DD60090C6A4 /* tableviewCell.m */; };
 		6365832D1AC56DD60090C6A4 /* tableviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6365832B1AC56DD60090C6A4 /* tableviewCell.xib */; };
-		636583321AC572420090C6A4 /* StoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 636583301AC572420090C6A4 /* StoreViewController.m */; };
-		636583331AC572420090C6A4 /* StoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 636583311AC572420090C6A4 /* StoreViewController.xib */; };
 		636C8B4F1AC2B9C30097CAE9 /* ConditionSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 636C8B4D1AC2B9C30097CAE9 /* ConditionSelectViewController.m */; };
 		636C8B501AC2B9C30097CAE9 /* ConditionSelectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 636C8B4E1AC2B9C30097CAE9 /* ConditionSelectViewController.xib */; };
 		636C8B6C1AC2E1420097CAE9 /* CopyConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 636C8B531AC2E1420097CAE9 /* CopyConnection.framework */; };
@@ -106,6 +104,8 @@
 		636C8B941AC2E6860097CAE9 /* MBProgressHUD+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 636C8B901AC2E6860097CAE9 /* MBProgressHUD+MJ.m */; };
 		636C8B951AC2E6860097CAE9 /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 636C8B911AC2E6860097CAE9 /* MBProgressHUD.bundle */; };
 		636C8B961AC2E6860097CAE9 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 636C8B931AC2E6860097CAE9 /* MBProgressHUD.m */; };
+		636CBF641AC5960100E6DEC6 /* StoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 636CBF621AC5960100E6DEC6 /* StoreViewController.m */; };
+		636CBF651AC5960100E6DEC6 /* StoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 636CBF631AC5960100E6DEC6 /* StoreViewController.xib */; };
 		6389CE011AB7E0B000A8326E /* leftModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 6389CE001AB7E0B000A8326E /* leftModal.m */; };
 		6389CE051AB7F9F600A8326E /* ResizeImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6389CE041AB7F9F600A8326E /* ResizeImage.m */; };
 		6389CE101AB80B7900A8326E /* ProductList.m in Sources */ = {isa = PBXBuildFile; fileRef = 6389CE0E1AB80B7900A8326E /* ProductList.m */; };
@@ -302,9 +302,6 @@
 		636583291AC56DD60090C6A4 /* tableviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tableviewCell.h; sourceTree = "<group>"; };
 		6365832A1AC56DD60090C6A4 /* tableviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tableviewCell.m; sourceTree = "<group>"; };
 		6365832B1AC56DD60090C6A4 /* tableviewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = tableviewCell.xib; sourceTree = "<group>"; };
-		6365832F1AC572420090C6A4 /* StoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreViewController.h; sourceTree = "<group>"; };
-		636583301AC572420090C6A4 /* StoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreViewController.m; sourceTree = "<group>"; };
-		636583311AC572420090C6A4 /* StoreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoreViewController.xib; sourceTree = "<group>"; };
 		636C8B4C1AC2B9C30097CAE9 /* ConditionSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConditionSelectViewController.h; sourceTree = "<group>"; };
 		636C8B4D1AC2B9C30097CAE9 /* ConditionSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConditionSelectViewController.m; sourceTree = "<group>"; };
 		636C8B4E1AC2B9C30097CAE9 /* ConditionSelectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConditionSelectViewController.xib; sourceTree = "<group>"; };
@@ -341,6 +338,9 @@
 		636C8B911AC2E6860097CAE9 /* MBProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MBProgressHUD.bundle; sourceTree = "<group>"; };
 		636C8B921AC2E6860097CAE9 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		636C8B931AC2E6860097CAE9 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		636CBF611AC5960100E6DEC6 /* StoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreViewController.h; sourceTree = "<group>"; };
+		636CBF621AC5960100E6DEC6 /* StoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreViewController.m; sourceTree = "<group>"; };
+		636CBF631AC5960100E6DEC6 /* StoreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoreViewController.xib; sourceTree = "<group>"; };
 		6389CDFF1AB7E0B000A8326E /* leftModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = leftModal.h; sourceTree = "<group>"; };
 		6389CE001AB7E0B000A8326E /* leftModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = leftModal.m; sourceTree = "<group>"; };
 		6389CE031AB7F9F600A8326E /* ResizeImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResizeImage.h; sourceTree = "<group>"; };
@@ -729,16 +729,6 @@
 			path = SearchProduct;
 			sourceTree = "<group>";
 		};
-		6365832E1AC572300090C6A4 /* Store */ = {
-			isa = PBXGroup;
-			children = (
-				6365832F1AC572420090C6A4 /* StoreViewController.h */,
-				636583301AC572420090C6A4 /* StoreViewController.m */,
-				636583311AC572420090C6A4 /* StoreViewController.xib */,
-			);
-			path = Store;
-			sourceTree = "<group>";
-		};
 		636C8B511AC2E1420097CAE9 /* ShareSDK */ = {
 			isa = PBXGroup;
 			children = (
@@ -831,6 +821,16 @@
 				636C8B931AC2E6860097CAE9 /* MBProgressHUD.m */,
 			);
 			path = MBProgressHUD;
+			sourceTree = "<group>";
+		};
+		636CBF601AC5960100E6DEC6 /* ShouKeBaoStore */ = {
+			isa = PBXGroup;
+			children = (
+				636CBF611AC5960100E6DEC6 /* StoreViewController.h */,
+				636CBF621AC5960100E6DEC6 /* StoreViewController.m */,
+				636CBF631AC5960100E6DEC6 /* StoreViewController.xib */,
+			);
+			path = ShouKeBaoStore;
 			sourceTree = "<group>";
 		};
 		6389CE021AB7F9DC00A8326E /* ImageTool */ = {
@@ -972,7 +972,7 @@
 		63D31E6B1AB145550043B3CA /* ShouKebao */ = {
 			isa = PBXGroup;
 			children = (
-				6365832E1AC572300090C6A4 /* Store */,
+				636CBF601AC5960100E6DEC6 /* ShouKeBaoStore */,
 				63D31E781AB145B10043B3CA /* ShouKeBao.h */,
 				63D31E791AB145B10043B3CA /* ShouKeBao.m */,
 				63D31E851AB162750043B3CA /* ShouKeBao.xib */,
@@ -1256,7 +1256,7 @@
 				6365832D1AC56DD60090C6A4 /* tableviewCell.xib in Resources */,
 				63D31E821AB162310043B3CA /* FindProduct.xib in Resources */,
 				634CB9A71AC13F8D00B0D35B /* ProduceDetailViewController.xib in Resources */,
-				636583331AC572420090C6A4 /* StoreViewController.xib in Resources */,
+				636CBF651AC5960100E6DEC6 /* StoreViewController.xib in Resources */,
 				633263B81AB8405C0021553B /* ProductCell.xib in Resources */,
 				8461F3621AC3D79100B8D41A /* icon_chose_arrow_nor@2x.png in Resources */,
 				636C8B501AC2B9C30097CAE9 /* ConditionSelectViewController.xib in Resources */,
@@ -1361,7 +1361,7 @@
 				632613271AB2AF04003AC2DA /* PGCategoryView.m in Sources */,
 				8448BC621AC2567E00F28E1A /* MGSwipeTableCell.m in Sources */,
 				6389CE011AB7E0B000A8326E /* leftModal.m in Sources */,
-				636583321AC572420090C6A4 /* StoreViewController.m in Sources */,
+				636CBF641AC5960100E6DEC6 /* StoreViewController.m in Sources */,
 				8471EAB81AC16FD50019AB92 /* OrderModel.m in Sources */,
 				847D636A1AC2BDB7005D4E5D /* Distribution.m in Sources */,
 				632BFFFF1AB92A3A003B15AD /* UIImage+WebP.m in Sources */,
