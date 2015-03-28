@@ -8,14 +8,24 @@
 
 #import "OrderCell.h"
 #import "OrderModel.h"
+#import "UIImageView+WebCache.h"
+#import "ButtonList.h"
+#import "LinkButton.h"
+#import "OrderTmpView.h"
+
+@interface OrderCell()
+
+@end
 
 @implementation OrderCell
 
+#pragma mark - initailize
 + (instancetype)cellWithTableView:(UITableView *)tableView
 {
-    static NSString *ID = @"ordercell";
+    static NSString *ID = @"ordercell22";
     OrderCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     if (!cell) {
+        
         cell = [[OrderCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
         
     }
@@ -26,9 +36,24 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        self.orderTmpView = [[[NSBundle mainBundle] loadNibNamed:@"OrderCell" owner:nil options:nil] lastObject];
+        self.orderTmpView.frame = self.bounds;
         
+        [self.contentView addSubview:self.orderTmpView];
     }
     return self;
+}
+
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+}
+
+- (void)setModel:(OrderModel *)model
+{
+    _model = model;
+    
+    self.orderTmpView.model = model;
 }
 
 @end
