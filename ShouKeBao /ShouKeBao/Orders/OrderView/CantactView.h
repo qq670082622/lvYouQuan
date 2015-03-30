@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class OrderModel;
+
 @interface CantactView : UIView
+
+@property (nonatomic,copy) OrderModel *model;
 
 @end

@@ -30,6 +30,9 @@
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="callPhone:" destination="4AU-th-pbG" eventType="touchUpInside" id="UjR-ri-TMl"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PaA-wO-8BY">
                     <rect key="frame" x="20" y="115" width="160" height="40"/>
@@ -38,6 +41,9 @@
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="addQQ:" destination="4AU-th-pbG" eventType="touchUpInside" id="1wP-LM-pr3"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -60,7 +66,7 @@
                 <outlet property="name" destination="BDk-Xm-50x" id="0jJ-mx-cnO"/>
                 <outlet property="qqNum" destination="PaA-wO-8BY" id="f9A-09-EKK"/>
             </connections>
-            <point key="canvasLocation" x="279" y="-7.5"/>
+            <point key="canvasLocation" x="335" y="-11.5"/>
         </view>
     </objects>
 </document>

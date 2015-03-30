@@ -24,6 +24,7 @@
 #import "MGSwipeButton.h"
 #import "MGSwipeTableCell.h"
 #import "OrderTmpView.h"
+#import "CantactView.h"
 
 #define pageSize 10
 
@@ -238,16 +239,20 @@
     UIColor * color = [UIColor lightGrayColor];
     
     MGSwipeButton *button = [MGSwipeButton buttonWithTitle:tmp icon:nil backgroundColor:color callback:^BOOL(MGSwipeTableCell * sender){
-        NSLog(@"Convenience callback received (left).");
+        NSLog(@"Convenience callback received (right).");
         return YES;
     }];
     CGRect frame = button.frame;
     frame.size.width = 200;
     button.frame = frame;
     [result addObject:button];
-    button.enabled = NO;
+    button.enabled = YES;
     
+    CantactView *contact = [[CantactView alloc] initWithFrame:button.frame];
+    contact.userInteractionEnabled = YES;
+    contact.model = model;
     
+    [button addSubview:contact];
     
     return result;
 }
@@ -474,7 +479,8 @@
 
 - (BOOL)swipeTableCell:(MGSwipeTableCell *)cell tappedButtonAtIndex:(NSInteger)index direction:(MGSwipeDirection)direction fromExpansion:(BOOL)fromExpansion
 {
-    return NO;
+    NSLog(@"------");
+    return YES;
 }
 
 - (NSArray *)swipeTableCell:(MGSwipeTableCell *)cell swipeButtonsForDirection:(MGSwipeDirection)direction swipeSettings:(MGSwipeSettings *)swipeSettings expansionSettings:(MGSwipeExpansionSettings *)expansionSettings
@@ -631,6 +637,7 @@
 
 #pragma mark - UISearchDisplayDelegate
 -(void)searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller {
+    
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
         CGRect statusBarFrame = [[UIApplication sharedApplication] statusBarFrame];
         [UIView animateWithDuration:0.25 animations:^{
@@ -638,6 +645,9 @@
                 subview.transform = CGAffineTransformMakeTranslation(0, statusBarFrame.size.height);
         }];
     }
+    UIView *view = [[UIView alloc] initWithFrame:self.view.bounds];
+    view.backgroundColor = [UIColor whiteColor];
+    [self.view insertSubview:view atIndex:0];
 }
 
 -(void)searchDisplayControllerWillEndSearch:(UISearchDisplayController *)controller {
