@@ -53,9 +53,9 @@
     
     //构造分享内容
     id<ISSContent> publishContent = [ShareSDK content:self.productName
-                                       defaultContent:nil//@"测试一下"
+                                       defaultContent:@"旅游圈，匹匹扣"
                                                 image:[ShareSDK imageWithPath:imagePath]
-                                                title:@"吴铭测试一下分享"
+                                                title:@"旅游圈，匹匹扣"
                                                   url:self.shareStr
                                           description:@"旅游圈，匹匹扣"
                                             mediaType:SSPublishContentMediaTypeNews];
