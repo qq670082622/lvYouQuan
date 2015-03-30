@@ -99,7 +99,7 @@
     UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 220, 28)];
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame = CGRectMake(0, 0, 220, 28);
-    [btn setBackgroundImage:[UIImage imageNamed:@"searchBar"] forState:UIControlStateNormal];
+    [btn setBackgroundImage:[UIImage imageNamed:@"shousuochanpin"] forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(clickPush) forControlEvents:UIControlEventTouchUpInside];
     [titleView addSubview:btn];
     self.navigationItem.titleView = titleView;
