@@ -56,6 +56,8 @@
 
 @property (nonatomic,strong) DetailView *detailView;
 
+@property (nonatomic,weak) UIView *historyView;
+
 @end
 
 @implementation Orders
@@ -645,12 +647,15 @@
                 subview.transform = CGAffineTransformMakeTranslation(0, statusBarFrame.size.height);
         }];
     }
-    UIView *view = [[UIView alloc] initWithFrame:self.view.bounds];
-    view.backgroundColor = [UIColor whiteColor];
-    [self.view insertSubview:view atIndex:0];
+    UIView *historyView = [[UIView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height - 64)];
+    historyView.backgroundColor = [UIColor whiteColor];
+    [self.view.window addSubview:historyView];
+    self.historyView = historyView;
 }
 
 -(void)searchDisplayControllerWillEndSearch:(UISearchDisplayController *)controller {
+    
+    [self.historyView removeFromSuperview];
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
         [UIView animateWithDuration:0.25 animations:^{
             for (UIView *subview in self.view.subviews)
