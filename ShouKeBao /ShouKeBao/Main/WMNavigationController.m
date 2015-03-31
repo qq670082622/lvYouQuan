@@ -26,7 +26,7 @@
     // key：NS****AttributeName
     NSMutableDictionary *textAttrs = [NSMutableDictionary dictionary];
     textAttrs[NSForegroundColorAttributeName] = [UIColor whiteColor];
-    textAttrs[NSFontAttributeName] = [UIFont systemFontOfSize:16];
+    textAttrs[NSFontAttributeName] = [UIFont systemFontOfSize:14];
     [item setTitleTextAttributes:textAttrs forState:UIControlStateNormal];
     
     // 设置不可用状态

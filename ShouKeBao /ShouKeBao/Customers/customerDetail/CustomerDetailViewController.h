@@ -9,5 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface CustomerDetailViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UITextField *weChat;
+@property (weak, nonatomic) IBOutlet UITextField *QQ;
+@property (weak, nonatomic) IBOutlet UITextView *note;
+- (IBAction)remond:(id)sender;
+- (IBAction)deleteCustomer:(id)sender;
+@property (weak, nonatomic) IBOutlet UITextField *tele;
 
 @end
