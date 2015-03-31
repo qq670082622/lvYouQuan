@@ -147,6 +147,16 @@
 		63709C801AC9731F00AEB1C5 /* CustomerOrdersUIViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63709C7E1AC9731F00AEB1C5 /* CustomerOrdersUIViewController.xib */; };
 		63709C851AC9827E00AEB1C5 /* BatchAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63709C831AC9827E00AEB1C5 /* BatchAddViewController.m */; };
 		63709C861AC9827E00AEB1C5 /* BatchAddViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63709C841AC9827E00AEB1C5 /* BatchAddViewController.xib */; };
+		63709D291ACAC68800AEB1C5 /* batchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63709D251ACAC68800AEB1C5 /* batchCell.m */; };
+		63709D2A1ACAC68800AEB1C5 /* batchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63709D261ACAC68800AEB1C5 /* batchCell.xib */; };
+		63709D2B1ACAC68800AEB1C5 /* batchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63709D281ACAC68800AEB1C5 /* batchModel.m */; };
+		63709D391ACAC6D000AEB1C5 /* addRemondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63709D2F1ACAC6D000AEB1C5 /* addRemondViewController.m */; };
+		63709D3A1ACAC6D000AEB1C5 /* addRemondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63709D301ACAC6D000AEB1C5 /* addRemondViewController.xib */; };
+		63709D3B1ACAC6D000AEB1C5 /* remondModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63709D321ACAC6D000AEB1C5 /* remondModel.m */; };
+		63709D3C1ACAC6D000AEB1C5 /* remondTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63709D341ACAC6D000AEB1C5 /* remondTableViewCell.m */; };
+		63709D3D1ACAC6D000AEB1C5 /* remondTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63709D351ACAC6D000AEB1C5 /* remondTableViewCell.xib */; };
+		63709D3E1ACAC6D000AEB1C5 /* remondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63709D371ACAC6D000AEB1C5 /* remondViewController.m */; };
+		63709D3F1ACAC6D000AEB1C5 /* remondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63709D381ACAC6D000AEB1C5 /* remondViewController.xib */; };
 		6389CE011AB7E0B000A8326E /* leftModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 6389CE001AB7E0B000A8326E /* leftModal.m */; };
 		6389CE051AB7F9F600A8326E /* ResizeImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6389CE041AB7F9F600A8326E /* ResizeImage.m */; };
 		6389CE101AB80B7900A8326E /* ProductList.m in Sources */ = {isa = PBXBuildFile; fileRef = 6389CE0E1AB80B7900A8326E /* ProductList.m */; };
@@ -439,6 +449,22 @@
 		63709C821AC9827E00AEB1C5 /* BatchAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BatchAddViewController.h; sourceTree = "<group>"; };
 		63709C831AC9827E00AEB1C5 /* BatchAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BatchAddViewController.m; sourceTree = "<group>"; };
 		63709C841AC9827E00AEB1C5 /* BatchAddViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BatchAddViewController.xib; sourceTree = "<group>"; };
+		63709D241ACAC68800AEB1C5 /* batchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = batchCell.h; path = ../customerOrders/batchCell.h; sourceTree = "<group>"; };
+		63709D251ACAC68800AEB1C5 /* batchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = batchCell.m; path = ../customerOrders/batchCell.m; sourceTree = "<group>"; };
+		63709D261ACAC68800AEB1C5 /* batchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = batchCell.xib; path = ../customerOrders/batchCell.xib; sourceTree = "<group>"; };
+		63709D271ACAC68800AEB1C5 /* batchModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = batchModel.h; path = ../customerOrders/batchModel.h; sourceTree = "<group>"; };
+		63709D281ACAC68800AEB1C5 /* batchModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = batchModel.m; path = ../customerOrders/batchModel.m; sourceTree = "<group>"; };
+		63709D2E1ACAC6D000AEB1C5 /* addRemondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addRemondViewController.h; sourceTree = "<group>"; };
+		63709D2F1ACAC6D000AEB1C5 /* addRemondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addRemondViewController.m; sourceTree = "<group>"; };
+		63709D301ACAC6D000AEB1C5 /* addRemondViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = addRemondViewController.xib; sourceTree = "<group>"; };
+		63709D311ACAC6D000AEB1C5 /* remondModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = remondModel.h; sourceTree = "<group>"; };
+		63709D321ACAC6D000AEB1C5 /* remondModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = remondModel.m; sourceTree = "<group>"; };
+		63709D331ACAC6D000AEB1C5 /* remondTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = remondTableViewCell.h; sourceTree = "<group>"; };
+		63709D341ACAC6D000AEB1C5 /* remondTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = remondTableViewCell.m; sourceTree = "<group>"; };
+		63709D351ACAC6D000AEB1C5 /* remondTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = remondTableViewCell.xib; sourceTree = "<group>"; };
+		63709D361ACAC6D000AEB1C5 /* remondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = remondViewController.h; sourceTree = "<group>"; };
+		63709D371ACAC6D000AEB1C5 /* remondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = remondViewController.m; sourceTree = "<group>"; };
+		63709D381ACAC6D000AEB1C5 /* remondViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = remondViewController.xib; sourceTree = "<group>"; };
 		6389CDFF1AB7E0B000A8326E /* leftModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = leftModal.h; sourceTree = "<group>"; };
 		6389CE001AB7E0B000A8326E /* leftModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = leftModal.m; sourceTree = "<group>"; };
 		6389CE031AB7F9F600A8326E /* ResizeImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResizeImage.h; sourceTree = "<group>"; };
@@ -1008,11 +1034,43 @@
 		63709C811AC9826C00AEB1C5 /* BatchAddCustomers */ = {
 			isa = PBXGroup;
 			children = (
+				63709D241ACAC68800AEB1C5 /* batchCell.h */,
+				63709D251ACAC68800AEB1C5 /* batchCell.m */,
+				63709D261ACAC68800AEB1C5 /* batchCell.xib */,
+				63709D271ACAC68800AEB1C5 /* batchModel.h */,
+				63709D281ACAC68800AEB1C5 /* batchModel.m */,
 				63709C821AC9827E00AEB1C5 /* BatchAddViewController.h */,
 				63709C831AC9827E00AEB1C5 /* BatchAddViewController.m */,
 				63709C841AC9827E00AEB1C5 /* BatchAddViewController.xib */,
 			);
 			path = BatchAddCustomers;
+			sourceTree = "<group>";
+		};
+		63709D2C1ACAC6D000AEB1C5 /* remond */ = {
+			isa = PBXGroup;
+			children = (
+				63709D2D1ACAC6D000AEB1C5 /* addRemond */,
+				63709D311ACAC6D000AEB1C5 /* remondModel.h */,
+				63709D321ACAC6D000AEB1C5 /* remondModel.m */,
+				63709D331ACAC6D000AEB1C5 /* remondTableViewCell.h */,
+				63709D341ACAC6D000AEB1C5 /* remondTableViewCell.m */,
+				63709D351ACAC6D000AEB1C5 /* remondTableViewCell.xib */,
+				63709D361ACAC6D000AEB1C5 /* remondViewController.h */,
+				63709D371ACAC6D000AEB1C5 /* remondViewController.m */,
+				63709D381ACAC6D000AEB1C5 /* remondViewController.xib */,
+			);
+			name = remond;
+			path = ../FindProduct/remond;
+			sourceTree = "<group>";
+		};
+		63709D2D1ACAC6D000AEB1C5 /* addRemond */ = {
+			isa = PBXGroup;
+			children = (
+				63709D2E1ACAC6D000AEB1C5 /* addRemondViewController.h */,
+				63709D2F1ACAC6D000AEB1C5 /* addRemondViewController.m */,
+				63709D301ACAC6D000AEB1C5 /* addRemondViewController.xib */,
+			);
+			path = addRemond;
 			sourceTree = "<group>";
 		};
 		6389CE021AB7F9DC00A8326E /* ImageTool */ = {
@@ -1128,6 +1186,7 @@
 		63D31E671AB145550043B3CA /* Customers */ = {
 			isa = PBXGroup;
 			children = (
+				63709D2C1ACAC6D000AEB1C5 /* remond */,
 				63709C811AC9826C00AEB1C5 /* BatchAddCustomers */,
 				63709C7B1AC972FB00AEB1C5 /* customerOrders */,
 				63709C3E1AC96CF600AEB1C5 /* customerDetail */,
@@ -1457,6 +1516,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				633263B31AB823990021553B /* StationSelect.xib in Resources */,
+				63709D3F1ACAC6D000AEB1C5 /* remondViewController.xib in Resources */,
 				632613301AB2BF80003AC2DA /* leftCell.xib in Resources */,
 				8461F3631AC3D79100B8D41A /* icon_chose_arrow_sel@2x.png in Resources */,
 				63D31E521AB143D00043B3CA /* LaunchScreen.xib in Resources */,
@@ -1473,6 +1533,7 @@
 				8461F3621AC3D79100B8D41A /* icon_chose_arrow_nor@2x.png in Resources */,
 				636C8B501AC2B9C30097CAE9 /* ConditionSelectViewController.xib in Resources */,
 				5AB7C9761ACAA23C00217CAC /* Me.storyboard in Resources */,
+				63709D2A1ACAC68800AEB1C5 /* batchCell.xib in Resources */,
 				63D31E861AB162750043B3CA /* ShouKeBao.xib in Resources */,
 				63D31E4F1AB143D00043B3CA /* Images.xcassets in Resources */,
 				8461F3711AC3E9AF00B8D41A /* DressFooter.xib in Resources */,
@@ -1483,6 +1544,7 @@
 				63306BB71AC6AE340020D53C /* ShouKeBaoCell.xib in Resources */,
 				636C8B731AC2E1420097CAE9 /* Resource.bundle in Resources */,
 				632613281AB2AF04003AC2DA /* re_prduct_pan_toggle@2x.png in Resources */,
+				63709D3D1ACAC6D000AEB1C5 /* remondTableViewCell.xib in Resources */,
 				5A6814091AC5001B00F8AD08 /* OrderCell.xib in Resources */,
 				632EDEAE1AC9009000EE98FC /* PushConfig.plist in Resources */,
 				6326131A1AB1C175003AC2DA /* MJRefresh.bundle in Resources */,
@@ -1496,6 +1558,7 @@
 				845514E51ABFF98200D588A7 /* Auth.storyboard in Resources */,
 				63709C801AC9731F00AEB1C5 /* CustomerOrdersUIViewController.xib in Resources */,
 				636C8B721AC2E1420097CAE9 /* ShareSDKLocalizable.strings in Resources */,
+				63709D3A1ACAC6D000AEB1C5 /* addRemondViewController.xib in Resources */,
 				63709C431AC96D0900AEB1C5 /* CustomerDetailViewController.xib in Resources */,
 				63709C481AC96E0E00AEB1C5 /* EditCustomerDetailViewController.xib in Resources */,
 				6365831C1AC417440090C6A4 /* SearchProductViewController.xib in Resources */,
@@ -1519,11 +1582,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63709D3C1ACAC6D000AEB1C5 /* remondTableViewCell.m in Sources */,
 				63709C3C1AC9619500AEB1C5 /* addCustomerViewController.m in Sources */,
 				633263D21AB851590021553B /* AFHTTPRequestOperation.m in Sources */,
 				633263D51AB851590021553B /* AFNetworkReachabilityManager.m in Sources */,
 				6365831B1AC417440090C6A4 /* SearchProductViewController.m in Sources */,
 				633263D41AB851590021553B /* AFHTTPSessionManager.m in Sources */,
+				63709D391ACAC6D000AEB1C5 /* addRemondViewController.m in Sources */,
 				6314157F1AC14FCA0086DF60 /* ConditionModel.m in Sources */,
 				632BFFFB1AB92A3A003B15AD /* SDWebImagePrefetcher.m in Sources */,
 				634CB9A61AC13F8D00B0D35B /* ProduceDetailViewController.m in Sources */,
@@ -1575,6 +1640,7 @@
 				5AB7C96B1ACA773800217CAC /* MeButton.m in Sources */,
 				845514FB1AC032C000D588A7 /* WriteFileManager.m in Sources */,
 				633263D71AB851590021553B /* AFURLConnectionOperation.m in Sources */,
+				63709D2B1ACAC68800AEB1C5 /* batchModel.m in Sources */,
 				5A68140F1AC52F2C00F8AD08 /* UIColor+SK.m in Sources */,
 				633263B71AB8405C0021553B /* ProductCell.m in Sources */,
 				845514F61AC0219000D588A7 /* BindPhoneViewController.m in Sources */,
@@ -1585,7 +1651,9 @@
 				6326131C1AB1C175003AC2DA /* MJRefreshConst.m in Sources */,
 				8461F35A1AC3CAC500B8D41A /* OrderTool.m in Sources */,
 				632613201AB1C175003AC2DA /* UIScrollView+MJRefresh.m in Sources */,
+				63709D3B1ACAC6D000AEB1C5 /* remondModel.m in Sources */,
 				639EE0841AB6D0E900E866B6 /* Register.m in Sources */,
+				63709D3E1ACAC6D000AEB1C5 /* remondViewController.m in Sources */,
 				631B1EC81AB7CFDD00253FA5 /* rightModal.m in Sources */,
 				5A68142F1AC58D3000F8AD08 /* CantactView.m in Sources */,
 				63709C471AC96E0E00AEB1C5 /* EditCustomerDetailViewController.m in Sources */,
@@ -1595,6 +1663,7 @@
 				632B00011AB92A3A003B15AD /* UIImageView+WebCache.m in Sources */,
 				632613271AB2AF04003AC2DA /* PGCategoryView.m in Sources */,
 				63709C7F1AC9731F00AEB1C5 /* CustomerOrdersUIViewController.m in Sources */,
+				63709D291ACAC68800AEB1C5 /* batchCell.m in Sources */,
 				8448BC621AC2567E00F28E1A /* MGSwipeTableCell.m in Sources */,
 				633263B21AB823990021553B /* StationSelect.m in Sources */,
 				5A6814261AC56E6000F8AD08 /* SKSearchBar.m in Sources */,
