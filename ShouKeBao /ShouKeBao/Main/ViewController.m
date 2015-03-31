@@ -37,7 +37,7 @@
     Customers *cstm = [[Customers alloc] init];
     [self addChildVc:cstm title:@"管客户" image:@"APPkehuguanli2" selectedImage:@"APPkehuguanli"];
     
-    Me *me = [[Me alloc] init];
+    Me *me = [[Me alloc] initWithStyle:UITableViewStyleGrouped];
     [self addChildVc:me title:@"我" image:@"APPyonghuming" selectedImage:@"APPyonghuicon"];
     
 }

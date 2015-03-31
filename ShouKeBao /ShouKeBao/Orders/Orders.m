@@ -25,6 +25,8 @@
 #import "MGSwipeTableCell.h"
 #import "OrderTmpView.h"
 #import "CantactView.h"
+#import "WriteFileManager.h"
+#import "HistoryView.h"
 
 #define pageSize 10
 
@@ -56,7 +58,7 @@
 
 @property (nonatomic,strong) DetailView *detailView;
 
-@property (nonatomic,weak) UIView *historyView;
+@property (nonatomic,weak) HistoryView *historyView;
 
 @end
 
@@ -93,6 +95,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clickConfirm:) name:@"DressViewClickConfirm" object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orderCellDidClickButton:) name:@"orderCellDidClickButton" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(historySearch:) name:@"historysearch" object:nil];
 }
 
 - (void)dealloc
@@ -136,7 +140,6 @@
 // 根据条件加载数据
 - (void)loadDataSuorceByCondition
 {
-    [self.dataArr removeAllObjects];
     NSString *first = self.firstValue ? self.firstValue[@"Value"] : @"0";
     NSString *second = self.secondValue ? self.secondValue[@"Value"] : @"";
     NSString *third = self.thirdValue ? self.thirdValue[@"Value"] : @"";
@@ -157,6 +160,7 @@
         [self.tableView headerEndRefreshing];
         if (json) {
             NSLog(@"------%@",json);
+            [self.dataArr removeAllObjects];
             for (NSDictionary *dic in json[@"OrderList"]) {
                 OrderModel *order = [OrderModel orderModelWithDict:dic];
                 [self.dataArr addObject:order];
@@ -586,6 +590,13 @@
     [self.navigationController pushViewController:detail animated:YES];
 }
 
+- (void)historySearch:(NSNotification *)noty
+{
+    self.searchKeyWord = noty.userInfo[@"historykey"];
+    [self.searchDisplayController setActive:NO animated:YES];
+    [self.tableView headerBeginRefreshing];
+}
+
 #pragma mark - AreaViewControllerDelegate
 // 选择之后把值返回过来
 - (void)didSelectAreaWithValue:(NSDictionary *)value Type:(areaType)type
@@ -626,6 +637,17 @@
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     [searchBar endEditing:YES];
+    
+    NSMutableArray *tmp = [NSMutableArray array];
+    
+    // 先取出原来的记录
+    NSArray *arr = [WriteFileManager readFielWithName:@"historysearch"];
+    [tmp addObjectsFromArray:arr];
+    
+    // 再加上新的搜索记录 并保存
+    [tmp addObject:self.searchKeyWord];
+    [WriteFileManager saveFileWithArray:tmp Name:@"historysearch"];
+    
     [self.searchDisplayController setActive:NO animated:YES];
     [self.tableView headerBeginRefreshing];
 }
@@ -647,8 +669,8 @@
                 subview.transform = CGAffineTransformMakeTranslation(0, statusBarFrame.size.height);
         }];
     }
-    UIView *historyView = [[UIView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height - 64)];
-    historyView.backgroundColor = [UIColor whiteColor];
+    HistoryView *historyView = [[HistoryView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height - 64)];
+    historyView.backgroundColor = [UIColor colorWithRed:235/255.0 green:235/255.0 blue:241/255.0 alpha:1];
     [self.view.window addSubview:historyView];
     self.historyView = historyView;
 }

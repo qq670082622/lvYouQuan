@@ -1,14 +1,13 @@
 //
-//  Me.h
+//  MyOrgViewController.h
 //  ShouKeBao
 //
-//  Created by David on 15/3/12.
+//  Created by 金超凡 on 15/3/31.
 //  Copyright (c) 2015年 shouKeBao. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "SKTableViewController.h"
 
-@interface Me : SKTableViewController
+@interface MyOrgViewController : SKTableViewController
 
 @end
