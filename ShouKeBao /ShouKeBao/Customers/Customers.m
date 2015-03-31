@@ -65,12 +65,14 @@
 
 
 - (IBAction)addNewUser:(id)sender {
+    self.subView.hidden = YES;
     addCustomerViewController *add = [[addCustomerViewController alloc] init];
     [self.navigationController pushViewController:add animated:YES];
     
 }
 
 - (IBAction)importUser:(id)sender {
+    self.subView.hidden = YES;
     BatchAddViewController *batch = [[BatchAddViewController alloc] init];
     [self.navigationController pushViewController:batch animated:YES];
 }
