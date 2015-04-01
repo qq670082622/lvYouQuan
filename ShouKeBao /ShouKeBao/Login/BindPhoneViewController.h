@@ -10,4 +10,6 @@
 
 @interface BindPhoneViewController : SKTableViewController
 
+@property (nonatomic,copy) NSString *distributionId;
+
 @end

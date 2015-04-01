@@ -12,6 +12,8 @@
 
 - (void)didClickSetting;
 
+- (void)didClickHeadIcon;
+
 @end
 
 @interface MeHeader : UIView

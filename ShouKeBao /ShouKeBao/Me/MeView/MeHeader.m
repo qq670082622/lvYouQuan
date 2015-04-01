@@ -72,14 +72,16 @@
 
 - (void)setting:(UIButton *)sender
 {
-    if (_delegate && [_delegate respondsToSelector:@selector(self)]) {
+    if (_delegate && [_delegate respondsToSelector:@selector(didClickSetting)]) {
         [_delegate didClickSetting];
     }
 }
 
 - (void)clickHead:(UIButton *)sender
 {
-    
+    if (_delegate && [_delegate respondsToSelector:@selector(didClickHeadIcon)]) {
+        [_delegate didClickHeadIcon];
+    }
 }
 
 @end

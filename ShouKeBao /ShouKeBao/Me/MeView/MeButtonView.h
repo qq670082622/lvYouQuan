@@ -10,7 +10,7 @@
 
 @protocol MeButtonViewDelegate <NSObject>
 
-
+- (void)buttonViewSelectedWithIndex:(NSInteger)index;
 
 @end
 

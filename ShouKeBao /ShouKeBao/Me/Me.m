@@ -11,8 +11,12 @@
 #import "MeButtonView.h"
 #import "PersonSettingViewController.h"
 #import "OrgSettingViewController.h"
+#import "SuggestViewController.h"
+#import "SosViewController.h"
+#import "MyOrgViewController.h"
+#import "MyListViewController.h"
 
-@interface Me () <MeHeaderDelegate,MeButtonViewDelegate>
+@interface Me () <MeHeaderDelegate,MeButtonViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 @property (nonatomic,strong) MeHeader *meheader;
 
@@ -29,26 +33,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.tableView.contentInset = UIEdgeInsetsMake(136, 0, 0, 0);
+    self.tableView.contentInset = UIEdgeInsetsMake(180, 0, 0, 0);
     self.tableView.tableHeaderView = self.buttonView;
     self.tableView.rowHeight = 50;
     
     self.desArr = @[@[@"我的旅行社"],@[@"账号安全设置"],@[@"勿扰模式",@"意见反馈",@"关于收客宝",@"评价收客宝"]];
     
     self.isPerson = NO;
+    
+    NSLog(@"----%f",self.view.frame.size.width);
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
-    [self.navigationController.navigationBar addSubview:self.meheader];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
     [self setNav];
 }
 
@@ -57,23 +57,22 @@
     [super viewWillDisappear:animated];
     
     [self.meheader removeFromSuperview];
-    self.navigationController.navigationBar.frame = CGRectMake(0, 20, self.view.frame.size.width, 44);
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
 }
 
 #pragma mark - private
 - (void)setNav
 {
     self.title = nil;
-    
-    //修改NavigaionBar的高度
-    self.navigationController.navigationBar.frame = CGRectMake(0, 20, self.view.frame.size.width, 180);
+  
+    [self.navigationController.view addSubview:self.meheader];
 }
 
 #pragma mark - getter
 - (MeHeader *)meheader
 {
     if (!_meheader) {
-        _meheader = [[MeHeader alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 180)];
+        _meheader = [[MeHeader alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 200)];
         _meheader.delegate = self;
     }
     return _meheader;
@@ -89,6 +88,7 @@
 }
 
 #pragma mark - MeHeaderDelegate
+// 点击设置 基本信息
 - (void)didClickSetting
 {
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Me" bundle:nil];
@@ -101,8 +101,39 @@
     }
 }
 
-#pragma mark - MeButtonViewDelegate
+// 点击头像上传照片
+- (void)didClickHeadIcon
+{
+    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"选择照片" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"选择相册照片",@"拍照", nil];
+    [sheet showInView:self.view];
+}
 
+#pragma mark - MeButtonViewDelegate
+- (void)buttonViewSelectedWithIndex:(NSInteger)index
+{
+    switch (index) {// 我的收藏
+        case 0:{
+            MyListViewController *col = [[MyListViewController alloc] init];
+            col.listType = collectionType;
+            [self.navigationController pushViewController:col animated:YES];
+            break;
+        }
+        case 1:{ // 我的浏览
+            MyListViewController *pre = [[MyListViewController alloc] init];
+            pre.listType = previewType;
+            [self.navigationController pushViewController:pre animated:YES];
+            break;
+        }
+        case 2:{ // 搬救兵
+            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Me" bundle:nil];
+            SosViewController *sos = [sb instantiateViewControllerWithIdentifier:@"Sos"];
+            [self.navigationController pushViewController:sos animated:YES];
+            break;
+        }
+        default:
+            break;
+    }
+}
 
 #pragma mark - UITableViewDataSource,UITableViewDelegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -149,6 +180,37 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Me" bundle:nil];
+    // 下面的四个
+    if (indexPath.section == 2) {
+        switch (indexPath.row) {
+            case 0:{
+                
+                break;
+            }
+            case 1:{
+                SuggestViewController *suggest = [sb instantiateViewControllerWithIdentifier:@"Suggest"];
+                [self.navigationController pushViewController:suggest animated:YES];
+                break;
+            }
+            case 2:{
+                
+                break;
+            }
+            case 3:{
+                
+                break;
+            }
+            default:
+                break;
+        }
+    }else{
+        if (indexPath.section == 0) {
+            MyOrgViewController *myOrg = [sb instantiateViewControllerWithIdentifier:@"MyOrg"];
+            [self.navigationController pushViewController:myOrg animated:YES];
+        }
+    }
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -160,6 +222,33 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     return 0.01f;
+}
+
+#pragma mark - UIActionSheetDelegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    UIImagePickerControllerSourceType sourceType = 0;
+    switch (buttonIndex) {
+        case 0:
+            sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            break;
+        case 1:
+            sourceType = UIImagePickerControllerSourceTypeCamera;
+            break;
+        default:
+            break;
+    }
+    
+    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+    imagePicker.sourceType = sourceType;
+    imagePicker.delegate = self;
+    [self presentViewController:imagePicker animated:YES completion:nil];
+}
+
+#pragma mark - UIImagePickerControllerDelegate
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

@@ -8,7 +8,27 @@
 
 #import "OrgSettingViewController.h"
 
-@interface OrgSettingViewController ()
+@interface OrgSettingViewController () <UIScrollViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UITextField *comanyName;
+
+@property (weak, nonatomic) IBOutlet UITextField *place;
+
+@property (weak, nonatomic) IBOutlet UILabel *address;
+
+@property (weak, nonatomic) IBOutlet UITextField *banName;
+
+@property (weak, nonatomic) IBOutlet UITextField *touchMan;
+
+@property (weak, nonatomic) IBOutlet UITextField *phone;
+
+@property (weak, nonatomic) IBOutlet UITextField *email;
+
+@property (weak, nonatomic) IBOutlet UITextField *qq;
+
+@property (weak, nonatomic) IBOutlet UITextField *wechat;
+
+@property (weak, nonatomic) IBOutlet UITextView *remark;
 
 @end
 
@@ -16,22 +36,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0 && indexPath.row == 2) {
+        NSLog(@"----");
+    }
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark - UIScrollViewDelegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    [self.view endEditing:YES];
 }
-*/
 
 @end

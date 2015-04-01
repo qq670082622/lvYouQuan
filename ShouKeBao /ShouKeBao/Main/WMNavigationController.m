@@ -7,6 +7,7 @@
 //
 
 #import "WMNavigationController.h"
+#import "Me.h"
 
 @interface WMNavigationController ()
 
@@ -16,9 +17,6 @@
 
 + (void)initialize
 {
-    
-
-    
     // 设置整个项目所有item的主题样式
     UIBarButtonItem *item = [UIBarButtonItem appearance];
     

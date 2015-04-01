@@ -11,6 +11,7 @@
 #import "LinkButton.h"
 #import "UIImageView+WebCache.h"
 #import "ButtonList.h"
+#import "NSString+QD.h"
 
 @interface OrderTmpView()
 
@@ -89,7 +90,12 @@
     
     self.statusDes.textColor = model.StateTextColor;
     
+    // 先清空再添加
     [self.buttonArr removeAllObjects];
+    for (UIView *view in self.bottomView.subviews) {
+        [view removeFromSuperview];
+    }
+    
     for (ButtonList *btn in model.buttonList) {
         LinkButton *b = [[LinkButton alloc] init];
         b.titleLabel.font = [UIFont systemFontOfSize:14];
@@ -100,6 +106,7 @@
         b.layer.borderColor = btn.color.CGColor;
         b.contentEdgeInsets = UIEdgeInsetsMake(6, 6, 6, 6);
         b.linkUrl = btn.linkurl;
+        b.text = btn.text;
         [b addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
         
         [self.bottomView addSubview:b];
@@ -122,16 +129,16 @@
 - (void)layoutButtons
 {
     CGFloat screenW = [UIScreen mainScreen].bounds.size.width;
+    CGSize max = CGSizeMake(MAXFLOAT, MAXFLOAT);
+    CGFloat btnW = 0;
     
     for (int i = 0; i < self.buttonArr.count; i ++) {
-        UIButton *btn = self.buttonArr[i];
-        btn.frame = CGRectMake(0, 5, 0, 30);
-        [btn sizeToFit];
         
-        CGFloat btnX = screenW - (btn.frame.size.width + gap) * (i + 1);
-        CGRect rect = btn.frame;
-        rect.origin.x = btnX;
-        btn.frame = rect;
+        LinkButton *btn = self.buttonArr[i];
+        CGSize btnSize = [NSString textSizeWithText:btn.text font:[UIFont systemFontOfSize:14] maxSize:max];
+        btnW += btnSize.width + 12 + gap;
+        CGFloat btnX = screenW - btnW;
+        btn.frame = CGRectMake(btnX, 5, btnSize.width + 12, btnSize.height + 12);
     }
 }
 
