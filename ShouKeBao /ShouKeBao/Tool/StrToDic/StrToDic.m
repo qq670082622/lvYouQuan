@@ -69,7 +69,17 @@ NSData *data = [NSJSONSerialization dataWithJSONObject:array options:NSJSONWriti
 
 }
 
-
++ (NSString *)stringFromDate:(NSDate *)date{
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    
+    NSString *destDateString = [dateFormatter stringFromDate:date];
+    
+    return destDateString;
+    
+}
 
 
 @end

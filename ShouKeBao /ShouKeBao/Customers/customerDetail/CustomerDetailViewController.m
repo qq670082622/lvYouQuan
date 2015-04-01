@@ -10,6 +10,8 @@
 #import "EditCustomerDetailViewController.h"
 #import "CustomerOrdersUIViewController.h"
 #import "remondViewController.h"
+#import "IWHttpTool.h"
+#import "MBProgressHUD+MJ.h"
 @interface CustomerDetailViewController ()
 @property (nonatomic,weak) UISegmentedControl *segmentControl;
 @end
@@ -32,6 +34,20 @@
     [titleView addSubview:segment];
     self.segmentControl = segment;
     self.navigationItem.titleView = titleView;
+    
+    
+    if (self.note.text == nil) {
+        self.note.text = @"请点击这里输入该客户的备注信息😄（选填）";
+    }
+}
+-(void)setModel:(CustomModel *)model
+{
+    _model = model;
+    self.QQ.text = model.QQCode;
+    self.weChat.text = model.WeiXinCode;
+    self.tele.text = model.Mobile;
+    self.note.text = model.Remark;
+    self.ID = [NSMutableString stringWithFormat:@"%@",model.ID];
 }
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -72,11 +88,26 @@
 
 
 - (IBAction)remond:(id)sender {
+    
     remondViewController *remond = [[remondViewController alloc] init];
+    remond.ID = self.ID;
     [self.navigationController pushViewController:remond animated:YES];
 }
 
 - (IBAction)deleteCustomer:(id)sender {
-    
+    MBProgressHUD *hudView = [MBProgressHUD showHUDAddedTo:[[UIApplication sharedApplication].delegate window] animated:YES];
+    hudView.labelText = @"删除中...";
+    [hudView show:YES];
+
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setObject:self.ID forKey:@"CustomerID"];
+    [IWHttpTool WMpostWithURL:@"/Customer/DeleteCustomer" params:dic success:^(id json) {
+        NSLog(@"删除客户信息成功%@",json);
+        hudView.labelText = @"删除成功...";
+ [hudView hide:YES afterDelay:0.4];
+    } failure:^(NSError *error) {
+        NSLog(@"删除客户请求失败%@",error);
+    }];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 @end

@@ -31,12 +31,13 @@
     }
     return cell;
 }
--(void)setModal:(CustomModel *)modal
+-(void)setModel:(CustomModel *)model
 {
-    [self.userIcon sd_setImageWithURL:[NSURL URLWithString:modal.userIcon] placeholderImage:[UIImage imageNamed:@"morentouxiang"]];
-    self.userName.text = modal.userName;
-    self.userTele.text = [NSString stringWithFormat:@"电话：%@",modal.userTele];
-    self.userOders.text = [NSString stringWithFormat:@"订单数：%@",modal.userOrder];
+    _model = model;
+    self.userIcon.image =  [UIImage imageNamed:@"morentouxiang"];
+    self.userName.text = model.Name;
+    self.userTele.text = [NSString stringWithFormat:@"电话：%@",model.Mobile];
+    self.userOders.text = [NSString stringWithFormat:@"订单数：%@",model.OrderCount];
 }
 
 @end

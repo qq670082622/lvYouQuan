@@ -105,13 +105,13 @@
 #pragma mark - LoadDataSource
 - (void)loadDataSourceLeft
 {
-    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    [dic setObject:@"10" forKey:@"Substation"];
+   // NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+   // [dic setObject:@"10" forKey:@"Substation"];
    
     MBProgressHUD *hudView = [MBProgressHUD showHUDAddedTo:[[UIApplication sharedApplication].delegate window] animated:YES];
     hudView.labelText = @"加载中...";
     
-    [IWHttpTool WMpostWithURL:@"/Product/GetNavigationType" params:dic success:^(id json) {
+    [IWHttpTool WMpostWithURL:@"/Product/GetNavigationType" params:nil success:^(id json) {
       
        //  NSLog(@"~~~~~~json is !%@",json);
         
@@ -143,7 +143,7 @@
 {
     int selectRow = [self.row intValue];
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    [dic setObject:@"10" forKey:@"Substation"];
+    //[dic setObject:@"10" forKey:@"Substation"];
     leftModal *model = self.leftTableArr[selectRow];
     [dic setObject:model.Type forKey:@"NavigationType"];
        [self.rightTableArr removeAllObjects];
@@ -180,7 +180,7 @@
     int selectRow = [self.table2Row intValue];
     NSLog(@"---------selectRow 转化为int 后为%d-------------",selectRow);
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    [dic setObject:@"10" forKey:@"Substation"];
+ //   [dic setObject:@"10" forKey:@"Substation"];
     NSString *searchID = _rightMoreSearchID[selectRow];
     [dic setObject:searchID forKey:@"NavigationMainID"];
 
@@ -212,11 +212,11 @@
 
 -(void)loadHotData
 {
-     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    [dic setObject:@"10" forKey:@"Substation"];
+ //    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+ ///   [dic setObject:@"10" forKey:@"Substation"];
 [self.hotArr removeAllObjects];
-[IWHttpTool WMpostWithURL:@"/Product/GetRankingProduct" params:dic success:^(id json) {
-
+[IWHttpTool WMpostWithURL:@"/Product/GetRankingProduct" params:nil success:^(id json) {
+    NSLog(@"---------热卖返回json is %@--------",json);
     NSMutableArray *sectionNameArr = [NSMutableArray array];
     for (NSDictionary *dic in json[@"RankingProdctList"]) {
         [sectionNameArr addObject:dic[@"Name"]];

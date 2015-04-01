@@ -24,10 +24,22 @@
     NSString *mobileID = [[UIDevice currentDevice].identifierForVendor UUIDString];
     //ClientSource 0其他，无需
     
+    NSUserDefaults *accoutDefault=[NSUserDefaults standardUserDefaults];
+    NSString *subStation =  [accoutDefault stringForKey:@"Substation"];
+    NSLog(@"---------subStation is %@-------",subStation);
+
     NSMutableDictionary *tmp = [[NSMutableDictionary alloc] init];
     [tmp setObject:@"1" forKey:@"MobileType"];
     [tmp setObject:currentVersion forKey:@"MobileVersion"];
     [tmp setObject:mobileID forKey:@"MobileID"];
+    
+    if (subStation) {
+        [tmp setObject:subStation forKey:@"Substation"];
+    }else if (!subStation){
+        [tmp setObject:@"10" forKey:@"Substation"];
+    }
+
+ 
     if ([UserInfo shareUser].BusinessID) {
         [tmp setObject:[UserInfo shareUser].BusinessID forKey:@"BusinessID"];
         [tmp setObject:[UserInfo shareUser].DistributionID forKey:@"DistributionID"];
@@ -62,19 +74,35 @@
     
     //组dic
     NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
+    
     NSString *currentVersion = [infoDic objectForKey:@"CFBundleVersion"];
+    
     NSString *mobileID = [[UIDevice currentDevice].identifierForVendor UUIDString];
+  
+    NSUserDefaults *accoutDefault=[NSUserDefaults standardUserDefaults];
+    NSString *subStation =  [accoutDefault stringForKey:@"Substation"];
+    NSLog(@"---------subStation is %@-------",subStation);
     //ClientSource 0其他，无需
     
     NSMutableDictionary *tmp = [[NSMutableDictionary alloc] init];
     [tmp setObject:@"1" forKey:@"MobileType"];
-    
     [tmp setObject:currentVersion forKey:@"MobileVersion"];
     [tmp setObject:mobileID forKey:@"MobileID"];
+    if (subStation) {
+        [tmp setObject:subStation forKey:@"Substation"];
+    }else if (!subStation){
+        [tmp setObject:@"10" forKey:@"Substation"];
+    }
+    
+    if ([UserInfo shareUser].BusinessID) {
+        [tmp setObject:[UserInfo shareUser].BusinessID forKey:@"BusinessID"];
+        [tmp setObject:[UserInfo shareUser].DistributionID forKey:@"DistributionID"];
+    }
     [tmp addEntriesFromDictionary:params];
     
-    NSLog(@"~~~~~~~param:%@",tmp);
     NSLog(@"-------url:%@",overStr);
+    NSLog(@"~~~~~~~param:%@",tmp);
+
     
     // 1.创建请求管理对象
     AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
