@@ -33,6 +33,8 @@
     UIView *gap = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 20)];
     self.tableView.tableHeaderView = gap;
     // Do any additional setup after loading the view.
+    
+    [UserInfo shareUser].DistributionID = self.distributionId;
 }
 
 #pragma mark - private
@@ -62,6 +64,7 @@
                                 @"Password":self.passWord.text};
         [LoginTool bindPhoneWithParam:param success:^(id json) {
             
+            NSLog(@"-----%@",json);
             if ([json[@"IsSuccess"] integerValue] == 1) {
                 [UserInfo shareUser].DistributionID = json[@"DistributionID"];
                 // 保存账号密码

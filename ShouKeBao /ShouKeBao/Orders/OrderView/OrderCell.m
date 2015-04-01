@@ -22,7 +22,7 @@
 #pragma mark - initailize
 + (instancetype)cellWithTableView:(UITableView *)tableView
 {
-    static NSString *ID = @"ordercell22";
+    static NSString *ID = @"ordercellaa";
     OrderCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     if (!cell) {
         
@@ -36,17 +36,18 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.orderTmpView = [[[NSBundle mainBundle] loadNibNamed:@"OrderCell" owner:nil options:nil] lastObject];
-        self.orderTmpView.frame = self.bounds;
-        
         [self.contentView addSubview:self.orderTmpView];
     }
     return self;
 }
 
-- (void)awakeFromNib
+- (OrderTmpView *)orderTmpView
 {
-    [super awakeFromNib];
+    if (!_orderTmpView) {
+        _orderTmpView = [[[NSBundle mainBundle] loadNibNamed:@"OrderCell" owner:nil options:nil] lastObject];
+        _orderTmpView.frame = self.bounds;
+    }
+    return _orderTmpView;
 }
 
 - (void)setModel:(OrderModel *)model

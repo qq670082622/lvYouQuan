@@ -102,10 +102,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (!indexPath.row == 0) {
+        Distribution *dis = self.dataSource[indexPath.row];
         
         // 去绑定手机
         UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Auth" bundle:nil];
         BindPhoneViewController *bind = [sb instantiateViewControllerWithIdentifier:@"BindPhone"];
+        bind.distributionId = dis.distributionId;
         [self.navigationController pushViewController:bind animated:YES];
     }else{
         AppDelegate *app = [UIApplication sharedApplication].delegate;

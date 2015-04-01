@@ -82,21 +82,8 @@
 
 - (void)headerButtonClick:(MeButton *)btn
 {
-    switch (btn.tag) {
-        case 0:{
-            
-            break;
-        }
-        case 1:{
-            
-            break;
-        }
-        case 2:{
-            
-            break;
-        }
-        default:
-            break;
+    if (_delegate && [_delegate respondsToSelector:@selector(buttonViewSelectedWithIndex:)]) {
+        [_delegate buttonViewSelectedWithIndex:btn.tag];
     }
 }
 

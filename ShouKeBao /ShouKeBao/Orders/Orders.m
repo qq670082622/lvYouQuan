@@ -160,13 +160,18 @@
         [self.tableView headerEndRefreshing];
         if (json) {
             NSLog(@"------%@",json);
-            [self.dataArr removeAllObjects];
-            for (NSDictionary *dic in json[@"OrderList"]) {
-                OrderModel *order = [OrderModel orderModelWithDict:dic];
-                [self.dataArr addObject:order];
-            }
-            self.searchKeyWord = @"";
-            [self.tableView reloadData];
+            dispatch_queue_t q = dispatch_queue_create("lidingd", DISPATCH_QUEUE_SERIAL);
+            dispatch_async(q, ^{
+                [self.dataArr removeAllObjects];
+                for (NSDictionary *dic in json[@"OrderList"]) {
+                    OrderModel *order = [OrderModel orderModelWithDict:dic];
+                    [self.dataArr addObject:order];
+                }
+                self.searchKeyWord = @"";
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.tableView reloadData];
+                });
+            });
         }
     } failure:^(NSError *error) {
         

@@ -127,7 +127,7 @@
 + (void)bindPhoneWithParam:(NSDictionary *)param success:(void (^)(id json))success failure:(void (^)(NSError *error))failure
 {
     
-    [IWHttpTool postWithURL:@"Business/SetBindingMobile" params:param success:^(id json) {
+    [IWHttpTool postWithURL:@"Business/DistributionBind" params:param success:^(id json) {
         
         if (success) {
             success(json);
