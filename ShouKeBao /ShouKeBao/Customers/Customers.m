@@ -22,6 +22,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *timeBtn;
 @property (weak, nonatomic) IBOutlet UIButton *orderNumBtn;
 @property (weak, nonatomic) IBOutlet UIButton *wordBtn;
+@property (weak, nonatomic) IBOutlet UIButton *cancelSearchOutlet;
+- (IBAction)cancelSearch:(id)sender;
 
 //1、 时间顺序;2、时间倒序; 3-订单数顺序;4、订单数倒序 5,字母顺序 6，字母倒序
 @end
@@ -94,7 +96,11 @@
     BatchAddViewController *batch = [[BatchAddViewController alloc] init];
     [self.navigationController pushViewController:batch animated:YES];
 }
-
+//-(BOOL)textFieldShouldReturn:(UITextField *)textField
+//{
+//    [self.searchTextField resignFirstResponder];
+//    return YES;
+//}
 -(void)loadDataSource
 {
 //    for (int i = 1; i<11 ; i++) {
@@ -168,6 +174,12 @@
     [IWHttpTool WMpostWithURL:@"/Customer/GetCustomerList" params:dic success:^(id json) {
        
         NSLog(@"------管客户json is %@-------",json);
+        [self.dataArr removeAllObjects];
+        for(NSDictionary *dic in json[@"CustomerList"]){
+            CustomModel *model = [CustomModel modalWithDict:dic];
+            [self.dataArr addObject:model];
+        }
+        [self.table reloadData];
     } failure:^(NSError *error) {
         NSLog(@"-------管客户第一个接口请求失败 error is %@------",error);
     }];
@@ -256,5 +268,12 @@
 
 - (IBAction)customSearch:(id)sender {
     self.searchTextField.hidden = NO;
+    self.cancelSearchOutlet.hidden = NO;
+}
+- (IBAction)cancelSearch:(id)sender {
+    self.cancelSearchOutlet.hidden = YES;
+    self.searchTextField.hidden = YES;
+    
+    [self.searchTextField resignFirstResponder];
 }
 @end

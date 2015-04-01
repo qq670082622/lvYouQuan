@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface remondModel : NSObject
-@property (nonatomic,copy) NSString *des;
-@property (nonatomic,copy) NSString *time;
-@property (nonatomic,copy)NSString *ID;
+@property (nonatomic,copy) NSString *Content;
+@property (nonatomic,copy) NSString *RemindTime;
+@property (nonatomic,copy) NSString *ID;
 + (instancetype)modalWithDict:(NSDictionary *)dict;
 - (instancetype)initWithDict:(NSDictionary *)dict;
 @end

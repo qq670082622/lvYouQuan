@@ -94,6 +94,6 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"最起码填写3个字吧？😄" message:@"若您想放弃添加提醒，点击返回按钮可以啦！～" delegate:self cancelButtonTitle:@"谢谢，我知道了" otherButtonTitles: nil];
         [alert show];
     }
-  
+    [self.navigationController popViewControllerAnimated:YES];
 }
 @end

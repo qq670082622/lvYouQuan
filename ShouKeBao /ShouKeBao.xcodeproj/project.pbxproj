@@ -167,6 +167,8 @@
 		639EE0851AB6D0E900E866B6 /* Register.xib in Resources */ = {isa = PBXBuildFile; fileRef = 639EE0831AB6D0E900E866B6 /* Register.xib */; };
 		639EE0891AB6EE5900E866B6 /* rightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 639EE0871AB6EE5900E866B6 /* rightCell.m */; };
 		639EE08A1AB6EE5900E866B6 /* rightCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 639EE0881AB6EE5900E866B6 /* rightCell.xib */; };
+		63BC623A1ACC1BC800E89CC5 /* RemindDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BC62381ACC1BC800E89CC5 /* RemindDetailViewController.m */; };
+		63BC623B1ACC1BC800E89CC5 /* RemindDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63BC62391ACC1BC800E89CC5 /* RemindDetailViewController.xib */; };
 		63D31E441AB143D00043B3CA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D31E431AB143D00043B3CA /* main.m */; };
 		63D31E4F1AB143D00043B3CA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63D31E4E1AB143D00043B3CA /* Images.xcassets */; };
 		63D31E521AB143D00043B3CA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63D31E501AB143D00043B3CA /* LaunchScreen.xib */; };
@@ -481,6 +483,9 @@
 		639EE0861AB6EE5900E866B6 /* rightCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rightCell.h; sourceTree = "<group>"; };
 		639EE0871AB6EE5900E866B6 /* rightCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = rightCell.m; sourceTree = "<group>"; };
 		639EE0881AB6EE5900E866B6 /* rightCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = rightCell.xib; sourceTree = "<group>"; };
+		63BC62371ACC1BC800E89CC5 /* RemindDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemindDetailViewController.h; sourceTree = "<group>"; };
+		63BC62381ACC1BC800E89CC5 /* RemindDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemindDetailViewController.m; sourceTree = "<group>"; };
+		63BC62391ACC1BC800E89CC5 /* RemindDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RemindDetailViewController.xib; sourceTree = "<group>"; };
 		63D31E3E1AB143D00043B3CA /* ShouKeBao.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShouKeBao.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63D31E421AB143D00043B3CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		63D31E431AB143D00043B3CA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -1049,6 +1054,7 @@
 		63709D2C1ACAC6D000AEB1C5 /* remond */ = {
 			isa = PBXGroup;
 			children = (
+				63BC62361ACC1B9600E89CC5 /* RemindDetail */,
 				63709D2D1ACAC6D000AEB1C5 /* addRemond */,
 				63709D311ACAC6D000AEB1C5 /* remondModel.h */,
 				63709D321ACAC6D000AEB1C5 /* remondModel.m */,
@@ -1113,6 +1119,16 @@
 				638B6F291AC6ACEF00C36465 /* StoreViewController.xib */,
 			);
 			path = Store;
+			sourceTree = "<group>";
+		};
+		63BC62361ACC1B9600E89CC5 /* RemindDetail */ = {
+			isa = PBXGroup;
+			children = (
+				63BC62371ACC1BC800E89CC5 /* RemindDetailViewController.h */,
+				63BC62381ACC1BC800E89CC5 /* RemindDetailViewController.m */,
+				63BC62391ACC1BC800E89CC5 /* RemindDetailViewController.xib */,
+			);
+			path = RemindDetail;
 			sourceTree = "<group>";
 		};
 		63D31E351AB143D00043B3CA = {
@@ -1559,6 +1575,7 @@
 				63709C801AC9731F00AEB1C5 /* CustomerOrdersUIViewController.xib in Resources */,
 				636C8B721AC2E1420097CAE9 /* ShareSDKLocalizable.strings in Resources */,
 				63709D3A1ACAC6D000AEB1C5 /* addRemondViewController.xib in Resources */,
+				63BC623B1ACC1BC800E89CC5 /* RemindDetailViewController.xib in Resources */,
 				63709C431AC96D0900AEB1C5 /* CustomerDetailViewController.xib in Resources */,
 				63709C481AC96E0E00AEB1C5 /* EditCustomerDetailViewController.xib in Resources */,
 				6365831C1AC417440090C6A4 /* SearchProductViewController.xib in Resources */,
@@ -1690,6 +1707,7 @@
 				631B1ED71AB7D27700253FA5 /* HeaderView.m in Sources */,
 				8461F36D1AC3DE3600B8D41A /* DressView.m in Sources */,
 				8471EABA1AC16FD50019AB92 /* OrderCell.m in Sources */,
+				63BC623A1ACC1BC800E89CC5 /* RemindDetailViewController.m in Sources */,
 				631B1ED31AB7D02C00253FA5 /* rightCell3.m in Sources */,
 				5AB7C9711ACA98ED00217CAC /* OrgSettingViewController.m in Sources */,
 				633263D61AB851590021553B /* AFSecurityPolicy.m in Sources */,

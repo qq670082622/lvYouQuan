@@ -27,8 +27,8 @@
 -(void)setModel:(remondModel *)model
 {
     _model = model;
-    self.desLabel.text = model.des;
-    self.time.text = model.time;
+    self.desLabel.text = model.Content;
+    self.time.text = model.RemindTime;
    }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

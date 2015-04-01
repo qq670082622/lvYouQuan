@@ -34,7 +34,7 @@
 -(void)setModel:(CustomModel *)model
 {
     _model = model;
-    self.userIcon.image =  [UIImage imageNamed:@"morentouxiang"];
+    self.userIcon.image =  [UIImage imageNamed:@"quanquange"];
     self.userName.text = model.Name;
     self.userTele.text = [NSString stringWithFormat:@"电话：%@",model.Mobile];
     self.userOders.text = [NSString stringWithFormat:@"订单数：%@",model.OrderCount];
