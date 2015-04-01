@@ -10,7 +10,7 @@
 #import "batchCell.h"
 #import "batchModel.h"
 #import <AddressBook/AddressBook.h>
-
+#import "IWHttpTool.h"
 #import <AddressBookUI/AddressBookUI.h>
 
 @interface BatchAddViewController ()<UITableViewDataSource,UITableViewDelegate>
@@ -39,11 +39,35 @@
     UIBarButtonItem *barItem = [[UIBarButtonItem alloc]initWithCustomView:button];
     
     self.navigationItem.rightBarButtonItem= barItem;
-}
+    
+    
+  }
 
 
 -(void)EditCustomerDetail
 {
+    NSMutableArray *arr = [NSMutableArray array];
+  
+    for(int i = 0 ;i<_editArr.count;i++){
+       
+        NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+        batchModel *model = _editArr[i];
+        
+        [dic setValue:model.name forKey:@"Name"];
+         [dic setValue:model.tel forKey:@"Mobile"];
+        [arr addObject:dic];
+        
+    }
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];//@"/Customer/CreateCustomerList"
+        [dic setObject:arr forKey:@"CustomerList"];
+   
+    [IWHttpTool WMpostWithURL:@"/Customer/CreateCustomerList" params:dic success:^(id json) {
+        NSLog(@"批量导入客户成功 返回json is %@",json);
+    } failure:^(NSError *error) {
+        NSLog(@"批量导入客户失败，返回error is %@",error);
+    }];
+    [self.navigationController popViewControllerAnimated:YES];
     
 }
 

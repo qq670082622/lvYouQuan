@@ -14,5 +14,5 @@
 
 +(NSString *)jsonStringWithDicL:(NSDictionary *)dic;//将字典转化成string
 +(NSDictionary *)dictWithArry:(NSArray *)array;
-
++ (NSString *)stringFromDate:(NSDate *)date;
 @end

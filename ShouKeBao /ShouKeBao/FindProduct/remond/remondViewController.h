@@ -10,5 +10,5 @@
 #import "remondModel.h"
 #import "remondTableViewCell.h"
 @interface remondViewController : UIViewController
-
+@property (nonatomic,copy) NSMutableString *ID;
 @end

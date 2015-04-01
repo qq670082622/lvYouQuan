@@ -10,11 +10,11 @@
 
 @interface Customers : UIViewController
 @property (weak, nonatomic) IBOutlet UITableView *table;
-@property (weak, nonatomic) IBOutlet UIButton *timeOderOutlet;
+
 - (IBAction)timeOrderAction:(id)sender;
-@property (weak, nonatomic) IBOutlet UIButton *orderNumOutlet;
+
 - (IBAction)orderNumAction:(id)sender;
-@property (weak, nonatomic) IBOutlet UIButton *wordOrderOutlet;
+
 - (IBAction)wordOrderAction:(id)sender;
 - (IBAction)customSearch:(id)sender;
 

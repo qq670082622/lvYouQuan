@@ -8,6 +8,7 @@
 
 #import "remondViewController.h"
 #import "addRemondViewController.h"
+#import "IWHttpTool.h"
 @interface remondViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *table;
 @property (strong,nonatomic) NSMutableArray *dataArr;
@@ -23,8 +24,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self loadData];
+   
     [self setUpRightButton];
+}
+-(void)viewWillAppear:(BOOL)animated
+{
+
+    [super viewWillAppear:animated];
+    self.table.rowHeight = 78;
+     [self loadData];
 }
 -(void)setUpRightButton{
     UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0,0,30,30)];
@@ -42,25 +50,46 @@
         self.subView.hidden = YES;
         self.deleBtn.hidden = NO;
         [self.table setEditing:YES animated:YES];
-        self.navigationItem.rightBarButtonItem.title = @"取消";
+        UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0,0,30,30)];
+
+        [button setBackgroundImage:[UIImage imageNamed:@"quxiao"] forState:UIControlStateNormal];
+        
+        
+        UIBarButtonItem *barItem = [[UIBarButtonItem alloc]initWithCustomView:button];
+        
+        self.navigationItem.rightBarButtonItem= barItem;
+
     }else if (self.subView.hidden == YES){
         self.subView.hidden = NO;
         self.deleBtn.hidden = YES;
         [self.table setEditing:NO animated:YES];
-        self.navigationItem.rightBarButtonItem.title = @"编辑";
+        UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0,0,30,30)];
+        
+        [button setBackgroundImage:[UIImage imageNamed:@"bianji"] forState:UIControlStateNormal];
+        
+        
+        UIBarButtonItem *barItem = [[UIBarButtonItem alloc]initWithCustomView:button];
+        
+        self.navigationItem.rightBarButtonItem= barItem;
     }
     
 }
 
 -(void)loadData
 {
-    for (int i = 0; i<10; i++) {
-        NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-        [dic setValue:[NSString stringWithFormat:@"吃第%d次饭🍚",i+1] forKey:@"des"];
-        [dic setValue:[NSString stringWithFormat:@"拉第%d次屎💩",i+1] forKey:@"time"];
-        [self.dataArr addObject:dic];
-    }
-    
+//    for (int i = 0; i<10; i++) {
+//        NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+//        [dic setValue:[NSString stringWithFormat:@"吃第%d次饭🍚",i+1] forKey:@"des"];
+//        [dic setValue:[NSString stringWithFormat:@"拉第%d次屎💩",i+1] forKey:@"time"];
+//        [self.dataArr addObject:dic];
+//    }
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setObject:self.ID forKey:@"CustomerID"];
+    [IWHttpTool WMpostWithURL:@"/Customer/GetCustomerRemindList" params:dic success:^(id json) {
+        NSLog(@"提醒列表json is %@",json);
+    } failure:^(NSError *error) {
+        NSLog(@"客户提醒列表请求错误 %@",error);
+    }];
 }
 
 -(NSMutableArray *)dataArr
@@ -118,14 +147,33 @@ return     self.dataArr.count;
 - (IBAction)addRemond:(id)sender {
     
     addRemondViewController *add = [[addRemondViewController alloc] init];
+    add.ID = self.ID;
     [self.navigationController pushViewController:add animated:YES];
     
 }
 - (IBAction)deletAction:(id)sender {
     NSLog(@"_editArr is %@",_editArr);
+   
+    NSMutableArray *arr = [NSMutableArray array];
     for (int i = 0; i<self.editArr.count; i++) {
+        remondModel *model = _editArr[i];
+        [arr addObject:model.ID];
+    
         [self.dataArr removeObject:_editArr[i]];
     }
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setObject:arr forKey:@"CustomerRemindIDList"];
+    [dic setObject:self.ID forKey:@"CustomerID"];
+    [IWHttpTool WMpostWithURL:@"/Customer/DeleteCustomerRemindList" params:dic success:^(id json) {
+        NSLog(@"删除客户提醒成功%@",json);
+        for(NSDictionary *dic in  json[@"CustomerRemindList"]){
+        
+        }
+    } failure:^(NSError *error) {
+        NSLog(@"删除客户提醒请求失败%@",error);
+    }];
+    
     [self.table setEditing:NO animated:YES];
     [self.table reloadData];
 }

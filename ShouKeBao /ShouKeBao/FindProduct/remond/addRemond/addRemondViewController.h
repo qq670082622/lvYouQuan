@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface addRemondViewController : UIViewController
-
+@property (nonatomic,copy) NSMutableString *ID;
 @end

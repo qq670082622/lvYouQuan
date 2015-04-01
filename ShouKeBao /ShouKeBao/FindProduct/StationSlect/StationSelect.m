@@ -72,7 +72,10 @@
     self.stationName = _dataArr[indexPath.row][@"Text"];
     self.stationNum = [NSMutableString stringWithFormat:@"%@",_dataArr[indexPath.row][@"Value"]];
     [self.navigationController popViewControllerAnimated:YES];
-    
+   //储存substation
+    NSUserDefaults *accountDefaults = [NSUserDefaults standardUserDefaults];
+   [accountDefaults setObject:_stationNum forKey:@"Substation"];
+    [accountDefaults synchronize];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
