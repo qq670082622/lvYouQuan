@@ -1121,7 +1121,6 @@
 		63709D2C1ACAC6D000AEB1C5 /* remond */ = {
 			isa = PBXGroup;
 			children = (
-				63BC62361ACC1B9600E89CC5 /* RemindDetail */,
 				63709D2D1ACAC6D000AEB1C5 /* addRemond */,
 				63709D311ACAC6D000AEB1C5 /* remondModel.h */,
 				63709D321ACAC6D000AEB1C5 /* remondModel.m */,
@@ -1198,7 +1197,8 @@
 				63BC62381ACC1BC800E89CC5 /* RemindDetailViewController.m */,
 				63BC62391ACC1BC800E89CC5 /* RemindDetailViewController.xib */,
 			);
-			path = RemindDetail;
+			name = RemindDetail;
+			path = ../FindProduct/remond/RemindDetail;
 			sourceTree = "<group>";
 		};
 		63BC62411ACCE80500E89CC5 /* Animations */ = {
@@ -1282,6 +1282,7 @@
 		63D31E671AB145550043B3CA /* Customers */ = {
 			isa = PBXGroup;
 			children = (
+				63BC62361ACC1B9600E89CC5 /* RemindDetail */,
 				63709D2C1ACAC6D000AEB1C5 /* remond */,
 				63709C811AC9826C00AEB1C5 /* BatchAddCustomers */,
 				63709C7B1AC972FB00AEB1C5 /* customerOrders */,
