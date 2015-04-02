@@ -39,6 +39,8 @@
 		5AB7C9911ACBFA9300217CAC /* TKProgressCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AB7C9901ACBFA9300217CAC /* TKProgressCircleView.m */; };
 		5AB7C9951ACBFE1D00217CAC /* SafeSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AB7C9941ACBFE1D00217CAC /* SafeSettingViewController.m */; };
 		5AB7C9971ACBFED300217CAC /* Safe.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5AB7C9961ACBFED300217CAC /* Safe.storyboard */; };
+		63042AC71ACD6AFD00514D0A /* MinMaxPriceSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63042AC51ACD6AFD00514D0A /* MinMaxPriceSelectViewController.m */; };
+		63042AC81ACD6AFD00514D0A /* MinMaxPriceSelectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63042AC61ACD6AFD00514D0A /* MinMaxPriceSelectViewController.xib */; };
 		6314157F1AC14FCA0086DF60 /* ConditionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6314157E1AC14FCA0086DF60 /* ConditionModel.m */; };
 		631B1EC41AB7CF1E00253FA5 /* rightCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 631B1EC21AB7CF1E00253FA5 /* rightCell2.m */; };
 		631B1EC51AB7CF1E00253FA5 /* rightCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 631B1EC31AB7CF1E00253FA5 /* rightCell2.xib */; };
@@ -178,6 +180,7 @@
 		639EE08A1AB6EE5900E866B6 /* rightCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 639EE0881AB6EE5900E866B6 /* rightCell.xib */; };
 		63BC623A1ACC1BC800E89CC5 /* RemindDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BC62381ACC1BC800E89CC5 /* RemindDetailViewController.m */; };
 		63BC623B1ACC1BC800E89CC5 /* RemindDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63BC62391ACC1BC800E89CC5 /* RemindDetailViewController.xib */; };
+		63BC62441ACCE81900E89CC5 /* WMAnimations.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BC62431ACCE81900E89CC5 /* WMAnimations.m */; };
 		63D31E441AB143D00043B3CA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D31E431AB143D00043B3CA /* main.m */; };
 		63D31E4F1AB143D00043B3CA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63D31E4E1AB143D00043B3CA /* Images.xcassets */; };
 		63D31E521AB143D00043B3CA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63D31E501AB143D00043B3CA /* LaunchScreen.xib */; };
@@ -288,6 +291,9 @@
 		5AB7C9931ACBFE1D00217CAC /* SafeSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SafeSettingViewController.h; sourceTree = "<group>"; };
 		5AB7C9941ACBFE1D00217CAC /* SafeSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SafeSettingViewController.m; sourceTree = "<group>"; };
 		5AB7C9961ACBFED300217CAC /* Safe.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Safe.storyboard; sourceTree = "<group>"; };
+		63042AC41ACD6AFD00514D0A /* MinMaxPriceSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MinMaxPriceSelectViewController.h; sourceTree = "<group>"; };
+		63042AC51ACD6AFD00514D0A /* MinMaxPriceSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MinMaxPriceSelectViewController.m; sourceTree = "<group>"; };
+		63042AC61ACD6AFD00514D0A /* MinMaxPriceSelectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MinMaxPriceSelectViewController.xib; sourceTree = "<group>"; };
 		6314157D1AC14FCA0086DF60 /* ConditionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConditionModel.h; sourceTree = "<group>"; };
 		6314157E1AC14FCA0086DF60 /* ConditionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConditionModel.m; sourceTree = "<group>"; };
 		631B1EC11AB7CF1E00253FA5 /* rightCell2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = rightCell2.h; path = ../rightTable/rightCell2.h; sourceTree = "<group>"; };
@@ -511,6 +517,8 @@
 		63BC62371ACC1BC800E89CC5 /* RemindDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemindDetailViewController.h; sourceTree = "<group>"; };
 		63BC62381ACC1BC800E89CC5 /* RemindDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemindDetailViewController.m; sourceTree = "<group>"; };
 		63BC62391ACC1BC800E89CC5 /* RemindDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RemindDetailViewController.xib; sourceTree = "<group>"; };
+		63BC62421ACCE81900E89CC5 /* WMAnimations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMAnimations.h; sourceTree = "<group>"; };
+		63BC62431ACCE81900E89CC5 /* WMAnimations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMAnimations.m; sourceTree = "<group>"; };
 		63D31E3E1AB143D00043B3CA /* ShouKeBao.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShouKeBao.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63D31E421AB143D00043B3CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		63D31E431AB143D00043B3CA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -723,6 +731,7 @@
 		632613081AB1C16E003AC2DA /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				63BC62411ACCE80500E89CC5 /* Animations */,
 				8461F35B1AC3D79100B8D41A /* DOPDropDownMenu */,
 				636C8B8E1AC2E6860097CAE9 /* MBProgressHUD */,
 				8448BC5C1AC2567E00F28E1A /* MGSwipeCell */,
@@ -1154,6 +1163,9 @@
 				636C8B4C1AC2B9C30097CAE9 /* ConditionSelectViewController.h */,
 				636C8B4D1AC2B9C30097CAE9 /* ConditionSelectViewController.m */,
 				636C8B4E1AC2B9C30097CAE9 /* ConditionSelectViewController.xib */,
+				63042AC41ACD6AFD00514D0A /* MinMaxPriceSelectViewController.h */,
+				63042AC51ACD6AFD00514D0A /* MinMaxPriceSelectViewController.m */,
+				63042AC61ACD6AFD00514D0A /* MinMaxPriceSelectViewController.xib */,
 			);
 			path = ProductList;
 			sourceTree = "<group>";
@@ -1176,6 +1188,15 @@
 				63BC62391ACC1BC800E89CC5 /* RemindDetailViewController.xib */,
 			);
 			path = RemindDetail;
+			sourceTree = "<group>";
+		};
+		63BC62411ACCE80500E89CC5 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				63BC62421ACCE81900E89CC5 /* WMAnimations.h */,
+				63BC62431ACCE81900E89CC5 /* WMAnimations.m */,
+			);
+			path = Animations;
 			sourceTree = "<group>";
 		};
 		63D31E351AB143D00043B3CA = {
@@ -1604,6 +1625,7 @@
 				5A6814311AC58D7700F8AD08 /* ContactView.xib in Resources */,
 				633263B81AB8405C0021553B /* ProductCell.xib in Resources */,
 				8461F3621AC3D79100B8D41A /* icon_chose_arrow_nor@2x.png in Resources */,
+				63042AC81ACD6AFD00514D0A /* MinMaxPriceSelectViewController.xib in Resources */,
 				636C8B501AC2B9C30097CAE9 /* ConditionSelectViewController.xib in Resources */,
 				5AB7C9761ACAA23C00217CAC /* Me.storyboard in Resources */,
 				63709D2A1ACAC68800AEB1C5 /* batchCell.xib in Resources */,
@@ -1746,6 +1768,7 @@
 				5AB7C97E1ACB935D00217CAC /* SosViewController.m in Sources */,
 				63709C7F1AC9731F00AEB1C5 /* CustomerOrdersUIViewController.m in Sources */,
 				63709D291ACAC68800AEB1C5 /* batchCell.m in Sources */,
+				63BC62441ACCE81900E89CC5 /* WMAnimations.m in Sources */,
 				8448BC621AC2567E00F28E1A /* MGSwipeTableCell.m in Sources */,
 				633263B21AB823990021553B /* StationSelect.m in Sources */,
 				5A6814261AC56E6000F8AD08 /* SKSearchBar.m in Sources */,
@@ -1762,6 +1785,7 @@
 				6326131D1AB1C175003AC2DA /* MJRefreshFooterView.m in Sources */,
 				5A68140C1AC50ECD00F8AD08 /* ButtonList.m in Sources */,
 				8461F3611AC3D79100B8D41A /* DOPDropDownMenu.m in Sources */,
+				63042AC71ACD6AFD00514D0A /* MinMaxPriceSelectViewController.m in Sources */,
 				5A6814151AC53CCB00F8AD08 /* LinkButton.m in Sources */,
 				845514E31ABFF7E500D588A7 /* UserInfo.m in Sources */,
 				633263D31AB851590021553B /* AFHTTPRequestOperationManager.m in Sources */,

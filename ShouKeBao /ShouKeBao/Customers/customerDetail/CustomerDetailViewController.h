@@ -13,10 +13,14 @@
 @property (weak, nonatomic) IBOutlet UITextField *weChat;
 @property (weak, nonatomic) IBOutlet UITextField *QQ;
 @property (weak, nonatomic) IBOutlet UITextView *note;
-@property (nonatomic,copy) NSMutableString *ID;
-@property (nonatomic,strong)CustomModel *model;
+@property (nonatomic,copy) NSString *ID;
+@property (weak, nonatomic) IBOutlet UITextField *tele;
+@property (nonatomic,copy) NSString *weChatStr;
+@property (nonatomic,copy) NSString *QQStr;
+@property (nonatomic,copy) NSString *noteStr;
+@property (nonatomic,copy) NSString *teleStr;
 - (IBAction)remond:(id)sender;
 - (IBAction)deleteCustomer:(id)sender;
-@property (weak, nonatomic) IBOutlet UITextField *tele;
+
 
 @end

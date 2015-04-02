@@ -17,30 +17,30 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="xixixi" translatesAutoresizingMaskIntoConstraints="NO" id="rxM-1T-TAR">
-                        <rect key="frame" x="0.0" y="0.0" width="69" height="55"/>
+                        <rect key="frame" x="0.0" y="0.0" width="55" height="55"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="69" id="PX8-U7-zSB"/>
+                            <constraint firstAttribute="width" constant="55" id="OkO-He-hrj"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="王剑锋" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2WI-MO-qoi">
                         <rect key="frame" x="77" y="0.0" width="113" height="21"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="113" id="eS2-9k-lIo"/>
+                            <constraint firstAttribute="width" constant="113" id="YfG-bt-4KY"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="电话：13120555759" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9uM-WA-LT8">
-                        <rect key="frame" x="77" y="34" width="123" height="21"/>
+                        <rect key="frame" x="77" y="34" width="150" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="订单数：55" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ryf-6Y-wfT">
-                        <rect key="frame" x="216" y="33" width="70" height="21"/>
+                        <rect key="frame" x="240" y="33" width="70" height="21"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="70" id="KTl-WH-39B"/>
+                            <constraint firstAttribute="width" constant="70" id="Zzg-AK-aaI"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -48,19 +48,20 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="ryf-6Y-wfT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="25" id="4FX-sE-g0L"/>
-                    <constraint firstItem="2WI-MO-qoi" firstAttribute="leading" secondItem="rxM-1T-TAR" secondAttribute="trailing" constant="8" symbolic="YES" id="9Qi-a1-MP1"/>
-                    <constraint firstItem="rxM-1T-TAR" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="FyK-kI-rMl"/>
-                    <constraint firstItem="9uM-WA-LT8" firstAttribute="bottom" secondItem="rxM-1T-TAR" secondAttribute="bottom" id="Hni-bL-kwD"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="ryf-6Y-wfT" secondAttribute="bottom" constant="-7.5" id="J9h-Lm-x4e"/>
-                    <constraint firstItem="rxM-1T-TAR" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="N2Y-Df-lKR"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="ryf-6Y-wfT" secondAttribute="trailing" constant="26" id="N7T-4x-b37"/>
-                    <constraint firstItem="ryf-6Y-wfT" firstAttribute="firstBaseline" secondItem="9uM-WA-LT8" secondAttribute="firstBaseline" id="V4Q-Sw-kwO"/>
-                    <constraint firstItem="9uM-WA-LT8" firstAttribute="top" secondItem="2WI-MO-qoi" secondAttribute="bottom" constant="13" id="Y3Y-tp-kMv"/>
-                    <constraint firstItem="rxM-1T-TAR" firstAttribute="top" secondItem="2WI-MO-qoi" secondAttribute="top" id="Y7l-5N-q1c"/>
-                    <constraint firstItem="9uM-WA-LT8" firstAttribute="leading" secondItem="2WI-MO-qoi" secondAttribute="leading" id="eOH-PS-AXl"/>
-                    <constraint firstItem="rxM-1T-TAR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="gkb-5S-qkW"/>
-                    <constraint firstItem="ryf-6Y-wfT" firstAttribute="leading" secondItem="9uM-WA-LT8" secondAttribute="trailing" constant="16" id="kK0-0S-EE0"/>
+                    <constraint firstItem="rxM-1T-TAR" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="0z0-yj-i2v"/>
+                    <constraint firstItem="ryf-6Y-wfT" firstAttribute="leading" secondItem="9uM-WA-LT8" secondAttribute="trailing" constant="13" id="3NN-gF-2jM"/>
+                    <constraint firstItem="rxM-1T-TAR" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="AMk-YV-7Dt"/>
+                    <constraint firstItem="9uM-WA-LT8" firstAttribute="bottom" secondItem="rxM-1T-TAR" secondAttribute="bottom" id="Fou-IA-48q"/>
+                    <constraint firstItem="rxM-1T-TAR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="FvT-Bg-RMG"/>
+                    <constraint firstItem="9uM-WA-LT8" firstAttribute="top" secondItem="2WI-MO-qoi" secondAttribute="bottom" constant="13" id="JDl-Xj-9CL"/>
+                    <constraint firstItem="ryf-6Y-wfT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="25" id="JGt-zx-MYg"/>
+                    <constraint firstItem="ryf-6Y-wfT" firstAttribute="leading" secondItem="9uM-WA-LT8" secondAttribute="trailing" constant="13" id="NiO-O9-cTB"/>
+                    <constraint firstItem="rxM-1T-TAR" firstAttribute="top" secondItem="2WI-MO-qoi" secondAttribute="top" id="SPo-sH-fa7"/>
+                    <constraint firstItem="ryf-6Y-wfT" firstAttribute="firstBaseline" secondItem="9uM-WA-LT8" secondAttribute="firstBaseline" id="T7F-51-dq8"/>
+                    <constraint firstItem="9uM-WA-LT8" firstAttribute="leading" secondItem="2WI-MO-qoi" secondAttribute="leading" id="XnA-WV-Ntj"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="ryf-6Y-wfT" secondAttribute="bottom" constant="-7.5" id="YQx-HT-aoi"/>
+                    <constraint firstItem="2WI-MO-qoi" firstAttribute="leading" secondItem="rxM-1T-TAR" secondAttribute="trailing" constant="22" id="c4a-L1-eVV"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="ryf-6Y-wfT" secondAttribute="trailing" constant="2" id="cbq-qY-Onj"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

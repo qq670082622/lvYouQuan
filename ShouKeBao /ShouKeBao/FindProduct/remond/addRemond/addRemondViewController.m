@@ -13,7 +13,7 @@
 @property (weak, nonatomic) IBOutlet UITextView *descript;
 - (IBAction)setTime:(id)sender;
 
-@property (weak, nonatomic) IBOutlet UIView *subView;
+
 @property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
 
 @end
@@ -62,9 +62,9 @@
 
 - (IBAction)setTime:(id)sender {
     if (self.datePicker.hidden == YES) {
-        self.subView.hidden = NO;
-    }else if (self.subView.hidden == NO){
-        self.subView.hidden = YES;
+        self.datePicker.hidden = NO;
+    }else if (self.datePicker.hidden == NO){
+        self.datePicker.hidden = YES;
     }
     
    }

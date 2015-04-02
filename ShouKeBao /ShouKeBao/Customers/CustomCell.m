@@ -24,11 +24,8 @@
     CustomCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if (cell == nil) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"CustomCell" owner:nil options:nil] lastObject];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        
-        //        [cell.contentView addSubview:self.btn1];
-        
-    }
+       
+        }
     return cell;
 }
 -(void)setModel:(CustomModel *)model

@@ -75,14 +75,15 @@
    //储存substation
     NSUserDefaults *accountDefaults = [NSUserDefaults standardUserDefaults];
    [accountDefaults setObject:_stationNum forKey:@"Substation"];
+    [accountDefaults setObject:_stationName forKey:@"SubstationName"];
     [accountDefaults synchronize];
+    [self.delegate notifiToReloadData];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [self.delegate passStation:_stationName andStationNum:_stationNum];
-}
+    }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *ID = @"Station";

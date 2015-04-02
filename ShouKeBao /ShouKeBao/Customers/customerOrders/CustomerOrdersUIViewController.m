@@ -17,12 +17,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"客户订单";
-    UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 220, 28)];
+    UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 150, 28)];
     NSArray *segmentedArray = [[NSArray alloc]initWithObjects:@"客户资料",@"订单详情",nil];
     UISegmentedControl *segment = [[UISegmentedControl alloc] initWithItems:segmentedArray];
     [segment addTarget:self action:@selector(sex:)forControlEvents:UIControlEventValueChanged];
     [segment setTintColor:[UIColor whiteColor]];
-    segment.frame = CGRectMake(0, 0, 220, 28);
+    segment.frame = CGRectMake(0, 0, 150, 28);
     [segment setSelected:YES];
     [segment setSelectedSegmentIndex:1];
     [titleView addSubview:segment];

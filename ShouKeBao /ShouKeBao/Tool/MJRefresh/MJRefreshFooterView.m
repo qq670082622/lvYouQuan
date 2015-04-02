@@ -166,7 +166,7 @@
         case MJRefreshStateRefreshing:
         {
             // 记录刷新前的数量
-            self.lastRefreshCount = [self totalDataCountInScrollView];
+            self.lastRefreshCount = (int)[self totalDataCountInScrollView];
             
             [UIView animateWithDuration:MJRefreshFastAnimationDuration animations:^{
                 CGFloat bottom = self.mj_height + self.scrollViewOriginalInset.bottom;

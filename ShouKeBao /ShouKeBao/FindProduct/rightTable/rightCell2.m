@@ -7,7 +7,7 @@
 //
 
 #import "rightCell2.h"
-
+#import "WMAnimations.h"
 @implementation rightCell2//
 
 - (void)awakeFromNib {
@@ -28,6 +28,7 @@
         cell = [[[NSBundle mainBundle] loadNibNamed:@"rightCell2" owner:nil options:nil] lastObject];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;    
     }
+    [WMAnimations WMAnimationMakeBoarderWithLayer:cell.subView.layer andBorderColor:[UIColor lightGrayColor] andBorderWidth:1 andNeedShadow:YES];
     return cell;
 }
 

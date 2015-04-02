@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-@protocol passStation<NSObject>
--(void)passStation:(NSString *)stationName andStationNum:(NSMutableString*)stationNum;
+@protocol notifi<NSObject>
+-(void)notifiToReloadData;
 @end
 @interface StationSelect : UIViewController
-@property(weak,nonatomic)id<passStation>delegate;
+@property (weak,nonatomic) id<notifi>delegate;
 @end

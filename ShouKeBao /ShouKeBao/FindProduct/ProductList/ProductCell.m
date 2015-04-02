@@ -100,7 +100,7 @@
      */
     UIButton *jiafanBtn = [[UIButton alloc] init];
     [jiafanBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [jiafanBtn setBackgroundImage:[UIImage imageNamed:@"jiafang"] forState:UIControlStateNormal];
+    [jiafanBtn setBackgroundImage:[UIImage imageNamed:@"jiafan"] forState:UIControlStateNormal];
     jiafanBtn.titleLabel.font = [UIFont systemFontOfSize:10];
     [self.contentView addSubview:jiafanBtn];
     self.jiafanBtn = jiafanBtn;
@@ -137,7 +137,7 @@
     self.title.frame = CGRectMake(gap, gap, titleW, 35);
     
     CGFloat iconY = CGRectGetMaxY(self.title.frame) + gap;
-    self.icon.frame = CGRectMake(gap, iconY, 120, 70);
+    self.icon.frame = CGRectMake(gap, iconY, 70, 70);
     
     /**
      四个label

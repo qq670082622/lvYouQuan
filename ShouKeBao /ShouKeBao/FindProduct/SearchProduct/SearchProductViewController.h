@@ -16,6 +16,6 @@
 - (IBAction)search:(id)sender;
 - (IBAction)clearinPutView:(id)sender;
 -(IBAction)hotWordSearch:(id)sender;
-@property (weak, nonatomic) IBOutlet UITableView *historyTable;
+//@property (weak, nonatomic) IBOutlet UITableView *historyTable;
 @property (nonatomic,weak) id<passSearchKey>delegate;
 @end

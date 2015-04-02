@@ -10,6 +10,7 @@
                 <outlet property="downTable" destination="R73-Wz-X8q" id="baX-4n-4Or"/>
                 <outlet property="midlleTable" destination="IYu-g7-xMj" id="C9g-m6-XIb"/>
                 <outlet property="searchBtn" destination="Y8O-Mt-FKQ" id="YzR-Wz-9bV"/>
+                <outlet property="stationName" destination="25d-1C-lO3" id="XRJ-R3-NTN"/>
                 <outlet property="upView" destination="Bc7-6G-aOu" id="GGQ-vi-Ffv"/>
                 <outlet property="userIcon" destination="Amj-G2-utC" id="Rxc-iP-2jS"/>
                 <outlet property="userName" destination="j7n-9y-VPr" id="cTG-1x-Gof"/>
@@ -75,12 +76,12 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" id="sUz-15-yGa">
-                            <rect key="frame" x="220" y="45" width="1" height="60"/>
+                            <rect key="frame" x="220" y="45.000000491738305" width="1" height="60"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                             <color key="backgroundColor" white="0.75" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="oE9-3F-kUd">
-                            <rect key="frame" x="230.00000017597563" y="40" width="70" height="70"/>
+                            <rect key="frame" x="230.00000027285682" y="40" width="70" height="70"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES"/>
                             <state key="normal" image="banjiubing">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -90,9 +91,9 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="O64-S5-SJA">
-                            <rect key="frame" x="8" y="5" width="50" height="30"/>
+                            <rect key="frame" x="8" y="5" width="60" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" image="shanghai">
+                            <state key="normal" image="fenzhan">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -116,6 +117,17 @@
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="25d-1C-lO3">
+                            <rect key="frame" x="23" y="6" width="40" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <state key="normal" title="上海">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="changeStation:" destination="-1" eventType="touchUpInside" id="7al-yK-0da"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
@@ -137,8 +149,8 @@
     </objects>
     <resources>
         <image name="banjiubing" width="99" height="99"/>
+        <image name="fenzhan" width="117" height="67"/>
         <image name="jia" width="34" height="34"/>
-        <image name="shanghai" width="117" height="67"/>
         <image name="shousuochanpin" width="595" height="64"/>
         <image name="xixixi" width="56" height="56"/>
     </resources>

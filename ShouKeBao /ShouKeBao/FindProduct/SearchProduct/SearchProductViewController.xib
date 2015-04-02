@@ -16,8 +16,8 @@
                 <outlet property="btn4" destination="xf8-FO-MJu" id="qpG-cV-Ss4"/>
                 <outlet property="btn5" destination="eYH-Vq-AbK" id="rvf-4G-isG"/>
                 <outlet property="btn6" destination="yVJ-ud-aMf" id="Orc-He-aty"/>
-                <outlet property="historyTable" destination="RWq-KV-V0R" id="oX5-Pv-dGr"/>
                 <outlet property="inputView" destination="FZI-bY-7VM" id="m2P-cz-AIe"/>
+                <outlet property="subView" destination="bH7-yX-Yj9" id="L8d-OT-5ig"/>
                 <outlet property="table" destination="RWq-KV-V0R" id="DdJ-Fl-Mna"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -55,10 +55,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2LC-OG-jYj">
-                            <rect key="frame" x="290" y="0.0" width="30" height="30"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="30" id="6PL-Ot-g6R"/>
-                            </constraints>
+                            <rect key="frame" x="287" y="0.0" width="30" height="30"/>
                             <state key="normal" title="取消">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -78,11 +75,11 @@
                     <constraints>
                         <constraint firstItem="vJp-Vs-sxq" firstAttribute="leading" secondItem="FZI-bY-7VM" secondAttribute="trailing" constant="5" id="1OW-MK-jvO"/>
                         <constraint firstItem="vJp-Vs-sxq" firstAttribute="top" secondItem="FZI-bY-7VM" secondAttribute="top" id="3Fs-VD-8Eq"/>
+                        <constraint firstItem="2LC-OG-jYj" firstAttribute="leading" secondItem="Grb-6G-vzv" secondAttribute="trailing" constant="1" id="99i-Ny-KaB"/>
                         <constraint firstItem="Grb-6G-vzv" firstAttribute="centerY" secondItem="bH7-yX-Yj9" secondAttribute="centerY" id="9LL-7w-ocn"/>
-                        <constraint firstItem="vJp-Vs-sxq" firstAttribute="baseline" secondItem="2LC-OG-jYj" secondAttribute="baseline" id="PIA-sJ-0M5"/>
-                        <constraint firstItem="2LC-OG-jYj" firstAttribute="leading" secondItem="Grb-6G-vzv" secondAttribute="trailing" constant="4" id="YmV-Ag-YeJ"/>
                         <constraint firstAttribute="height" constant="30" id="fRd-6V-aFX"/>
                         <constraint firstItem="Grb-6G-vzv" firstAttribute="top" secondItem="bH7-yX-Yj9" secondAttribute="top" constant="2" id="n6o-SG-DWm"/>
+                        <constraint firstItem="2LC-OG-jYj" firstAttribute="baseline" secondItem="vJp-Vs-sxq" secondAttribute="baseline" id="oTk-dw-hQ6"/>
                         <constraint firstItem="FZI-bY-7VM" firstAttribute="bottom" secondItem="vJp-Vs-sxq" secondAttribute="bottom" id="pVL-V5-FuN"/>
                         <constraint firstItem="Grb-6G-vzv" firstAttribute="leading" secondItem="bH7-yX-Yj9" secondAttribute="leading" constant="285" id="wVb-D2-Uiq"/>
                         <constraint firstItem="Grb-6G-vzv" firstAttribute="leading" secondItem="vJp-Vs-sxq" secondAttribute="trailing" id="wks-rP-d53"/>
@@ -180,7 +177,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="RWq-KV-V0R">
-                    <rect key="frame" x="8" y="232" width="304" height="229.5"/>
+                    <rect key="frame" x="8" y="232" width="304" height="230"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="Njv-Mr-VVJ"/>

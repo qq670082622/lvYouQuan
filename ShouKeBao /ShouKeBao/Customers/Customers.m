@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *orderNumBtn;
 @property (weak, nonatomic) IBOutlet UIButton *wordBtn;
 @property (weak, nonatomic) IBOutlet UIButton *cancelSearchOutlet;
+
 - (IBAction)cancelSearch:(id)sender;
 
 //1、 时间顺序;2、时间倒序; 3-订单数顺序;4、订单数倒序 5,字母顺序 6，字母倒序
@@ -69,9 +70,19 @@
 -(void)setUp
 {
     if (self.subView.hidden == YES) {
-        self.subView.hidden = NO;
+        [UIView animateWithDuration:0.8 animations:^{
+            self.subView.alpha = 0;
+            self.subView.alpha = 1;
+           self.subView.hidden = NO;
+        }];
+        
     }else if (self.subView.hidden == NO){
-        self.subView.hidden = YES;
+       [UIView animateWithDuration:0.8 animations:^{
+           self.subView.alpha = 1;
+           self.subView.alpha = 0;
+             self.subView.hidden = YES;
+       }];
+      
     }
 }
 
@@ -96,30 +107,21 @@
     BatchAddViewController *batch = [[BatchAddViewController alloc] init];
     [self.navigationController pushViewController:batch animated:YES];
 }
-//-(BOOL)textFieldShouldReturn:(UITextField *)textField
-//{
-//    [self.searchTextField resignFirstResponder];
-//    return YES;
-//}
+
+
+
 -(void)loadDataSource
 {
-//    for (int i = 1; i<11 ; i++) {
-//        NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-//        [dic setObject:[NSString stringWithFormat:@"屌丝%d号",i] forKey:@"userName"];
-//        [dic setObject:[NSString stringWithFormat:@"1312055575%d",i] forKey:@"userTele"];
-//        [dic setObject:[NSString stringWithFormat:@"20%d",i] forKey:@"userOrder"];
-//        [self.dataArr addObject:dic];
-//    }
+
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     [dic setObject:@1 forKey:@"PageIndex"];
     [dic setObject:@"100" forKey:@"PageSize"];
-    [dic setObject:@"1" forKey:@"SortType"];
-    NSUserDefaults *accountDefaults = [NSUserDefaults standardUserDefaults];
+   NSUserDefaults *accountDefaults = [NSUserDefaults standardUserDefaults];
     NSString *sortType = [accountDefaults stringForKey:@"sortType"];
     if (sortType) {
-        [dic setObject:sortType forKey:@"SearchKey"];
+        [dic setObject:sortType forKey:@"sortType"];
     }else if (!sortType){
-        [dic setObject:@"1" forKey:@"SearchKey"];
+        [dic setObject:@"1" forKey:@"sortType"];
 }
     
     [IWHttpTool WMpostWithURL:@"/Customer/GetCustomerList" params:dic success:^(id json) {
@@ -145,10 +147,14 @@
 {
 
     CustomerDetailViewController *detail = [[CustomerDetailViewController alloc] init];
-    
     CustomModel *model = _dataArr[indexPath.row];
-    detail.model = model;
-    [self.navigationController pushViewController:detail animated:YES];
+    detail.QQStr = model.QQCode;
+    detail.ID = model.ID;
+    detail.weChatStr = model.WeiXinCode;
+    detail.teleStr = model.Mobile;
+    detail.noteStr = model.Remark;
+    
+       [self.navigationController pushViewController:detail animated:YES];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -158,19 +164,19 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CustomCell *cell = [CustomCell cellWithTableView:tableView];
-    cell.model = _dataArr[indexPath.row];
-    return cell;
+    CustomModel *model = _dataArr[indexPath.row];
+    cell.model = model;
+   
+       return cell;
     }
 #pragma mark - textField delegate method
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [self.searchTextField resignFirstResponder];
-  //  NSLog(@"textfield text is %@",self.searchTextField.text);
-    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+  NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     [dic setObject:@1 forKey:@"PageIndex"];
     [dic setObject:@"100" forKey:@"PageSize"];
-    //  [dic setObject:@"1" forKey:@"SortType"];
-        [dic setObject:self.searchTextField.text forKey:@"SearchKey"];
+   [dic setObject:self.searchTextField.text forKey:@"SearchKey"];
     [IWHttpTool WMpostWithURL:@"/Customer/GetCustomerList" params:dic success:^(id json) {
        
         NSLog(@"------管客户json is %@-------",json);
@@ -198,20 +204,30 @@
          NSUserDefaults *accountDefaults = [NSUserDefaults standardUserDefaults];
         [accountDefaults setObject:@"1" forKey:@"sortType"];
         [accountDefaults synchronize];
+        [self.dataArr removeAllObjects];
+        [self loadDataSource];
+        [self.table reloadData];
+
     }else if (self.timeBtn.selected == YES && [self.timeBtn.currentTitle  isEqual: @"时间排序 ↓"]) {
         [self.timeBtn setSelected:YES];
         [self.timeBtn setTitle:@"时间排序 ↑" forState:UIControlStateNormal];
         NSUserDefaults *accountDefaults = [NSUserDefaults standardUserDefaults];
         [accountDefaults setObject:@"2" forKey:@"sortType"];
         [accountDefaults synchronize];
-        
+        [self.dataArr removeAllObjects];
+        [self loadDataSource];
+        [self.table reloadData];
+
     }else if (self.timeBtn.selected == YES &&[self.timeBtn.currentTitle isEqual:@"时间排序 ↑"]){
         [self.timeBtn setSelected:YES];
         [self.timeBtn setTitle:@"时间排序 ↓" forState:UIControlStateNormal];
         NSUserDefaults *accountDefaults = [NSUserDefaults standardUserDefaults];
         [accountDefaults setObject:@"1" forKey:@"sortType"];
         [accountDefaults synchronize];
-        
+        [self.dataArr removeAllObjects];
+        [self loadDataSource];
+        [self.table reloadData];
+
     }
     
 }
@@ -223,21 +239,30 @@
         NSUserDefaults *accountDefaults = [NSUserDefaults standardUserDefaults];
         [accountDefaults setObject:@"3" forKey:@"sortType"];
         [accountDefaults synchronize];
-       
+        [self.dataArr removeAllObjects];
+        [self loadDataSource];
+        [self.table reloadData];
+
     }else if (self.orderNumBtn.selected == YES && [self.orderNumBtn.currentTitle  isEqual: @"订单数排序 ↓"]){
         [self.orderNumBtn setSelected:YES];
         [self.orderNumBtn setTitle:@"订单数排序 ↑" forState:UIControlStateNormal];
         NSUserDefaults *accountDefaults = [NSUserDefaults standardUserDefaults];
         [accountDefaults setObject:@"4" forKey:@"sortType"];
         [accountDefaults synchronize];
-       
+        [self.dataArr removeAllObjects];
+        [self loadDataSource];
+        [self.table reloadData];
+
     }else if (self.orderNumBtn.selected == YES && [self.orderNumBtn.currentTitle  isEqual: @"订单数排序 ↑"]){
         [self.orderNumBtn setSelected:YES];
         [self.orderNumBtn setTitle:@"订单数排序 ↓" forState:UIControlStateNormal];
         NSUserDefaults *accountDefaults = [NSUserDefaults standardUserDefaults];
         [accountDefaults setObject:@"3" forKey:@"sortType"];
         [accountDefaults synchronize];
-      
+        [self.dataArr removeAllObjects];
+        [self loadDataSource];
+        [self.table reloadData];
+
     }
 }
 - (IBAction)wordOrderAction:(id)sender {
@@ -248,20 +273,29 @@
         NSUserDefaults *accountDefaults = [NSUserDefaults standardUserDefaults];
         [accountDefaults setObject:@"5" forKey:@"sortType"];
         [accountDefaults synchronize];
-        
+        [self.dataArr removeAllObjects];
+        [self loadDataSource];
+        [self.table reloadData];
     }else if (self.wordBtn.selected == YES && [self.wordBtn.currentTitle  isEqual: @"字母排序 ↓"]){
         [self.wordBtn setSelected:YES];
         [self.wordBtn setTitle:@"字母排序 ↑" forState:UIControlStateNormal];
         NSUserDefaults *accountDefaults = [NSUserDefaults standardUserDefaults];
         [accountDefaults setObject:@"6" forKey:@"sortType"];
         [accountDefaults synchronize];
-      
+        [self.dataArr removeAllObjects];
+        [self loadDataSource];
+        [self.table reloadData];
+
     }else if (self.wordBtn.selected == YES && [self.wordBtn.currentTitle  isEqual: @"字母排序 ↑"]){
         [self.wordBtn setSelected:YES];
         [self.wordBtn setTitle:@"字母排序 ↓" forState:UIControlStateNormal];
         NSUserDefaults *accountDefaults = [NSUserDefaults standardUserDefaults];
         [accountDefaults setObject:@"5" forKey:@"sortType"];
         [accountDefaults synchronize];
+        [self.dataArr removeAllObjects];
+        [self loadDataSource];
+        [self.table reloadData];
+
            }
 
 }
@@ -269,6 +303,7 @@
 - (IBAction)customSearch:(id)sender {
     self.searchTextField.hidden = NO;
     self.cancelSearchOutlet.hidden = NO;
+    [self.searchTextField becomeFirstResponder];
 }
 - (IBAction)cancelSearch:(id)sender {
     self.cancelSearchOutlet.hidden = YES;

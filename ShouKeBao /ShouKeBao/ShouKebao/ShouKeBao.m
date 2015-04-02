@@ -25,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *midlleTable;
 @property (weak, nonatomic) IBOutlet UITableView *downTable;
 @property (weak, nonatomic) IBOutlet UIView *upView;
+@property (weak, nonatomic) IBOutlet UIButton *stationName;
 
 - (IBAction)search:(id)sender;
 
@@ -48,6 +49,20 @@
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pushToStore)];
     [self.upView addGestureRecognizer:tap];
+    
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    NSUserDefaults *udf = [NSUserDefaults standardUserDefaults];
+    NSString *subStationName = [udf stringForKey:@"SubstationName"];
+    if (subStationName) {
+        [self.stationName setTitle:subStationName forState:UIControlStateNormal];
+    }else if (!subStationName){
+        [self.stationName setTitle:@"上海" forState:UIControlStateNormal];
+    }
+    
 }
 -(void)pushToStore
 {

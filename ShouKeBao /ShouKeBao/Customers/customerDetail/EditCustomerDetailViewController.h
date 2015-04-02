@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface EditCustomerDetailViewController : UIViewController
-
+@property (nonatomic,copy) NSString *ID;
 @end

@@ -14,4 +14,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *descript;
 @property (strong , nonatomic) rightModal2 *modal;
 +(instancetype)cellWithTableView:(UITableView *)tableView;
+@property (weak, nonatomic) IBOutlet UIView *subView;
 @end

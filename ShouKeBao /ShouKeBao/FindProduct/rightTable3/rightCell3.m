@@ -7,7 +7,7 @@
 //
 
 #import "rightCell3.h"
-
+#import "WMAnimations.h"
 @implementation rightCell3//
 
 - (void)awakeFromNib {
@@ -18,8 +18,8 @@
     rightCell3 *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if (cell == nil) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"rightCell3" owner:nil options:nil] lastObject];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        
+       // cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        [WMAnimations WMAnimationMakeBoarderWithLayer:cell.name.layer andBorderColor:[UIColor lightGrayColor] andBorderWidth:1 andNeedShadow:YES];
         //        [cell.contentView addSubview:self.btn1];
         
     }

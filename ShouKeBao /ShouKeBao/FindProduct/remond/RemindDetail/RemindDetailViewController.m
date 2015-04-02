@@ -23,12 +23,12 @@
     
     self.noteLebel.layer.cornerRadius = 4;
     self.noteLebel.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    self.noteLebel.layer.borderWidth = 2;
+    self.noteLebel.layer.borderWidth = 0.5;
     self.noteLebel.layer.masksToBounds = YES;
     
     self.timeLabel.layer.cornerRadius = 4;
     self.timeLabel.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    self.timeLabel.layer.borderWidth = 2;
+    self.timeLabel.layer.borderWidth = 0.5;
     self.timeLabel.layer.masksToBounds = YES;
 }
 

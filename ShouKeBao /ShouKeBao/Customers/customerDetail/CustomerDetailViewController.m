@@ -12,8 +12,9 @@
 #import "remondViewController.h"
 #import "IWHttpTool.h"
 #import "MBProgressHUD+MJ.h"
-@interface CustomerDetailViewController ()
+@interface CustomerDetailViewController ()<UITextFieldDelegate>
 @property (nonatomic,weak) UISegmentedControl *segmentControl;
+
 @end
 
 @implementation CustomerDetailViewController
@@ -23,31 +24,46 @@
     [self customerRightBarItem];
     self.title = @"客户详情";
     
-    UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 220, 28)];
+    UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 150, 28)];
     NSArray *segmentedArray = [[NSArray alloc]initWithObjects:@"客户资料",@"订单详情",nil];
     UISegmentedControl *segment = [[UISegmentedControl alloc] initWithItems:segmentedArray];
     [segment addTarget:self action:@selector(sex:)forControlEvents:UIControlEventValueChanged];
     [segment setTintColor:[UIColor whiteColor]];
-    segment.frame = CGRectMake(0, 0, 220, 28);
+    segment.frame = CGRectMake(0, 0, 150, 28);
     [segment setSelected:YES];
     [segment setSelectedSegmentIndex:0];
     [titleView addSubview:segment];
     self.segmentControl = segment;
     self.navigationItem.titleView = titleView;
     
-    
+    [self setSubViews];
     if (self.note.text == nil) {
         self.note.text = @"请点击这里输入该客户的备注信息😄（选填）";
     }
 }
--(void)setModel:(CustomModel *)model
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    _model = model;
-    self.QQ.text = model.QQCode;
-    self.weChat.text = model.WeiXinCode;
-    self.tele.text = model.Mobile;
-    self.note.text = model.Remark;
-    self.ID = [NSMutableString stringWithFormat:@"%@",model.ID];
+    [self.weChat resignFirstResponder];
+   [self.QQ resignFirstResponder];
+    [self.note resignFirstResponder];
+    [self.tele resignFirstResponder];
+    return YES;
+}
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    if ([text isEqualToString:@"\n"]) {
+        [self.note resignFirstResponder];
+        return NO;
+    }
+    return YES;
+    
+}
+-(void)setSubViews{
+        self.QQ.text = self.QQStr;
+    self.weChat.text = self.weChatStr;
+    self.tele.text = self.teleStr;
+    self.note.text = self.noteStr;
+    
 }
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -77,7 +93,7 @@
 -(void)EditCustomerDetail
 {
     EditCustomerDetailViewController *edit = [[EditCustomerDetailViewController alloc] init];
-    
+    edit.ID = self.ID;
     [self.navigationController pushViewController:edit animated:YES];
 }
 

@@ -8,7 +8,9 @@
 
 #import "SearchProductViewController.h"
 #import "IWHttpTool.h"
-@interface SearchProductViewController ()<UITableViewDataSource,UITableViewDelegate>
+#import "WMAnimations.h"
+#import "ProductList.h"
+@interface SearchProductViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
 @property (strong,nonatomic)NSMutableArray *hotSearchWord;
 @property(strong,nonatomic)NSMutableArray *tableDataArr;
 @property (weak, nonatomic) IBOutlet UIButton *btn1;
@@ -18,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btn5;
 @property (weak, nonatomic) IBOutlet UIButton *btn6;
 @property (weak, nonatomic) IBOutlet UITableView *table;
+@property (weak, nonatomic) IBOutlet UIView *subView;
 
 @end
 
@@ -27,13 +30,16 @@
     [super viewDidLoad];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyBoard)];
     [self.view addGestureRecognizer:tap];
-    [self loadDataSource];
+    [self loadHotWordDataSource];
+    [self loadHistoryDataSource];
+    
     self.table.delegate = self;
     self.table.dataSource = self;
+    
     self.table.separatorStyle = UITableViewCellSeparatorStyleNone;
    // [self setBtnText];
-    
-
+    [WMAnimations WMAnimationMakeBoarderWithLayer:self.subView.layer andBorderColor:[UIColor lightGrayColor] andBorderWidth:1 andNeedShadow:YES];
+    [WMAnimations WMAnimationMakeBoarderWithLayer:self.table.layer andBorderColor:[UIColor lightGrayColor] andBorderWidth:1 andNeedShadow:YES];
 }
 -(void)hideKeyBoard
 {
@@ -45,7 +51,7 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)loadDataSource
+-(void)loadHotWordDataSource
 {
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     [dic setObject:@10 forKey:@"SubStation"];
@@ -87,10 +93,15 @@
 {
 
     if (_tableDataArr == nil) {
-        self.tableDataArr = [NSMutableArray arrayWithObjects:@"123",@"5213",@"512",@"52141",@"5124",@"623412",@"123",@"12",@"123",@"1",@"52",@"5",@"12",@"3",@"125",@"12", nil ];
+        self.tableDataArr = [NSMutableArray array];
     }
     return _tableDataArr;
 }
+-(void)loadHistoryDataSource
+{
+
+}
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *str = @"historyCell";
@@ -114,17 +125,24 @@
     
 }
 - (IBAction)search:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+    ProductList *list = [[ProductList alloc] init];
+    list.pushedSearchK = self.inputView.text;
+    [self.navigationController pushViewController:list animated:YES];
 }
 
 - (IBAction)clearinPutView:(id)sender {
+    self.inputView.text = @"";
+    [self.inputView resignFirstResponder];
 }
 
 -(IBAction)hotWordSearch:(id)sender
 {
     UIButton *btn = (UIButton *)sender;
     self.inputView.text = btn.currentTitle;
-    
-    [self.navigationController popViewControllerAnimated:YES];
+    ProductList *list = [[ProductList alloc] init];
+    list.pushedSearchK = self.inputView.text;
+   
+    [self.navigationController pushViewController:list animated:YES];
+   
 }
 @end

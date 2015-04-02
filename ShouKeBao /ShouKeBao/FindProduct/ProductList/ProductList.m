@@ -22,7 +22,8 @@
 #import "SearchProductViewController.h"
 #import "SearchProductViewController.h"
 #import "StationSelect.h"
-@interface ProductList ()<UITableViewDelegate,UITableViewDataSource,footViewDelegate,MGSwipeTableCellDelegate,passValue,passSearchKey,passStation>
+#import "MinMaxPriceSelectViewController.h"
+@interface ProductList ()<UITableViewDelegate,UITableViewDataSource,footViewDelegate,MGSwipeTableCellDelegate,passValue,passSearchKey,UITextFieldDelegate,passThePrice>
 @property (copy,nonatomic) NSMutableString *searchKey;
 @property (weak, nonatomic) IBOutlet UIView *subView;
 
@@ -39,6 +40,7 @@
 - (IBAction)jiafanSwitchAction:(id)sender;
 @property (weak, nonatomic) IBOutlet UISwitch *jishiSwitch;
 - (IBAction)jishiSwitchAction:(id)sender;
+
 
 //@property (copy , nonatomic) NSMutableString *ProductSortingType;//推荐:”0",利润（从低往高）:”1"利润（从高往低:”2"
 //同行价（从低往高）:”3,同行价（从高往低）:"4"
@@ -96,9 +98,9 @@
     
 
 
-    UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 220, 28)];
+    UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 150, 28)];
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.frame = CGRectMake(0, 0, 220, 28);
+    btn.frame = CGRectMake(0, 0, 150, 28);
     [btn setBackgroundImage:[UIImage imageNamed:@"shousuochanpin"] forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(clickPush) forControlEvents:UIControlEventTouchUpInside];
     [titleView addSubview:btn];
@@ -107,9 +109,7 @@
     SearchProductViewController *searchVC = [[SearchProductViewController alloc] init];
     searchVC.delegate = self;
     
-    StationSelect *station = [[StationSelect alloc] init];
-    station.delegate = self;
-    
+        
     }
 #pragma - stationSelect delegate
 -(void)passStation:(NSString *)stationName andStationNum:(NSNumber *)stationNum
@@ -119,6 +119,13 @@
 -(void)passSearchKeyFromSearchVC:(NSString *)searchKey
 {
     self.pushedSearchK = [NSMutableString stringWithFormat:@"%@",searchKey];
+}
+#pragma  mark 没有产品时嵌图
+-(void)addANewFootViewWhenHaveNoProduct
+{
+    UIImageView *imgv = [[UIImageView alloc] initWithFrame:CGRectMake(0, 100, self.view.frame.size.width, 400)];
+    imgv.image = [UIImage imageNamed:@"meiyouchanpin"];
+    [self.view addSubview:imgv];
 }
 
 -(void)clickPush
@@ -150,7 +157,13 @@
     return _jiafan;
 }
 
-
+-(NSMutableDictionary *)conditionDic
+{
+    if (_conditionDic == nil) {
+        self.conditionDic = [NSMutableDictionary dictionary];
+    }
+    return _conditionDic;
+}
 #pragma  mark - conditionDetail delegate//key 指大字典的key value指字典中某一子value的值
 -(void)passKey:(NSString *)key andValue:(NSString *)value andSelectIndexPath:(NSArray *)selectIndexPath andSelectValue:(NSString *)selectValue
 {
@@ -176,6 +189,13 @@
    
       NSLog(@"-----------conditionDic is %@--------",self.conditionDic);
     
+}
+
+#pragma  mark -priceDelegate
+-(void)passTheMinPrice:(NSString *)min AndMaxPrice:(NSString *)max
+{
+    [self.conditionDic setObject:min forKey:@"MinPrice"];
+    [self.conditionDic setObject:max forKey:@"MaxPrice"];
 }
 
 #pragma footView - delegate
@@ -211,15 +231,32 @@
    // NSLog(@"-------page2 请求的 dic  is %@-----",dic);
     [IWHttpTool WMpostWithURL:@"/Product/GetProductList" params:dic success:^(id json) {
         NSLog(@"----------更多按钮返回json is %@--------------",json);
-        for (NSDictionary *dic in json[@"ProductList"]) {
-           
-        
+        NSArray *arr = json[@"ProductList"];
+        if (arr.count == 0) {
+            self.table.tableFooterView.hidden = YES;
+        }else if (10>arr.count>0){
+          self.table.tableFooterView.hidden = YES;
+            for (NSDictionary *dic in json[@"ProductList"]) {
                 ProductModal *modal = [ProductModal modalWithDict:dic];
-            [self.dataArr addObject:modal];}
-        
+                [self.dataArr addObject:modal];
+            }
+            
             [self.table reloadData];
             NSString *page = [NSString stringWithFormat:@"%@",_page];
-                self.page = [NSMutableString stringWithFormat:@"%d",[page intValue]+1];
+            self.page = [NSMutableString stringWithFormat:@"%d",[page intValue]+1];
+        }else if (arr.count>=10){
+            self.table.tableFooterView.hidden = NO;
+            for (NSDictionary *dic in json[@"ProductList"]) {
+                ProductModal *modal = [ProductModal modalWithDict:dic];
+                [self.dataArr addObject:modal];
+            }
+            
+            [self.table reloadData];
+            NSString *page = [NSString stringWithFormat:@"%@",_page];
+            self.page = [NSMutableString stringWithFormat:@"%d",[page intValue]+1];
+
+        }
+        
             
     } failure:^(NSError *error) {
         NSLog(@"-------产品搜索请求失败 error is%@----------",error);
@@ -259,12 +296,19 @@
     [IWHttpTool WMpostWithURL:@"/Product/GetProductList" params:dic success:^(id json) {
         
         NSLog(@"--------------json[condition is  %@------------]",json);
-                for (NSDictionary *dic in json[@"ProductList"]) {
-            ProductModal *modal = [ProductModal modalWithDict:dic];
-            [self.dataArr addObject:modal];
-        }
-        
-        NSMutableArray *conArr = [NSMutableArray array];
+        NSArray *arr = json[@"ProductList"];
+        NSLog(@"------------arr.cont is %lu---------",(unsigned long)arr.count);
+        if (arr.count==0) {
+            [self addANewFootViewWhenHaveNoProduct];
+            self.table.tableFooterView.hidden = YES;
+        }else if (arr.count>0){
+         self.table.tableFooterView.hidden = NO;
+            for (NSDictionary *dic in json[@"ProductList"]) {
+                ProductModal *modal = [ProductModal modalWithDict:dic];
+                [self.dataArr addObject:modal];
+            }
+
+        }        NSMutableArray *conArr = [NSMutableArray array];
         
         for(NSDictionary *dic in json[@"ProductConditionList"] ){
             [conArr addObject:dic];
@@ -415,7 +459,7 @@
         view.backgroundColor = [UIColor lightGrayColor];
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeSystem];
         btn.frame = CGRectMake(0, 0, self.view.frame.size.width, 35);
-        [btn setTitle:@"收起           >" forState:UIControlStateNormal];
+        [btn setTitle:@"更多           >" forState:UIControlStateNormal];
        [btn addTarget:self action:@selector(beMore) forControlEvents:UIControlEventTouchUpInside];
         self.subTableSectionBtn = btn;
         [view addSubview:btn];
@@ -427,7 +471,7 @@
         view.backgroundColor = [UIColor lightGrayColor];
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeSystem];
         btn.frame = CGRectMake(0, 0, self.view.frame.size.width, 35);
-        [btn setTitle:@"更多        >" forState:UIControlStateNormal];
+        [btn setTitle:@"收起        >" forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(beMore) forControlEvents:UIControlEventTouchUpInside];
         self.subTableSectionBtn = btn;
         [view addSubview:btn];
@@ -569,7 +613,12 @@
     [dic setObject:model.ID forKey:@"ProductID"];
     [dic setObject:result forKey:@"IsFavorites"];///Product/ SetProductFavorites
    [IWHttpTool WMpostWithURL:@"/Product/SetProductFavorites" params:dic success:^(id json) {
-       NSLog(@"产品收藏成功");
+       NSLog(@"产品收藏成功%@",json);
+       [MBProgressHUD showSuccess:@"操作成功"];
+       dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{ // 2.0s后执行block里面的代码
+           [MBProgressHUD hideHUD];
+       });
+
    } failure:^(NSError *error) {
        NSLog(@"产品收藏网络请求失败");
    }];
@@ -850,7 +899,9 @@
 }
 
 - (IBAction)subMinMax:(id)sender {
-    
+    MinMaxPriceSelectViewController *mm = [[MinMaxPriceSelectViewController alloc] init];
+    mm.delegate = self;
+    [self.navigationController pushViewController:mm animated:YES];
 }
 
 
@@ -879,4 +930,6 @@
 //    
 //    return _conditionDic;
 //}
+- (IBAction)savePrice:(id)sender {
+}
 @end
